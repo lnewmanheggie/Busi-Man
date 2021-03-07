@@ -8,8 +8,9 @@ function Header({ heading }) {
             color: '#ffb703',
             fontWeight: 'bold',
             backgroundColor: '#023047',
-            paddingBottom: '2rem',
-            fontStyle: 'italic'
+            paddingBottom: '1rem',
+            fontStyle: 'italic',
+            borderBottom: '1rem solid #8ecae6'
         }
     }
 
