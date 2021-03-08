@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Card({ title }) {
+function Card({ title, icon }) {
 
     const styles = {
         box: {
@@ -17,6 +17,8 @@ function Card({ title }) {
     return(
         <div className="box" style={styles.box}>
             <h2 style={styles.h2}>{title}</h2>
+            <br />
+            {icon}
         </div>
     )
 }
