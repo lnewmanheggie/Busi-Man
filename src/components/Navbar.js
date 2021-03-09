@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
 
@@ -61,9 +62,9 @@ function Navbar() {
 
             <div id="navbarBasicExample" className="navbar-menu">
                 <div className="navbar-start">
-                    <a className="navbar-item" style={styles.navbarItem}>
+                    <Link to={'/'} className="navbar-item" style={styles.navbarItem}>
                         Home
-                    </a>
+                    </Link>
                 </div>
 
                     <div className="navbar-end">
@@ -75,9 +76,9 @@ function Navbar() {
                             <a className="navbar-item">
                                 View
                             </a>
-                            <a className="navbar-item">
+                            <Link to='/' className="navbar-item">
                                 Sign Out
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

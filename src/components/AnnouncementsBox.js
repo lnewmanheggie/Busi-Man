@@ -4,7 +4,8 @@ function AnnouncementsBox() {
 
     const styles = {
         box: {
-            backgroundColor: '#cecece'
+            backgroundColor: '#cecece',
+            height: 'auto'
         }
     }
 
