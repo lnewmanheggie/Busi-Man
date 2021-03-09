@@ -4,18 +4,24 @@ import Header from '../components/Header';
 import AnnouncementsBox from '../components/AnnouncementsBox';
 import Card from '../components/Card';
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 
 function Dashboard() {
 
     const styles = {
+
         container: {
             backgroundColor: "white"
+        },
+
+        link: {
+            textDecoration: 'none'
         }
     }
 
     return(
-        <>
+        <div className='content'>
             <Navbar />
             <Header heading={'Dashboard (manager)'}/>
             
@@ -30,7 +36,7 @@ function Dashboard() {
 
                         {/* ADD EMPLOYEES */}
                         <div className="column">
-                            <Link to='/add-employees'>
+                            <Link to='/add-employees' style={styles.link}>
                                 <Card 
                                     title='Add Employees'
                                     icon= {
@@ -45,7 +51,7 @@ function Dashboard() {
 
                         {/* MAKE A SALE */}
                         <div className="column">
-                            <Link to='/make-a-sale'>
+                            <Link to='/make-a-sale' style={styles.link}>
                                 <Card 
                                     title='Make a Sale'
                                     icon= {
@@ -60,7 +66,7 @@ function Dashboard() {
 
                         {/* RECEIVE ITEMS */}
                         <div className="column">
-                            <Link to='/receive-items'>
+                            <Link to='/receive-items' style={styles.link}>
                                 <Card 
                                     title='Receive Items'
                                     icon= {
@@ -75,7 +81,7 @@ function Dashboard() {
 
                         {/* VIEW STATS */}
                         <div className="column">
-                            <Link to='/view-stats'>
+                            <Link to='/view-stats' style={styles.link}>
                                 <Card 
                                     title='View Stats'
                                     icon= {
@@ -93,7 +99,7 @@ function Dashboard() {
 
                         {/* VIEW EMPLOYEES */}
                         <div className="column is-one-quarter">
-                            <Link to='/view-employees'>
+                            <Link to='/view-employees' style={styles.link}>
                                 <Card 
                                     title='View Employees'
                                     icon= {
@@ -107,7 +113,7 @@ function Dashboard() {
 
                         {/* POST ANNOUNCEMENT */}
                         <div className="column is-one-quarter">
-                            <Link to='/post-announcement'>
+                            <Link to='/post-announcement' style={styles.link}>
                                 <Card 
                                     title='Post Announcement'
                                     icon= {
@@ -121,7 +127,7 @@ function Dashboard() {
 
                         {/* TRACK INVENTORY */}
                         <div className="column is-one-quarter">
-                            <Link to='/track-inventory'>
+                            <Link to='/track-inventory' style={styles.link}>
                                 <Card 
                                     title='Track Inventory'
                                     icon= {
@@ -135,7 +141,8 @@ function Dashboard() {
                     </div>
                 </div>
             </div>
-        </>
+            <Footer />
+        </div>
     )
 
 

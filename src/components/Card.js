@@ -5,7 +5,7 @@ function Card({ title, icon }) {
 
     return(
         <div className="box">
-            <h2>{title}</h2>
+            <h3>{title}</h3>
             <br />
             {icon}
         </div>

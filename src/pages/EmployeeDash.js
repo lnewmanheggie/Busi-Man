@@ -3,23 +3,29 @@ import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import AnnouncementsBox from '../components/AnnouncementsBox';
 import Card from '../components/Card';
+import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
 
 function EmployeeDash() {
 
     const styles = {
+
         container: {
-            backgroundColor: "white"
+            backgroundColor: "white",
+        },
+
+        link: {
+            textDecoration: 'none'
         }
     }
 
     return(
-        <>
+        <div className='content'>
             <Navbar />
             <Header heading={'Dashboard (employee)'}/>
             
-            <div className="container mt-5 mb-5">
+            <div className="container mt-5 mb-5" style={styles.container}>
                 <div className="notification" style={styles.container}>
                     <div className="columns is-centered">
                         <div className="column is-two-thirds">
@@ -30,7 +36,7 @@ function EmployeeDash() {
                     <div className="columns is-centered">
                         {/* RECEIVE ITEMS */}
                         <div className="column is-one-quarter">
-                            <Link to='/receive-items'>
+                            <Link to='/receive-items' style={styles.link}>
                                 <Card 
                                     title='Receive Items'
                                     icon= {
@@ -45,7 +51,7 @@ function EmployeeDash() {
 
                         {/* MAKE A SALE */}
                         <div className="column is-one-quarter">
-                            <Link to='/make-a-sale'>
+                            <Link to='/make-a-sale' style={styles.link}>
                                 <Card 
                                     title='Make a Sale'
                                     icon= {
@@ -60,7 +66,7 @@ function EmployeeDash() {
 
                         {/* TRACK INVENTORY */}
                         <div className="column is-one-quarter">
-                            <Link to='/track-inventory'>
+                            <Link to='/track-inventory' style={styles.link}>
                                 <Card 
                                     title='Track Inventory'
                                     icon= {
@@ -74,7 +80,8 @@ function EmployeeDash() {
                     </div>
                 </div>
             </div>
-        </>
+            <Footer />
+        </div>
     )
 
 
