@@ -15,8 +15,6 @@ import EmployeeDash from './pages/EmployeeDash';
 
 function App() {
 
-  // const [getEmployeeState, setEmployeeState]
-
   return (
     <Router>
       <div className='App'>

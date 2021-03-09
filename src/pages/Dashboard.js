@@ -3,12 +3,12 @@ import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import AnnouncementsBox from '../components/AnnouncementsBox';
 import Card from '../components/Card';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 
 
-function Dashboard() {
-
+function Dashboard( {history} ) {
+    // console.log(history);
     const styles = {
 
         container: {
@@ -20,9 +20,11 @@ function Dashboard() {
         }
     }
 
+    const location = useLocation();
+
     return(
         <div className='content'>
-            <Navbar />
+            <Navbar location={location.pathname}/>
             <Header heading={'Dashboard (manager)'}/>
             
             <div className="container mt-5 mb-5">

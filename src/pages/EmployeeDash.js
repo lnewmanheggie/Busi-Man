@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import AnnouncementsBox from '../components/AnnouncementsBox';
 import Card from '../components/Card';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 function EmployeeDash() {
@@ -20,9 +20,11 @@ function EmployeeDash() {
         }
     }
 
+    const location = useLocation();
+
     return(
         <div className='content'>
-            <Navbar />
+            <Navbar location={location.pathname}/>
             <Header heading={'Dashboard (employee)'}/>
             
             <div className="container mt-5 mb-5" style={styles.container}>

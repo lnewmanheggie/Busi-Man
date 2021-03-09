@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
+function Navbar({ location }) {
 
     const styles = {
         navbar: {
@@ -62,7 +62,8 @@ function Navbar() {
 
             <div id="navbarBasicExample" className="navbar-menu">
                 <div className="navbar-start">
-                    <Link to={'/'} className="navbar-item" style={styles.navbarItem}>
+                    {/* redirects back to current dashboard location */}
+                    <Link to={location} className="navbar-item" style={styles.navbarItem}>
                         Home
                     </Link>
                 </div>
