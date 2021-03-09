@@ -62,7 +62,7 @@ function Navbar() {
 
             <div id="navbarBasicExample" className="navbar-menu">
                 <div className="navbar-start">
-                    <Link to='/dashboard' className="navbar-item" style={styles.navbarItem}>
+                    <Link to={'/'} className="navbar-item" style={styles.navbarItem}>
                         Home
                     </Link>
                 </div>

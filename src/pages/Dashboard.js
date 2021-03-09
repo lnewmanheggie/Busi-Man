@@ -6,7 +6,7 @@ import Card from '../components/Card';
 import { Link } from 'react-router-dom';
 
 
-function Dashboard(props) {
+function Dashboard() {
 
     const styles = {
         container: {
@@ -17,7 +17,7 @@ function Dashboard(props) {
     return(
         <>
             <Navbar />
-            <Header heading={'Dashboard'}/>
+            <Header heading={'Dashboard (manager)'}/>
             
             <div className="container mt-5 mb-5">
                 <div className="notification" style={styles.container}>

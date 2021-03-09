@@ -11,6 +11,7 @@ import Inventory from './pages/Inventory';
 import Receive from './pages/Receive';
 import Stats from './pages/Stats';
 import ViewEmployees from './pages/ViewEmployees';
+import EmployeeDash from './pages/EmployeeDash';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route exact path='/' component={Login} />
         <Route exact path='/signup' component={Signup} />
         <Route path='/dashboard' component={Dashboard} />
+        <Route path='/employee-dashboard' component={EmployeeDash} />
         <Route path='/add-employees' component={AddEmployee}/>
         <Route path='/make-a-sale' component={Sale}/>
         <Route path='/receive-items' component={Receive}/>
@@ -29,7 +31,6 @@ function App() {
         <Route path='/view-employees' component={ViewEmployees}/>
         <Route path='/post-announcement' component={Announcement}/>
         <Route path='/track-inventory' component={Inventory}/>
-
       </div>
     </Router>
   );
