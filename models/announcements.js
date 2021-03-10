@@ -8,6 +8,6 @@ const AnnoucementsSchema = new Schema({
   body: { type: String, required: true },
 });
 
-const Annoucements = mongoose.model("Item", AnnoucementsSchema);
+const Annoucements = mongoose.model("Announcements", AnnoucementsSchema);
 
 module.exports = Annoucements;
