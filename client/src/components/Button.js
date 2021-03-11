@@ -1,7 +1,12 @@
 
-function Button() {
+function Button(props) {
     return (
-        <button className="button">Button</button>
+        <button 
+            className="button"
+            type={props.type}
+        >
+        {props.name}
+        </button>
     )
 }
 

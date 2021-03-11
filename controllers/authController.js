@@ -18,10 +18,11 @@ const createUserToken = async(user, code, req, res) => {
         const token = signToken(user._id);
     
         //cookie settings
-        res.cookie('jwt', token, {
+        res.cookie('jwt', token, 
+        {
             expires: new Date(Date.now() + 8 * 3600000),  // expires in 8 hours
             httpOnly: true,
-            secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+            // secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
             sameSite: 'none'
         });
     
@@ -47,32 +48,20 @@ exports.registerUser = async(req, res, next) => {
             lastName: req.body.lastName,
             email: req.body.email,
             company: req.body.company,
+            manager: req.body.manager,
             password: req.body.password,
             confirmPassword: req.body.confirmPassword
         });
 
         createUserToken(newUser, 201, req, res);
     } catch(err) {
-        next(err);
+        res.status(500).json(err);
     }
 }
 
 // log user in
 exports.loginUser = catchAsync(async(req, res, next) => {
     const { email, password } = req.body;
-
-//     User.findOne({email: email}, function(err, user) {
-//         if (err) throw err;
-//         if (!user) { 
-//             console.log("user not found") 
-//             return;
-//         }
-//         if (!user.validPassword(password)) { 
-//             console.log("passwords do not match");
-//             return;
-//          }
-//     })
-    
 
     // do email and password exist in db?
     if (!email || !password) {
@@ -91,8 +80,9 @@ exports.loginUser = catchAsync(async(req, res, next) => {
 // check if user is logged in
 exports.checkUser = catchAsync(async(req, res, next) => {
     let currentUser;
-    if (req.cookies.jwt) {
-        const token = req.cookies.jwt;
+    if (req.headers.cookie.split(' ')[1].startsWith('jwt')) {
+        const token = req.headers.cookie.split(' ')[1].substring(4);
+        console.log(token, "token")
         const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
         currentUser = await User.findById(decoded.id);
     } else {
@@ -101,6 +91,7 @@ exports.checkUser = catchAsync(async(req, res, next) => {
 
     res.status(200).send({ currentUser });
 })
+
 
 // log out
 exports.logoutUser = catchAsync(async (req, res) => {
