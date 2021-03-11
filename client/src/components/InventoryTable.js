@@ -1,5 +1,5 @@
 import React from 'react';
-import InventoryRow from '';
+import InventoryRow from './InventoryRow';
 
 function InventoryTable(props) {
     return (

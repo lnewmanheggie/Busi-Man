@@ -1,6 +1,6 @@
 import React from 'react';
 ​
-function InventoryRow({ first, last, dob, email, thumbnail, cell }) {
+function InventoryRow({ code, name, count, price }) {
 ​
     const styles = {
         cell: {
@@ -15,25 +15,25 @@ function InventoryRow({ first, last, dob, email, thumbnail, cell }) {
 ​
     return (
         <>
-            <div className="cell" style={styles.cell}>
+            {/* <div className="cell" style={styles.cell}>
                 <figure className="image is-64x64">
                     <img src={thumbnail} />
                 </figure>
-            </div>
+            </div> */}
             <div className="cell" style={styles.cell}>
-                <div>{first} {last}</div>
+                <div>{code}</div>
             </div>
             <div className="cell" style={styles.email}>
-                <div>{email}</div>
+                <div>{name}</div>
             </div>
             <div className="cell" style={styles.cell}>
-                <div>{cell}</div>
+                <div>{count}</div>
             </div>
             <div className="cell" style={styles.cell}>
-                <div>{dob}</div>
+                <div>{price}</div>
             </div>
         </>
     )
 }
 ​
-export default EmployeeRow;
+export default InventoryRow;
