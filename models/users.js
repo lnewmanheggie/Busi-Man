@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const validator = require('validator');
 const Schema = mongoose.Schema;
-const SALT_WORK_FACTOR = 10;
 
 const userSchema = new Schema({
     firstName: {
@@ -24,6 +23,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
+    manager: {
+        type: Boolean,
+        required: true
+    },
     password: {
         type: String,
         required: [true, 'Enter a password'],
@@ -41,32 +44,17 @@ const userSchema = new Schema({
 })
 
 // hash password before saving
-userSchema.pre('save', function(next) {
-    const user = this;
+userSchema.pre('save', async function(next) {
 
-    // only hash password if modified or new
-    if (!user.isModified('password'))
-        return next();
+    this.password = await bcrypt.hash(this.password, 12);
 
-    // generate a salt
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-        if (err) return next(err);
-
-        // hash password with new salt
-        bcrypt.hash(user.password, salt, function(err, hash) {
-            if (err) return next(err);
-
-            // override cleartext password with hashed pass
-            user.password = hash;
-            // remove confirm password field
-            this.confirmPassword = undefined;
-            next();
-        })
-    })
+    this.confirmPassword = undefined;
+    next();
 })
 
-userSchema.methods.validPassword = function(candidatePassword) {
-    return bcrypt.compare(candidatePassword, this.password)
+// method to check password on entry
+userSchema.methods.correctPassword = async function(candidatePassword, userPassword) {
+    return await bcrypt.compare(candidatePassword, userPassword);
 }
 
 const User = mongoose.model('User', userSchema);
