@@ -1,6 +1,6 @@
 import React from 'react';
 
-function InventoryRow({ code, name, count, price }) {
+function InventoryRow({ barcode, name, count, price }) {
     const styles = {
         cell: {
             backgroundColor: "lightgrey"
@@ -20,7 +20,7 @@ function InventoryRow({ code, name, count, price }) {
                 </figure>
             </div> */}
             <div className="cell" style={styles.cell}>
-                <div>{code}</div>
+                <div>{barcode}</div>
             </div>
             <div className="cell" style={styles.email}>
                 <div>{name}</div>

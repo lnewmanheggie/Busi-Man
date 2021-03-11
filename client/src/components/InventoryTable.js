@@ -5,15 +5,17 @@ import TableCSS from '../css/Table.css';
 function InventoryTable(props) {
     const styles = {TableCSS};
     
-    return (
 
+    return (
+            // console.log(props.inventory),
             <>
                 {
                     props.inventory.map((inv, i) => {
+                    
                         return (
                             <InventoryRow 
                                 key={i} 
-                                code={inv.barcode}
+                                barcode={inv.barcode}
                                 name={inv.name}
                                 count={inv.count}
                                 price={inv.price}
