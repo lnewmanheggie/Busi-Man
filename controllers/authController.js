@@ -82,7 +82,6 @@ exports.checkUser = catchAsync(async(req, res, next) => {
     let currentUser;
     if (req.headers.cookie.split(' ')[1].startsWith('jwt')) {
         const token = req.headers.cookie.split(' ')[1].substring(4);
-        console.log(token, "token")
         const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
         currentUser = await User.findById(decoded.id);
     } else {
