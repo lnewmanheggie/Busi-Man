@@ -14,25 +14,29 @@ const signToken = id => {
 }
 
 const createUserToken = async(user, code, req, res) => {
-    const token = signToken(user._id);
-
-    //cookie settings
-    res.cookie('jwt', token, {
-        expires: new Date(Date.now() + 8 * 3600000),  // expires in 8 hours
-        httpOnly: true,
-        secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
-        sameSite: 'none'
-    });
-
-    // remove user password from output
-    user.password = undefined;
-    res.status(code).json({
-        status: 'success',
-        token,
-        data: {
-            user
-        }
-    })
+    try{
+        const token = signToken(user._id);
+    
+        //cookie settings
+        res.cookie('jwt', token, {
+            expires: new Date(Date.now() + 8 * 3600000),  // expires in 8 hours
+            httpOnly: true,
+            secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
+            sameSite: 'none'
+        });
+    
+        // remove user password from output
+        user.password = undefined;
+        res.status(code).json({
+            status: 'success',
+            token,
+            data: {
+                user
+            }
+        })
+    } catch (error){
+        console.log(error)
+    }
 }
 
 // create new user
@@ -55,17 +59,30 @@ exports.registerUser = async(req, res, next) => {
 
 // log user in
 exports.loginUser = catchAsync(async(req, res, next) => {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
+
+//     User.findOne({email: email}, function(err, user) {
+//         if (err) throw err;
+//         if (!user) { 
+//             console.log("user not found") 
+//             return;
+//         }
+//         if (!user.validPassword(password)) { 
+//             console.log("passwords do not match");
+//             return;
+//          }
+//     })
+    
 
     // do email and password exist in db?
-    if (!username || !password) {
-        return next(new AppError('Provide a valid username and password', 400));
+    if (!email || !password) {
+        return next(new AppError('Provide a valid email and password', 400));
     }
 
-    // are username and password correct?
-    const user = await User.findOne({ username }).select('+password'); //exclude always but include sometimes
+    // are email and password correct?
+    const user = await User.findOne({ email }).select('+password'); //exclude always but include sometimes
     if (!user || !(await user.correctPassword(password, user.password))) {
-        return next(new AppError('Incorrect username or password', 401));
+        return next(new AppError('Incorrect email or password', 401));
     }
 
     createUserToken(user, 200, req, res);
