@@ -1,7 +1,10 @@
 import React from 'react';
 import InventoryRow from './InventoryRow';
+import TableCSS from '../css/Table.css';
 
 function InventoryTable(props) {
+    const styles = {TableCSS};
+    
     return (
 
             <>

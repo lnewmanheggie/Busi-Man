@@ -1,18 +1,17 @@
 import React from 'react';
-​
+
 function InventoryRow({ code, name, count, price }) {
-​
     const styles = {
         cell: {
             backgroundColor: "lightgrey"
         },
-​
+
         email: {
             backgroundColor: "lightgrey",
             fontSize: "0.9rem"
         }
     }
-​
+
     return (
         <>
             {/* <div className="cell" style={styles.cell}>
@@ -35,5 +34,5 @@ function InventoryRow({ code, name, count, price }) {
         </>
     )
 }
-​
+
 export default InventoryRow;
