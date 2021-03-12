@@ -20,6 +20,12 @@ function EmployeeDash() {
         }
     }
 
+    useEffect(()=> {
+        if (!sessionStorage.getItem('jwt')) {
+            history.push("/")
+        }
+    })
+
     const location = useLocation();
 
     return(
