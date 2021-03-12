@@ -47,6 +47,10 @@ function Navbar({ location }) {
         }
       });
 
+      const handleSignOut = () => {
+          sessionStorage.removeItem('jwt');
+      }
+
     return(
 
         <nav className="navbar" role="navigation" aria-label="main navigation" style={styles.navbar}>
@@ -77,7 +81,7 @@ function Navbar({ location }) {
                             <a className="navbar-item">
                                 View
                             </a>
-                            <Link to='/' className="navbar-item">
+                            <Link to='/' className="navbar-item" onClick={handleSignOut}>
                                 Sign Out
                             </Link>
                         </div>

@@ -39,12 +39,6 @@ function Login({ history }) {
             console.log(error);
         }
     }
-
-    // FUNCTION CALL TO DB --- GET BACK 'EMPLOYEE' OR 'MANAGER' AND ROUTE TO EMPLOYEE DASHBOARD OR MANAGER DASH
-    // <Link to='/signup'>Signup</Link>
-    //         <br />
-    //         <Link to={employeeState.status === 'Employee' ? '/employee-dashboard' : '/dashboard'}>Login</Link>
-
     
     return(
         <div>

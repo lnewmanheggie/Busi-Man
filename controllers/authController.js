@@ -19,7 +19,7 @@ const createUserToken = async(user, code, req, res) => {
         //cookie settings
         res.cookie('jwt', token, 
         {
-            expires: new Date(Date.now() + 8 * 3600000),  // expires in 8 hours
+            expires: new Date(Date.now() + 30 * 60000),  // expires in 30 min
             httpOnly: true,
             // secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
             sameSite: 'none'
@@ -94,10 +94,10 @@ exports.loginUser = catchAsync(async(req, res, next) => {
 
 
 // log out
-exports.logoutUser = catchAsync(async (req, res) => {
-    res.cookie('jwt', 'loggedout', {
-        expires: new Date(Date.now() + 1 * 1000),
-        httpOnly: true
-    });
-    res.status(200).send('user logged out');
-})
+// exports.logoutUser = catchAsync(async (req, res) => {
+//     res.cookie('jwt', 'loggedout', {
+//         expires: new Date(Date.now() + 1 * 1000),
+//         httpOnly: true
+//     });
+//     res.status(200).send('user logged out');
+// })

@@ -3,8 +3,9 @@ import React, { useEffect } from 'react';
 function AddEmployee({ history }) {
     
     useEffect(()=> {
-        // no token in session storage, bounce back to login page
-        // history.push("/")
+        if (!sessionStorage.getItem('jwt')) {
+            history.push("/")
+        }
     })
 
     // apicall

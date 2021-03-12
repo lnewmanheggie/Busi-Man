@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import AnnouncementsBox from '../components/AnnouncementsBox';
@@ -21,6 +21,12 @@ function Dashboard( {history} ) {
     }
 
     const location = useLocation();
+
+    useEffect(()=> {
+        if (!sessionStorage.getItem('jwt')) {
+            history.push("/")
+        }
+    })
 
     return(
         <div className='content'>

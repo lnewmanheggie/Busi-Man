@@ -6,9 +6,7 @@ import axios from 'axios';
 
 export default {
 
-    // const { setUser } = useContext(UserContext);
-    // const [error, setError] = useState(null);
-
+    // REFER TO THIS FUNCTION TO GET HEADERS FOR API CALLS- NEED FOR AUTHENTICATION
     // getUsers: function() {
     //    return axios.get('/user', {
     //         headers: {
@@ -22,8 +20,6 @@ export default {
     },
 
     loginUser: function(userData) {
-        return axios.post('auth/login', userData)
-        
+        return axios.post('auth/login', userData);
     }
-        
 }
