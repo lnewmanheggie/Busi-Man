@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-function Stats() {
+function Stats({ history }) {
 
     useEffect(()=> {
         if (!sessionStorage.getItem('jwt')) {

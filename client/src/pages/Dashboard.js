@@ -8,7 +8,6 @@ import Footer from '../components/Footer';
 
 
 function Dashboard( {history} ) {
-    // console.log(history);
     const styles = {
 
         container: {

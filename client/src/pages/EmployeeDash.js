@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import AnnouncementsBox from '../components/AnnouncementsBox';
@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 import { Link, useLocation } from 'react-router-dom';
 
 
-function EmployeeDash() {
+function EmployeeDash({ history }) {
 
     const styles = {
 

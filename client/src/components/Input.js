@@ -2,22 +2,25 @@ import React from 'react';
 
 function Input(props) {
 
-    // let fail = props.fail;
+    const styles = {
+        input: {
+            border: `1px solid ${props.color}`,
+        }
+    }
 
     return(
         <div className="field">
-            <label className="label">Label</label>
-                <div className="control">
-                    <input 
-                        className='input' 
-                        type={props.type}
-                        placeholder={props.placeholder} 
-                        name={props.name}
-                        value={props.value}
-                        onChange={props.handleChange}
-                    />
-                </div>
-            <p className="help">This is a help text</p>
+            <div className="control">
+                <input 
+                    className='input' 
+                    type={props.type}
+                    placeholder={props.placeholder} 
+                    name={props.name}
+                    value={props.value}
+                    onChange={props.handleChange}
+                    style={styles.input}
+                />
+            </div>
         </div>
     )
 }

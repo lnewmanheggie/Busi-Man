@@ -54,7 +54,7 @@ exports.registerUser = async(req, res, next) => {
 
         createUserToken(newUser, 201, req, res);
     } catch(err) {
-        res.status(500).json(err);
+        res.status(500).json({error: err});
     }
 }
 
