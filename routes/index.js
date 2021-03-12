@@ -12,7 +12,7 @@ router.use('/', viewRouter);
 
 router.use('/auth/', authRouter);
 
-router.use('/inventory', inventoryRoutes)
+router.use('/api', inventoryRoutes)
 
 
 // If no API routes are hit, send the React app

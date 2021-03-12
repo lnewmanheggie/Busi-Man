@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import InvTable from '../components/InventoryTable';
 import InvSearchBar from '../components/InvSearchBar';
 import Footer from '../components/Footer';
+import InventoryAPI from '../utils/InventoryApi';
 import { Link, useLocation } from 'react-router-dom';
 import TableCSS from '../css/Table.css';
 
@@ -21,17 +22,35 @@ function Inventory() {
         link: {
             textDecoration: 'none'
         }
-    }
+    };
+
+    const [inventory, setInventory] = useState([])
+    // const [formObject, setFormObject] = useState({})
+  
+    // Load all inventory and store them with setInventory
+    useEffect(() => {
+      loadInventory()
+    }, [])
+  
+    // Loads all inventory and sets them to inventory
+    function loadInventory() {
+        InventoryAPI.getInventory()
+        .then(res => 
+          setInventory(res.data)
+        )
+        .catch(err => console.log(err));
+    };
 
     const location = useLocation();
 
-    const inventory= [    
-        {
-        barcode: 123456789,
-        name: "Apples",
-        count: 99,
-        price:  99.99,
-        }]
+
+    // const inventory= [    
+    //     {
+    //     barcode: 123456789,
+    //     name: "Apples",
+    //     count: 99,
+    //     price:  99.99,
+    //     }]
 
 
     return(
