@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-function Announcement() {
+function Announcement({ history }) {
 
     useEffect(()=> {
         if (!sessionStorage.getItem('jwt')) {

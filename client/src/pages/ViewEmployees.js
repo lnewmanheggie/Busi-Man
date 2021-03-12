@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-function ViewEmployees() {
+function ViewEmployees({ history }) {
 
     useEffect(()=> {
         if (!sessionStorage.getItem('jwt')) {

@@ -1,0 +1,26 @@
+.container {
+    width: 50%;
+    margin-top: 5rem;
+    border: 3px solid #219ebc;
+}
+
+.notification {
+    background-color: white;
+}
+
+h2 {
+    padding-bottom: 1rem;
+    color: #fb8500;
+    text-align: left;
+}
+
+.buttonDiv {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media only screen and (max-width: 700px) {
+    .container {
+        width: 100%;
+    }
+}

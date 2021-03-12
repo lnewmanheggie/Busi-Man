@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Input from './../components/Input';
 import Button from './../components/Button';
 import UserApi from '../utils/UserApi';
+import './../css/LoginSignup.css';
+import LoginSignupHeader from './../components/LoginSignupHeader';
 
 
 function Signup({ history }) {
@@ -16,6 +18,8 @@ function Signup({ history }) {
         password: '',
         confirmPassword: ''
     })
+
+    const [error, setError] = useState(null);
 
     const handleChange = e => {
         const value = e.target.value;
@@ -34,24 +38,36 @@ function Signup({ history }) {
             console.log(response);
             history.push("/")
         } catch (error) {
-            console.log(error);
+            let err = error.response.data.error.message;
+            console.log(err)
+            if (err.includes('Enter a valid email')) {
+                setError('Please enter a valid email')
+            } else if (err.includes('Passwords do not match')) {
+                setError('Passwords do not match')
+            } else if (err.includes('Password should be at least 6 characters')) {
+                setError('Password should be at least 6 characters')
+            } else {
+                setError('Validation error')
+            }
+            
         }
     }
 
 
     return(
         <div>
-            {/* {error} */}
-            <h1>Signup PAGE</h1>
-            <Link to='/'>Login</Link>
+            <LoginSignupHeader linkTo='/' linkText='Login'/>
+            
             <div className="container is-max-desktop">
-                <div className="notification is-primary">
+                <div className="notification">
+                    <h2 className="is-size-3">Sign Up</h2>
                     <form onSubmit={handleRegister} >
                         <Input 
                             type={"text"}
                             placeholder={"First Name"}
                             name={"firstName"}
                             value={values.firstName}
+                            color="#219ebc"
                             handleChange={handleChange}
                         />
                         <Input 
@@ -59,6 +75,7 @@ function Signup({ history }) {
                             placeholder={"Last Name"}
                             name={"lastName"}
                             value={values.lastName}
+                            color="#219ebc"
                             handleChange={handleChange}
                         />
                         <Input 
@@ -66,6 +83,7 @@ function Signup({ history }) {
                             placeholder={"Email"}
                             name={"email"}
                             value={values.email}
+                            color="#219ebc"
                             handleChange={handleChange}
                         />
                         <Input 
@@ -73,6 +91,7 @@ function Signup({ history }) {
                             placeholder={"Company"}
                             name={"company"}
                             value={values.company}
+                            color="#219ebc"
                             handleChange={handleChange}
                         />
                         <Input 
@@ -80,6 +99,7 @@ function Signup({ history }) {
                             placeholder={"Password"}
                             name={"password"}
                             value={values.password}
+                            color="#219ebc"
                             handleChange={handleChange}
                         />
                         <Input 
@@ -87,9 +107,14 @@ function Signup({ history }) {
                             placeholder={"Confirm Password"}
                             name={"confirmPassword"}
                             value={values.confirmPassword}
+                            color="#219ebc"
                             handleChange={handleChange}
                         /> 
-                        <Button name={"register"} type={"submit"}/>
+                        <div>{error}</div>
+                        <br />
+                        <div className='buttonDiv'>
+                            <Button name={"Sign up"} type={"submit"} color='#fb8500'/>
+                        </div>
                     </form>
                 </div>
             </div>

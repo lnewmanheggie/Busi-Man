@@ -1,7 +1,4 @@
-// import { useState, useContext } from 'react'; 
-// import { Redirect } from 'react-router-dom';
-// import { UserContext } from './UserContext';  
-import axios from 'axios';
+ import axios from 'axios';
 
 
 export default {
