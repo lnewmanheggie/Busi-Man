@@ -7,7 +7,7 @@ function InventoryTable(props) {
     
 
     return (
-            // console.log(props.inventory),
+ 
             <>
                 {
                     props.inventory.map((inv, i) => {
