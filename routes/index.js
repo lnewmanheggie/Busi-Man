@@ -7,7 +7,7 @@ const viewRouter = require('./viewRouter');
 // API Routes
 // router.use("/api", apiRoutes);
 
-router.use('/', viewRouter);
+// router.use('/', viewRouter);
 
 router.use('/auth/', authRouter);
 

@@ -1,6 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-function AddEmployee() {
+function AddEmployee({ history }) {
+    
+    useEffect(()=> {
+        if (!sessionStorage.getItem('jwt')) {
+            history.push("/")
+        }
+    })
+
+    // apicall
+    // headers
+    // headers: {
+        //             'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`
+        //         },
+    // yes /no -> response.status(401) ->  // history.push("/")
+
     return(
         <div>
             <h1>Add employee PAGE</h1>
