@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import InvTable from '../components/InventoryTable';
+import InvSearchBar from '../components/InvSearchBar';
 import Footer from '../components/Footer';
 import { Link, useLocation } from 'react-router-dom';
 import TableCSS from '../css/Table.css';
@@ -37,6 +38,7 @@ function Inventory() {
         <div>
             <Navbar location={location.pathname}/>
             <Header heading={'Inventory'}/>
+            <InvSearchBar/>
 
             <div classname= 'mt-3'>
                 <div className='table'>

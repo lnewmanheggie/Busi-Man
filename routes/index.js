@@ -2,6 +2,7 @@ const path = require("path");
 const router = require("express").Router();
 const authRouter = require('./authRouter');
 const viewRouter = require('./viewRouter');
+const inventoryRoutes = require('./InventoryApi');
 // const apiRoutes = require("./api");
 
 // API Routes
@@ -10,6 +11,8 @@ const viewRouter = require('./viewRouter');
 router.use('/', viewRouter);
 
 router.use('/auth/', authRouter);
+
+router.use('/inventory', inventoryRoutes)
 
 
 // If no API routes are hit, send the React app

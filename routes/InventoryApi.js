@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const inventoryController = require("../../controllers/inventoryController");
 
-// Matches with "/api/innventory"
-router.route("/")
+// Matches with "/api/inventory"
+router.route("/inventory")
   .get(inventoryController.findAll)
   .post(inventoryController.create);
 
