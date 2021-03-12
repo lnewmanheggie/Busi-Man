@@ -1,12 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Input from './../components/Input';
 import Button from './../components/Button';
-import UserApi from './../utils/UserApi';
-// import { UserContext } from './../utils/UserContext';
+import UserApi from '../utils/UserApi';
 
 
-function Signup() {
+function Signup({ history }) {
 
     const [values, setValues] = useState({
         firstName: '',
@@ -18,10 +17,6 @@ function Signup() {
         confirmPassword: ''
     })
 
-    const [error, setError] = useState(null);
-    // const { setUser } = useContext(UserContext);
-    // let hisory = useHistory();
-
     const handleChange = e => {
         const value = e.target.value;
         const name = e.target.name;
@@ -32,37 +27,21 @@ function Signup() {
         });
     };
 
-    // set user
-    const setUserContext = () => {
-        UserApi.getUser()
-        .then(result => {
-            // setUser(res.data.currentUser)
-            // history.push('/')
-            console.log(result)
-        })
-        .catch(err => {
-            console.log(err);
-        })
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        try {
+            let response = await UserApi.registerUser(values)
+            console.log(response);
+            history.push("/")
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    //register user
-    const handleRegister = e => {
-        e.preventDefault();
-        UserApi.registerUser(values)
-        .then(async (result) => {
-            console.log(await result);
-            setUserContext();
-        })
-        .catch(err => {
-            // return setError(err.response.data.message)
-            console.log(err)
-            // 
-        })
-    }
 
     return(
         <div>
-            {error}
+            {/* {error} */}
             <h1>Signup PAGE</h1>
             <Link to='/'>Login</Link>
             <div className="container is-max-desktop">
@@ -97,7 +76,7 @@ function Signup() {
                             handleChange={handleChange}
                         />
                         <Input 
-                            type={"password"}
+                            type="password"
                             placeholder={"Password"}
                             name={"password"}
                             value={values.password}
