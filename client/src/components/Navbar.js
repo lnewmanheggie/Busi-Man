@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-function Navbar({ location }) {
+function Navbar() {
 
     const styles = {
         navbar: {
@@ -21,6 +21,8 @@ function Navbar({ location }) {
             color: '#ffb703'
         }
     }
+
+    let history = useHistory();
 
     // Code from Bulma to make the navbar responsive
     useEffect(() => {
@@ -67,9 +69,9 @@ function Navbar({ location }) {
             <div id="navbarBasicExample" className="navbar-menu">
                 <div className="navbar-start">
                     {/* redirects back to current dashboard location */}
-                    <Link to={location} className="navbar-item" style={styles.navbarItem}>
-                        Home
-                    </Link>
+                    <div onClick={() => history.goBack()} className="navbar-item" style={styles.navbarItem}>
+                        Back
+                    </div>
                 </div>
 
                     <div className="navbar-end">

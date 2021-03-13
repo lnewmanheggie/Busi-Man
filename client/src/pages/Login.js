@@ -29,7 +29,9 @@ function Login({ history }) {
         try {
             let response = await UserApi.loginUser(values)
             if (response) {
-
+/**
+ * @todo store user id in session storage for access by db later
+ */
                 sessionStorage.setItem('jwt', response.data.token)
 
                 // if user is a manager, push to manager dashboard, otherwise push to employee dash

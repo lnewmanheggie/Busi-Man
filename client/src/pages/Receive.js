@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './../css/Scanner.css'
-import Button from './../components/Button';
-import Input from './../components/Input';
-import InventoryUpdateApi from './../utils/InventoryUpdateApi';
-import './../css/Scanner.css';
+import '../css/Scanner.css'
+import Button from '../components/Button';
+import Input from '../components/Input';
+import InventoryUpdateApi from '../utils/InventoryUpdateApi';
+import Navbar from '../components/Navbar';
 
 function Receive({ history }) {
 
@@ -105,6 +105,8 @@ function Receive({ history }) {
 
 
     return(
+        <>
+        <Navbar />
         <div className='scanner'>
             <h1 className="p-3 scanner-h1">Receive Items</h1>
             <h3 className="pb-4"><em>Open this page in the Scan to Web app on your phone</em></h3>
@@ -171,8 +173,8 @@ function Receive({ history }) {
                     margin='1rem'
                 />
             </form>
-            
         </div>
+        </>
     )
 }
 
