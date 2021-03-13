@@ -21,15 +21,21 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  update: function(req, res) {
+  updateAdd: function(req, res) {
     db.Inventory
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findOneAndUpdate({ barcode: req.body.barcode }, { $inc: { count: req.body.count }})
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  updateRemove: function(req, res) {
+    db.Inventory
+      .findOneAndUpdate({ barcode: req.body.barcode }, { $inc: { count: -req.body.count }})
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   remove: function(req, res) {
     db.Inventory
-      .findById({ _id: req.params.id })
+      .findById({ barcode: req.params.barcode })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

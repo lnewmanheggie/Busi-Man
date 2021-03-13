@@ -1,13 +1,10 @@
 const path = require("path");
 const router = require("express").Router();
 const authRouter = require('./authRouter');
-const viewRouter = require('./viewRouter');
-// const apiRoutes = require("./api");
+const apiRoutes = require("./api");
 
 // API Routes
-// router.use("/api", apiRoutes);
-
-// router.use('/', viewRouter);
+router.use("/api", apiRoutes);
 
 router.use('/auth/', authRouter);
 

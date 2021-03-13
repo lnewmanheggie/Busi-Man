@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './../css/Scanner.css'
 import Button from './../components/Button';
 import Input from './../components/Input';
+import InventoryUpdateApi from './../utils/InventoryUpdateApi';
 
 function Receive({ history }) {
 
@@ -15,7 +16,7 @@ function Receive({ history }) {
         barcode: '',
         count: '',
         itemName: '',
-        price: 0.00
+        price: ''
     })
 
     const handleChange = e => {
@@ -30,7 +31,6 @@ function Receive({ history }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(values.itemName);
         if (values.itemName === '') {
             handleFirstSubmit();
         } else {
@@ -38,11 +38,18 @@ function Receive({ history }) {
         }
     }
 
-    const handleFirstSubmit = () => {
-        
-        console.log('first');
-
-        alert(values.barcode, values.count)
+    const handleFirstSubmit = async () => {
+        try {
+            console.log('first');
+            const itemData = {
+                barcode: parseInt(values.barcode),
+                count: parseInt(values.count)
+            }
+            const result = await InventoryUpdateApi.addItemCount(itemData)
+            console.log(result);
+        } catch (error) {
+            console.log(error);
+        }
         
     }
 
@@ -53,7 +60,6 @@ function Receive({ history }) {
 
     return(
         <div className='scanner'>
-            {console.log(values)}
             <h1>Receive Items</h1>
             <h3><em>Open this page in the Scan to Web app on your phone</em></h3>
             <form 
