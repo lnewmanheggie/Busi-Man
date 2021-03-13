@@ -10,7 +10,7 @@ function InventoryTable(props) {
  
             <>
                 {
-                    props.inventory.map((inv, i) => {
+                    props.inventory?.map((inv, i) => {
                     
                         return (
                             <InventoryRow 
