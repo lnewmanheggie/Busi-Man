@@ -52,7 +52,7 @@ function Login({ history }) {
         <div>
             <LoginSignupHeader linkTo='/signup' linkText='Sign Up'/>
             
-            <div className="container is-max-desktop">
+            <div className="container is-max-desktop login-container">
                 <div className="notification">
                     <h2 className="is-size-3">Login</h2>
                     <form onSubmit={handleLogin} >

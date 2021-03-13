@@ -58,7 +58,7 @@ function Signup({ history }) {
         <div>
             <LoginSignupHeader linkTo='/' linkText='Login'/>
             
-            <div className="container is-max-desktop">
+            <div className="container is-max-desktop login-container">
                 <div className="notification">
                     <h2 className="is-size-3">Sign Up</h2>
                     <form onSubmit={handleRegister} >

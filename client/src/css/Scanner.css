@@ -1,0 +1,10 @@
+.scanner {
+    margin-left:auto;
+    margin-right: auto;
+    position: relative;
+    width: 320px;
+}
+
+.scanner-input {
+    width: 90%;
+}
