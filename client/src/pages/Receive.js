@@ -3,6 +3,7 @@ import './../css/Scanner.css'
 import Button from './../components/Button';
 import Input from './../components/Input';
 import InventoryUpdateApi from './../utils/InventoryUpdateApi';
+import './../css/Scanner.css';
 
 function Receive({ history }) {
 
@@ -19,7 +20,15 @@ function Receive({ history }) {
         price: ''
     })
 
-    const handleChange = e => {
+    const [result, setResult] = useState({
+        resultStatus: ''
+    })
+
+    const [isFound, setIsFound] = useState({
+        found: true
+    })
+
+    const handleChange = (e) => {
         const value = e.target.value;
         const name = e.target.name;
 
@@ -28,6 +37,16 @@ function Receive({ history }) {
             [name]: value
         });
     };
+
+    const resetValues = () => {
+        setValues({
+            ...values, 
+            barcode: '',
+            count: '',
+            itemName: '',
+            price: ''
+        })
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -45,23 +64,50 @@ function Receive({ history }) {
                 barcode: parseInt(values.barcode),
                 count: parseInt(values.count)
             }
-            const result = await InventoryUpdateApi.addItemCount(itemData)
+            const result = await InventoryUpdateApi.addItemCount(itemData);
             console.log(result);
+            if (result.data === null) {
+                setResult({
+                    ...result, 
+                    resultStatus: 'Please add this item to inventory'
+                })
+                setIsFound({...isFound, found: false})
+            } else {
+                setResult({
+                    ...result, 
+                    resultStatus: `You added ${values.count} ${result.data.name} for a total of
+                                    ${result.data.count + parseInt(values.count)} in inventory.`
+                })
+                resetValues();
+            }
         } catch (error) {
             console.log(error);
         }
-        
     }
 
-    const handleSecondSubmit = () => {
+    // setIsFound({...isFound, found: true})
+
+    const handleSecondSubmit = async () => {
         console.log('second');
+        const itemData = {
+            barcode: parseInt(values.barcode),
+            count: parseInt(values.count),
+            name: values.itemName,
+            price: parseFloat(values.price)
+        }
+        const result = await InventoryUpdateApi.addItem(itemData);
+        setResult({
+            ...result, 
+            resultStatus: `You added ${result.data.name} to inventory.`
+        })
+        resetValues();
     }
 
 
     return(
         <div className='scanner'>
-            <h1>Receive Items</h1>
-            <h3><em>Open this page in the Scan to Web app on your phone</em></h3>
+            <h1 className="p-3 scanner-h1">Receive Items</h1>
+            <h3 className="pb-4"><em>Open this page in the Scan to Web app on your phone</em></h3>
             <form 
                 name="form1" 
                 // action="stwiosbtn.aspx" 
@@ -75,6 +121,7 @@ function Receive({ history }) {
                     className="scanner-input"
                     value={values.barcode}
                     placeholder="barcode"
+                    color='#219ebc'
                     handleChange={handleChange}
                     />
                 <Input 
@@ -83,15 +130,45 @@ function Receive({ history }) {
                     className="scanner-input"
                     value={values.count}
                     placeholder="count"
+                    color='#219ebc'
                     handleChange={handleChange}
                 />
-                <a href="bwstw://startscanner">Click to start scanner</a>
-                <br /> <br />
-                {/* {secondFormRender} */}
+                <a className="scanner-link" href="bwstw://startscanner">Click here to start scanner</a>
+                <h4 className="p-2">{result.resultStatus}</h4>
+                
+                {/* if the item is not found in the database display two more input boxes
+                to add the name and price of the product, then add to db */}
+                <div>
+                    {isFound.found === false 
+                    ? <>
+                        <Input 
+                            name="itemName" 
+                            type="text"  
+                            className="scanner-input"
+                            value={values.itemName}
+                            placeholder="Item name"
+                            color='#219ebc'
+                            handleChange={handleChange}
+                            />
+                        <Input 
+                            name="price" 
+                            type="text" 
+                            className="scanner-input"
+                            value={values.price}
+                            placeholder="price (0.00)"
+                            color='#219ebc'
+                            handleChange={handleChange}
+                            />
+                        </> 
+                    : <> </>
+                }
+                </div>
+
                 <Button 
                     type='submit'
                     color='#219ebc'
                     name="Save"
+                    margin='1rem'
                 />
             </form>
             

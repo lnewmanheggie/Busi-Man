@@ -4,6 +4,7 @@ function Button(props) {
     const styles = {
         button: {
             backgroundColor: props.color,
+            margin: props.margin,
             color: 'white'
         }
     }
