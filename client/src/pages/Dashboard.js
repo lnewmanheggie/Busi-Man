@@ -3,8 +3,9 @@ import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import AnnouncementsBox from '../components/AnnouncementsBox';
 import Card from '../components/Card';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
+import useAuth from '../utils/useAuth';
 
 
 function Dashboard( {history} ) {
@@ -19,17 +20,11 @@ function Dashboard( {history} ) {
         }
     }
 
-    const location = useLocation();
-
-    useEffect(()=> {
-        if (!sessionStorage.getItem('jwt')) {
-            history.push("/")
-        }
-    })
+    useAuth();
 
     return(
         <div className='content'>
-            <Navbar location={location.pathname}/>
+            <Navbar/>
             <Header heading={'Dashboard (manager)'}/>
             
             <div className="container mt-5 mb-5">

@@ -75,29 +75,3 @@ exports.loginUser = catchAsync(async(req, res, next) => {
 
     createUserToken(user, 200, req, res);
 })
-
-// // check if user is logged in
-// exports.checkUser = catchAsync(async(req, res) => {
-//     let currentUser;
-//     let token = req.headers?.cookie?.split(' ')[1].startsWith('jwt') || req.headers.authorization.split(' ')[1]
-//     if (token) {
-//         // const token = req.headers.cookie.split(' ')[1].substring(4);
-//         const decoded = await jwt.verify (token, process.env.JWT_SECRET);
-//         currentUser = await User.findById(decoded._id);
-//         // const decoded = await jwt.verify (token, process.env.JWT_SECRET);
-//         // console.log(decoded);
-//         res.status(200).send({ currentUser });
-//     } else {
-//         res.status(404).json({message: 'not found'})
-//     }
-// })
-
-
-// log out
-// exports.logoutUser = catchAsync(async (req, res) => {
-//     res.cookie('jwt', 'loggedout', {
-//         expires: new Date(Date.now() + 1 * 1000),
-//         httpOnly: true
-//     });
-//     res.status(200).send('user logged out');
-// })

@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import useAuth from '../utils/useAuth';
 
-function Announcement({ history }) {
+function Announcement() {
 
-    useEffect(()=> {
-        if (!sessionStorage.getItem('jwt')) {
-            history.push("/")
-        }
-    })
+    useAuth();
 
     return(
         <div>
