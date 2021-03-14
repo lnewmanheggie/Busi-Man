@@ -24,8 +24,8 @@ function Sale({ history }) {
         resultStatus: ''
     })
 
-    const [isFound, setIsFound] = useState({
-        found: true
+    const [total, setTotal] = useState({
+        total: ''
     })
 
     const handleChange = (e) => {
@@ -50,11 +50,11 @@ function Sale({ history }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (values.itemName === '') {
-            handleFirstSubmit();
-        } else {
-            handleSecondSubmit();
+        const itemData = {
+            barcode: parseInt(values.barcode),
+            count: parseInt(values.count)
         }
+        console.log(itemData);
     }
 
     const handleFirstSubmit = async () => {
@@ -71,7 +71,7 @@ function Sale({ history }) {
                     ...result, 
                     resultStatus: 'Please add this item to inventory'
                 })
-                setIsFound({...isFound, found: false})
+                // setIsFound({...isFound, found: false})
             } else {
                 setResult({
                     ...result, 
@@ -114,7 +114,8 @@ function Sale({ history }) {
                 name="form1" 
                 // action="stwiosbtn.aspx" 
                 id="form1" 
-                onSubmit={handleSubmit}>
+                onSubmit={handleSubmit}
+                onReset={resetValues}>
 
                 <Input 
                     name="barcode" 
@@ -136,42 +137,21 @@ function Sale({ history }) {
                     handleChange={handleChange}
                 />
                 <a className="scanner-link" href="bwstw://startscanner">Click here to start scanner</a>
-                <h4 className="p-2">{result.resultStatus}</h4>
-                
-                {/* if the item is not found in the database display two more input boxes
-                to add the name and price of the product, then add to db */}
+                <h4 className="p-2">{total.total}</h4>
                 <div>
-                    {isFound.found === false 
-                    ? <>
-                        <Input 
-                            name="itemName" 
-                            type="text"  
-                            className="scanner-input"
-                            value={values.itemName}
-                            placeholder="Item name"
-                            color='#219ebc'
-                            handleChange={handleChange}
-                            />
-                        <Input 
-                            name="price" 
-                            type="text" 
-                            className="scanner-input"
-                            value={values.price}
-                            placeholder="price (0.00)"
-                            color='#219ebc'
-                            handleChange={handleChange}
-                            />
-                        </> 
-                    : <> </>
-                }
+                    <Button 
+                        type='submit'
+                        color='#219ebc'
+                        name="Add Item"
+                        margin='1rem'
+                    />
+                    <Button 
+                        type='reset'
+                        color='#219ebc'
+                        name="Done"
+                        margin='1rem'
+                    />
                 </div>
-
-                <Button 
-                    type='submit'
-                    color='#219ebc'
-                    name="Save"
-                    margin='1rem'
-                />
             </form>
         </div>
         </>
