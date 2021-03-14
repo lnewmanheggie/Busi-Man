@@ -16,16 +16,14 @@ function Sale({ history }) {
     const [values, setValues] = useState({
         barcode: '',
         count: '',
-        itemName: '',
-        price: ''
+        // itemName: '',
+        // price: ''
     })
 
-    const [result, setResult] = useState({
-        resultStatus: ''
-    })
+    const [itemArr, setItemArr] = useState([]);
 
     const [total, setTotal] = useState({
-        total: ''
+        total: 0.00
     })
 
     const handleChange = (e) => {
@@ -42,67 +40,39 @@ function Sale({ history }) {
         setValues({
             ...values, 
             barcode: '',
-            count: '',
-            itemName: '',
-            price: ''
+            count: ''
         })
+
+        setTotal({...total, total: 0.00})
+
+        setItemArr([])
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const itemData = {
             barcode: parseInt(values.barcode),
             count: parseInt(values.count)
         }
-        console.log(itemData);
-    }
+        const result = await InventoryUpdateApi.removeItemCount(itemData);
 
-    const handleFirstSubmit = async () => {
-        try {
-            console.log('first');
-            const itemData = {
-                barcode: parseInt(values.barcode),
-                count: parseInt(values.count)
-            }
-            const result = await InventoryUpdateApi.addItemCount(itemData);
-            console.log(result);
-            if (result.data === null) {
-                setResult({
-                    ...result, 
-                    resultStatus: 'Please add this item to inventory'
-                })
-                // setIsFound({...isFound, found: false})
-            } else {
-                setResult({
-                    ...result, 
-                    resultStatus: `You added ${values.count} ${result.data.name} for a total of
-                                    ${result.data.count + parseInt(values.count)} in inventory.`
-                })
-                resetValues();
-            }
-        } catch (error) {
-            console.log(error);
+        let totalCost = total.total + parseFloat(result.data.price);
+        totalCost = parseFloat(totalCost.toFixed(2))
+
+        setTotal({...total, total: totalCost * values.count})
+        const itemSale = {
+            id: result.data._id,
+            string: `${values.count} ${result.data.name} | ${result.data.price} each`
         }
+        setItemArr(itemArr => [...itemArr, itemSale])
+        
     }
 
-    // setIsFound({...isFound, found: true})
-
-    const handleSecondSubmit = async () => {
-        console.log('second');
-        const itemData = {
-            barcode: parseInt(values.barcode),
-            count: parseInt(values.count),
-            name: values.itemName,
-            price: parseFloat(values.price)
-        }
-        const result = await InventoryUpdateApi.addItem(itemData);
-        setResult({
-            ...result, 
-            resultStatus: `You added ${result.data.name} to inventory.`
-        })
-        resetValues();
-    }
-
+    const items = itemArr.map((item, i) =>
+        <li key={item.id + i}>
+            {item.string}
+        </li>
+    );
 
     return(
         <>
@@ -137,7 +107,7 @@ function Sale({ history }) {
                     handleChange={handleChange}
                 />
                 <a className="scanner-link" href="bwstw://startscanner">Click here to start scanner</a>
-                <h4 className="p-2">{total.total}</h4>
+                <h4 className="p-2">Total: ${total.total}</h4>
                 <div>
                     <Button 
                         type='submit'
@@ -153,6 +123,9 @@ function Sale({ history }) {
                     />
                 </div>
             </form>
+            <ul>
+                {items}
+            </ul>
         </div>
         </>
     )
