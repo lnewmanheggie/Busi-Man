@@ -11,7 +11,7 @@ function Sale() {
     useAuth();
 
     const [values, setValues] = useState({
-        barcode: '',
+        // barcode: '',
         count: '',
     })
 
@@ -34,32 +34,48 @@ function Sale() {
     const resetValues = () => {
         setValues({
             ...values, 
-            barcode: '',
+            // barcode: '',
             count: ''
         })
 
         setTotal({...total, total: 0.00})
 
-        setItemArr([])
+        setItemArr([]);
+        setBarcodeVal(null);
+    }
+
+    const [barcodeVal, setBarcodeVal] = useState(null);
+
+    const barcodeChange = (e) => {
+        const input1 = document.querySelector("#txtField1");
+        setBarcodeVal(input1.value)
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        const itemData = {
-            barcode: parseInt(values.barcode),
-            count: parseInt(values.count)
-        }
-        const result = await InventoryUpdateApi.removeItemCount(itemData);
+        try {
+            e.preventDefault();
 
-        let totalCost = total.total + parseFloat(result.data.price);
-        totalCost = parseFloat(totalCost.toFixed(2))
+            const input1 = document.querySelector("#txtField1");
 
-        setTotal({...total, total: totalCost * values.count})
-        const itemSale = {
-            id: result.data._id,
-            string: `${values.count} ${result.data.name} | ${result.data.price} each`
+            const itemData = {
+                barcode: parseInt(input1.value),
+                count: parseInt(values.count)
+            }
+            const result = await InventoryUpdateApi.removeItemCount(itemData);
+    
+            let totalCost = total.total + parseFloat(result.data.price);
+            totalCost = parseFloat(totalCost.toFixed(2))
+    
+            setTotal({...total, total: totalCost * values.count})
+            const itemSale = {
+                id: result.data._id,
+                string: `${values.count} ${result.data.name} | ${result.data.price} each`
+            }
+            setItemArr(itemArr => [...itemArr, itemSale])
+            
+        } catch (error) {
+            console.log(error);
         }
-        setItemArr(itemArr => [...itemArr, itemSale])
         
     }
 
@@ -90,7 +106,7 @@ function Sale() {
                     value={values.barcode}
                     placeholder="barcode"
                     color='#219ebc'
-                    handleChange={handleChange}
+                    handleChange={barcodeChange}
                     />
                 <Input 
                     name="count" 
