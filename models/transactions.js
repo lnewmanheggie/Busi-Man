@@ -8,6 +8,6 @@ const transactionSchema = new Schema({
   price: { type: Number, required: true}
 });
 
-const Inventory = mongoose.model("Item", transactionSchema);
+const Transactions = mongoose.model("Transactions", transactionSchema);
 
-// module.exports = Inventory;
+// module.exports = Transactions;
