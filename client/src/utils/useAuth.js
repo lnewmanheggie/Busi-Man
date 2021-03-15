@@ -14,14 +14,11 @@ export default function useAuth() {
                 if (!sessionStorage.getItem('jwt')) {
                     history.push("/")
                 }
-                const result = await UserApi.getUsers();
-                
-                if (!result) {
-                    history.push("/")
-                }
+                await UserApi.getUsers();
+
             } catch (error) {
                 console.log(error);
-                // history.push("/")
+                history.push("/")
             }
         }
         auth()

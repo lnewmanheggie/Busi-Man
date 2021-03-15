@@ -12,30 +12,9 @@ import Receive from './pages/Receive';
 import Stats from './pages/Stats';
 import ViewEmployees from './pages/ViewEmployees';
 import EmployeeDash from './pages/EmployeeDash';
-import UserApi from './utils/UserApi';
-// import ProtectedRoute from './components/ProtectedRoute.js';
+import Transactions from './pages/Transactions';
 
 function App() {
-
-  // const { user } = React.useContext(UserContext)
-
-  const [user, setUser] = useState(null);
-
-  React.useEffect(async () => {
-    try {
-      let result = await UserApi.getUsers();
-      console.log(result);
-      setUser(result);
-      console.log(user);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [])
-  
-
-  // const { user, setUser, isLoading } = useFindUser();
-  // console.log(user)
-  // value={{user, setUser, isLoading}}
 
   return (
     <Router>
@@ -43,37 +22,18 @@ function App() {
           <Route exact path='/' component={Login} />
           <Route exact path='/signup' component={Signup} />
           <Route exact path='/dashboard' component={Dashboard} />
-          <Route path='/employee-dashboard' component={EmployeeDash} />
-          <Route path='/add-employees' component={AddEmployee} />
-          <Route path='/make-a-sale' component={Sale} />
-          <Route path='/receive-items' component={Receive} />
-          <Route path='/view-stats' component={Stats} />
-          <Route path='/view-employees' component={ViewEmployees} />
-          <Route path='/post-announcement' component={Announcement} />
-          <Route path='/track-inventory' component={Inventory} />
+          <Route exact path='/employee-dashboard' component={EmployeeDash} />
+          <Route exact path='/add-employees' component={AddEmployee} />
+          <Route exact path='/make-a-sale' component={Sale} />
+          <Route exact path='/receive-items' component={Receive} />
+          <Route exact path='/view-stats' component={Stats} />
+          <Route exact path='/view-employees' component={ViewEmployees} />
+          <Route exact path='/post-announcement' component={Announcement} />
+          <Route exact path='/track-inventory' component={Inventory} />
+          <Route exact path='/view-transactions' component={Transactions}/>
         </div>
     </Router>
   );
 }
 
 export default App;
-
-
-// function Loading() {
-//   const [redirect, setRedirect] = React.useState(false)
-//   const [page, setPage] = React.useState("")
-//   const { user } = React.useContext(UserContext)
-
-//   React.useEffect(() => {
-//     if (!user.loading) {
-//       setRedirect(true)
-//       setPage(user.page)
-//     }
-
-//   }, [user.loading, user.page])
-
-//   return <>
-//     <h1>Loading</h1>
-//     {redirect && <Redirect to={page} />}
-//   </>
-// }
