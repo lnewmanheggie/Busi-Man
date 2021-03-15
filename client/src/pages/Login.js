@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import Input from './../components/Input';
 import UserApi from './../utils/UserApi';
 import Button from './../components/Button';

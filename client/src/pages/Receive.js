@@ -1,17 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../css/Scanner.css'
 import Button from '../components/Button';
 import Input from '../components/Input';
 import InventoryUpdateApi from '../utils/InventoryUpdateApi';
 import Navbar from '../components/Navbar';
+import useAuth from '../utils/useAuth';
 
-function Receive({ history }) {
+function Receive() {
 
-    useEffect(()=> {
-        if (!sessionStorage.getItem('jwt')) {
-            history.push("/")
-        }
-    })
+    useAuth();
+
+    // useEffect(async ()=> {
+    //     try {
+    //         if (!sessionStorage.getItem('jwt')) {
+    //             history.push("/")
+    //         }
+    //         const result = await UserApi.getUsers();
+    //         if (!result.status === 200) {
+    //             history.push("/")
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // })
 
     const [values, setValues] = useState({
         barcode: '',

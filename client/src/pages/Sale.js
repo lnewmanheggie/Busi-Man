@@ -1,23 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../css/Scanner.css'
 import Button from '../components/Button';
 import Input from '../components/Input';
 import InventoryUpdateApi from '../utils/InventoryUpdateApi';
 import Navbar from '../components/Navbar';
+import useAuth from '../utils/useAuth';
 
-function Sale({ history }) {
+function Sale() {
 
-    useEffect(()=> {
-        if (!sessionStorage.getItem('jwt')) {
-            history.push("/")
-        }
-    })
+    useAuth();
 
     const [values, setValues] = useState({
         barcode: '',
         count: '',
-        // itemName: '',
-        // price: ''
     })
 
     const [itemArr, setItemArr] = useState([]);
