@@ -4,7 +4,8 @@ const User = require('./../models/users');
 
 exports.checkUser = catchAsync(async(req, res, next) => {
     let currentUser;
-    let token = req.headers?.cookie?.split(' ')[1].startsWith('jwt') || req.headers.authorization.split(' ')[1]
+    console.log(req.headers)
+    let token = req.headers?.cookie?.split(' ')[1].startsWith('jwt') || req.headers.customheader.split(' ')[1]
     
     if (token) {
         // const token = req.headers.cookie.split(' ')[1].substring(4);
