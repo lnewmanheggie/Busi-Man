@@ -46,7 +46,7 @@ function Receive() {
             price: ''
         })
 
-        setBarcodeVal(null)
+        setBarcodeVal(null);
     }
 
     const [barcodeVal, setBarcodeVal] = useState(null);
@@ -54,7 +54,6 @@ function Receive() {
     const barcodeChange = (e) => {
         const input1 = document.querySelector("#txtField1");
         setBarcodeVal(input1.value)
-        alert(barcodeVal, 'value');
     }
 
     const handleSubmit = (e) => {
@@ -77,7 +76,7 @@ function Receive() {
     const handleFirstSubmit = async () => {
         try {
             const input1 = document.querySelector("#txtField1");
-            alert(input1.value);
+            
             // alert(input1.value)
             // alert(values.barcode);
             const itemData = {
@@ -110,7 +109,6 @@ function Receive() {
     const handleSecondSubmit = async () => {
         // const input1 = document.querySelector("#txtField1");
         const input1 = document.querySelector("#txtField1");
-        alert(input1.value);
 
         const itemData = {
             barcode: parseInt(input1.value),
@@ -124,6 +122,7 @@ function Receive() {
             resultStatus: `You added ${result.data.name} to inventory.`
         })
         resetValues();
+        setIsFound({...isFound, found: true});
     }
 
     // const startBarcodeScanner = () => {
