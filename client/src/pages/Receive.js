@@ -59,6 +59,11 @@ function Receive() {
         })
     }
 
+    const barcodeChange = () => {
+        const input1 = document.querySelector("#txtField1");
+        setValues({...values, barcode: input1.value})
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (values.itemName === '') {
@@ -68,14 +73,15 @@ function Receive() {
         }
     }
 
+
     const handleFirstSubmit = async () => {
         try {
-            console.log('first');
+            
             const input1 = document.querySelector("#txtField1");
             alert(input1.value);
             
             const itemData = {
-                barcode: input1.value,
+                barcode: parseInt(values.barcode),
                 count: parseInt(values.count)
             }
             const result = await InventoryUpdateApi.addItemCount(itemData);
@@ -102,7 +108,7 @@ function Receive() {
     // setIsFound({...isFound, found: true})
 
     const handleSecondSubmit = async () => {
-        console.log('second');
+        
         const itemData = {
             barcode: parseInt(values.barcode),
             count: parseInt(values.count),
@@ -138,7 +144,7 @@ function Receive() {
                     value={values.barcode}
                     placeholder="barcode"
                     color='#219ebc'
-                    handleChange={handleChange}
+                    handleChange={barcodeChange}
                     />
                 <Input 
                     name="count" 
