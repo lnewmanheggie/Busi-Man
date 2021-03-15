@@ -59,10 +59,11 @@ function Receive() {
         })
     }
 
-    const barcodeChange = () => {
-        const input1 = document.querySelector("#txtField1");
-        setValues({...values, barcode: input1.value})
-    }
+    // const barcodeChange = () => {
+    //     const input1 = document.querySelector("#txtField1");
+    //     setValues({...values, barcode: input1.value})
+    //     alert(values.barcode, 'value');
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -73,19 +74,19 @@ function Receive() {
         }
     }
 
-
+    
+    
     const handleFirstSubmit = async () => {
         try {
-            
             const input1 = document.querySelector("#txtField1");
-            alert(input1.value);
-            
+            // alert(input1.value);
+            alert(input1.value)
             const itemData = {
-                barcode: parseInt(values.barcode),
+                barcode: parseInt(input1.value),
                 count: parseInt(values.count)
             }
             const result = await InventoryUpdateApi.addItemCount(itemData);
-            alert(result.data)
+            
             if (result.data === null) {
                 setResult({
                     ...result, 
@@ -108,9 +109,10 @@ function Receive() {
     // setIsFound({...isFound, found: true})
 
     const handleSecondSubmit = async () => {
+        const input1 = document.querySelector("#txtField1");
         
         const itemData = {
-            barcode: parseInt(values.barcode),
+            barcode: parseInt(input1.value),
             count: parseInt(values.count),
             name: values.itemName,
             price: parseFloat(values.price)
@@ -130,6 +132,7 @@ function Receive() {
         <div className='scanner'>
             <h1 className="p-3 scanner-h1">Receive Items</h1>
             <h3 className="pb-4"><em>Open this page in the Scan to Web app on your phone</em></h3>
+            <h4>{values.barcode}</h4>
             <form 
                 name="form1" 
                 // action="stwiosbtn.aspx" 
@@ -144,7 +147,7 @@ function Receive() {
                     value={values.barcode}
                     placeholder="barcode"
                     color='#219ebc'
-                    handleChange={barcodeChange}
+                    handleChange={handleChange}
                     />
                 <Input 
                     name="count" 
