@@ -7,8 +7,8 @@ import Navbar from '../components/Navbar';
 import useAuth from '../utils/useAuth';
 
 function Receive() {
-    const barcodeRef = React.useRef(null)
-    const openScannerRef = React.useRef(null)
+    // const barcodeRef = React.useRef(null)
+    // const openScannerRef = React.useRef(null)
 
     useAuth();
 
@@ -48,7 +48,8 @@ function Receive() {
     }
 
     const barcodeChange = (e) => {
-        setValues({ ...values, barcode: barcodeRef.current.value })
+        const input1 = document.querySelector("#txtField1");
+        setValues({ ...values, barcode: input1.value })
         alert(values.barcode, 'value');
     }
 
@@ -72,8 +73,9 @@ function Receive() {
     const handleFirstSubmit = async () => {
         try {
             // const input1 = document.querySelector("#txtField1");
-            // // alert(input1.value);
+            // alert(input1.value);
             // alert(input1.value)
+            alert(values.barcode);
             const itemData = {
                 barcode: parseInt(values.barcode),
                 count: parseInt(values.count)
@@ -122,10 +124,10 @@ function Receive() {
     //     window.location.href = 'bwstw://startscanner?field=txtField1';
     // }
 
-    const test = (e) => {
-        e.preventDefault()
-        openScannerRef.current.click()
-    }
+    // const test = (e) => {
+    //     e.preventDefault()
+    //     openScannerRef.current.click()
+    // }
 
 
     return (
@@ -149,7 +151,7 @@ function Receive() {
                         placeholder="barcode"
                         color='#219ebc'
                         handleChange={barcodeChange}
-                        useRef={barcodeRef}
+                        // useRef={barcodeRef}
                     />
                     <Input
                         name="count"
@@ -160,11 +162,11 @@ function Receive() {
                         color='#219ebc'
                         handleChange={handleChange}
                     />
-                    <button onClick={test}>Test</button>
+                    {/* <button onClick={test}>Test</button> */}
 
-                    <a className="scanner-link" href="bwstw://startscanner" style={{ display: "none" }} ref={openScannerRef} />
+                    {/* <a className="scanner-link" href="bwstw://startscanner" style={{ display: "none" }} ref={openScannerRef} /> */}
                     <h4 className="p-2">{result.resultStatus}</h4>
-
+                    <a className="scanner-link" href="bwstw://startscanner" />
                     {/* if the item is not found in the database display two more input boxes
                 to add the name and price of the product, then add to db */}
                     <div>
