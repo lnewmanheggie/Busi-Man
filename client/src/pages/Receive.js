@@ -13,7 +13,7 @@ function Receive() {
     useAuth();
 
     const [values, setValues] = useState({
-        barcode: '',
+        // barcode: '',
         count: '',
         itemName: '',
         price: ''
@@ -47,10 +47,12 @@ function Receive() {
         })
     }
 
+    const [barcodeVal, setBarcodeVal] = useState(null);
+
     const barcodeChange = (e) => {
         const input1 = document.querySelector("#txtField1");
-        setValues({ ...values, barcode: input1.value })
-        alert(values.barcode, 'value');
+        setBarcodeVal(input1.value)
+        alert(barcodeVal, 'value');
     }
 
     const handleSubmit = (e) => {
@@ -75,9 +77,9 @@ function Receive() {
             // const input1 = document.querySelector("#txtField1");
             // alert(input1.value);
             // alert(input1.value)
-            alert(values.barcode);
+            // alert(values.barcode);
             const itemData = {
-                barcode: parseInt(values.barcode),
+                barcode: parseInt(barcodeVal),
                 count: parseInt(values.count)
             }
             const result = await InventoryUpdateApi.addItemCount(itemData);
@@ -107,7 +109,7 @@ function Receive() {
         // const input1 = document.querySelector("#txtField1");
 
         const itemData = {
-            barcode: parseInt(values.barcode),
+            barcode: parseInt(barcodeVal),
             count: parseInt(values.count),
             name: values.itemName,
             price: parseFloat(values.price)
@@ -147,7 +149,8 @@ function Receive() {
                         type="text"
                         id="txtField1"
                         className="scanner-input"
-                        value={values.barcode}
+                        value={barcodeVal}
+                        // value={values.barcode}
                         placeholder="barcode"
                         color='#219ebc'
                         handleChange={barcodeChange}
