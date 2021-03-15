@@ -40,11 +40,13 @@ function Receive() {
     const resetValues = () => {
         setValues({
             ...values,
-            barcode: null,
+            // barcode: null,
             count: '',
             itemName: '',
             price: ''
         })
+
+        setBarcodeVal(null)
     }
 
     const [barcodeVal, setBarcodeVal] = useState(null);
@@ -74,12 +76,12 @@ function Receive() {
 
     const handleFirstSubmit = async () => {
         try {
-            // const input1 = document.querySelector("#txtField1");
-            // alert(input1.value);
+            const input1 = document.querySelector("#txtField1");
+            alert(input1.value);
             // alert(input1.value)
             // alert(values.barcode);
             const itemData = {
-                barcode: parseInt(barcodeVal),
+                barcode: parseInt(input1.value),
                 count: parseInt(values.count)
             }
             const result = await InventoryUpdateApi.addItemCount(itemData);
@@ -107,9 +109,11 @@ function Receive() {
 
     const handleSecondSubmit = async () => {
         // const input1 = document.querySelector("#txtField1");
+        const input1 = document.querySelector("#txtField1");
+        alert(input1.value);
 
         const itemData = {
-            barcode: parseInt(barcodeVal),
+            barcode: parseInt(input1.value),
             count: parseInt(values.count),
             name: values.itemName,
             price: parseFloat(values.price)
