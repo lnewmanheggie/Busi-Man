@@ -5,7 +5,7 @@ export default {
 
     // REFER TO THIS FUNCTION TO GET HEADERS FOR API CALLS- NEED FOR AUTHENTICATION
     getUsers: function() {
-       return axios.get('auth/user', {
+       return axios.get('auth/user/', {
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`
             },
