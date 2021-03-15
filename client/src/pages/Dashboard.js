@@ -20,7 +20,7 @@ function Dashboard() {
         }
     }
 
-    useAuth();
+    // useAuth();
 
     return(
         <div className='content'>

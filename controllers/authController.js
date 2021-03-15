@@ -75,3 +75,16 @@ exports.loginUser = catchAsync(async(req, res, next) => {
 
     createUserToken(user, 200, req, res);
 })
+
+exports.getUserData = async (req, res, currentUser) => {
+    // console.log(currentUser, 'currentUser');
+    // console.log('hello test');
+    const id = currentUser._id;
+    const user = await User.findById({ id });
+
+    if (user) {
+        res.status(200).json({user})
+    } else {
+        res.status(404).json({message: 'user not found'})
+    }
+}

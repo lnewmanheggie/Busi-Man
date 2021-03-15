@@ -14,7 +14,8 @@ export default function useAuth() {
                 if (!sessionStorage.getItem('jwt')) {
                     history.push("/")
                 }
-                await UserApi.getUsers();
+                const result = await UserApi.getUsers();
+                console.log(result);
 
             } catch (error) {
                 console.log(error);
