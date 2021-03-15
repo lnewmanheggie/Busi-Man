@@ -166,7 +166,7 @@ function Receive() {
 
                     {/* <a className="scanner-link" href="bwstw://startscanner" style={{ display: "none" }} ref={openScannerRef} /> */}
                     <h4 className="p-2">{result.resultStatus}</h4>
-                    <a className="scanner-link" href="bwstw://startscanner" />
+                    <a className="scanner-link" href="bwstw://startscanner">Click here to start scanner</a>
                     {/* if the item is not found in the database display two more input boxes
                 to add the name and price of the product, then add to db */}
                     <div>
