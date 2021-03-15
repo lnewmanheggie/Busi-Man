@@ -1,20 +1,86 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Input from './../components/Input';
+import UserApi from './../utils/UserApi';
+import Button from './../components/Button';
+import './../css/LoginSignup.css';
+import LoginSignupHeader from './../components/LoginSignupHeader';
 
-function Login() {
+function Login({ history }) {
 
-    const [employeeState, setEmployeeState] = useState({
-        status: 'Employee'
-    });
+    const [values, setValues] = useState({
+        email: '',
+        password: '',
+        error: ''
+    })
 
-    // FUNCTION CALL TO DB --- GET BACK 'EMPLOYEE' OR 'MANAGER' AND ROUTE TO EMPLOYEE DASHBOARD OR MANAGER DASH
+    const handleChange = e => {
+        const value = e.target.value;
+        const name = e.target.name;
 
+        setValues({
+            ...values,
+            [name]: value
+        });
+    };
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        try {
+            let response = await UserApi.loginUser(values)
+            if (response) {
+/**
+ * @todo store user id in session storage for access by db later
+ */
+                sessionStorage.setItem('jwt', response.data.token)
+
+                // if user is a manager, push to manager dashboard, otherwise push to employee dash
+                if (response.data.data.user.manager) {
+                    history.push("/dashboard")
+                } else {
+                    history.push("/employee-dashboard")
+                }
+            }
+        } catch (error) {
+            // parse error to display on screen
+            let err = error.response.data;
+            let start = err.indexOf('Error:');
+            let end = err.indexOf('<br>')
+            setValues({...values, error: err.substring(start, end)});
+        }
+    }
+    
     return(
         <div>
-            <h1>LOGIN PAGE</h1>
-            <Link to='/signup'>Signup</Link>
-            <br />
-            <Link to={employeeState.status === 'Employee' ? '/employee-dashboard' : '/dashboard'}>Login</Link>
+            <LoginSignupHeader linkTo='/signup' linkText='Sign Up'/>
+            
+            <div className="container is-max-desktop login-container">
+                <div className="notification">
+                    <h2 className="is-size-3">Login</h2>
+                    <form onSubmit={handleLogin} >
+                        <Input 
+                            type={"text"}
+                            placeholder={"Email"}
+                            name={"email"}
+                            value={values.email}
+                            color="#219ebc"
+                            handleChange={handleChange}
+                        />
+                        <Input 
+                            type="password"
+                            placeholder={"Password"}
+                            name={"password"}
+                            value={values.password}
+                            color="#219ebc"
+                            handleChange={handleChange}
+                        />
+                        <div>{values.error}</div>
+                        <br />
+                        <div className='buttonDiv'>
+                            <Button name={"login"} type={"submit"} color='#fb8500'/>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     )
 }

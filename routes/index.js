@@ -1,14 +1,14 @@
 const path = require("path");
 const router = require("express").Router();
 const authRouter = require('./authRouter');
-const viewRouter = require('./viewRouter');
 const inventoryRoutes = require('./InventoryApi');
 // const apiRoutes = require("./api");
 
-// API Routes
-// router.use("/api", apiRoutes);
+const apiRoutes = require("./api");
 
-router.use('/', viewRouter);
+
+// API Routes
+router.use("/api", apiRoutes);
 
 router.use('/auth/', authRouter);
 

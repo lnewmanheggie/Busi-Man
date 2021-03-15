@@ -1,0 +1,20 @@
+.scanner {
+    margin-left:auto;
+    margin-right: auto;
+    position: relative;
+    width: 320px;
+}
+
+.scanner-input {
+    width: 90%;
+}
+
+.scanner-h1 {
+    font-size: 2rem;
+    color: #219ebc;
+    font-weight: bold;
+}
+
+.scanner-link {
+    color: #fb8500;
+}

@@ -1,12 +1,12 @@
-import React, { useState, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
 import Input from './../components/Input';
 import Button from './../components/Button';
-import UserApi from './../utils/UserApi';
-// import { UserContext } from './../utils/UserContext';
+import UserApi from '../utils/UserApi';
+import './../css/LoginSignup.css';
+import LoginSignupHeader from './../components/LoginSignupHeader';
 
 
-function Signup() {
+function Signup({ history }) {
 
     const [values, setValues] = useState({
         firstName: '',
@@ -19,8 +19,6 @@ function Signup() {
     })
 
     const [error, setError] = useState(null);
-    // const { setUser } = useContext(UserContext);
-    // let hisory = useHistory();
 
     const handleChange = e => {
         const value = e.target.value;
@@ -32,47 +30,43 @@ function Signup() {
         });
     };
 
-    // set user
-    const setUserContext = () => {
-        UserApi.getUser()
-        .then(result => {
-            // setUser(res.data.currentUser)
-            // history.push('/')
-            console.log(result)
-        })
-        .catch(err => {
-            console.log(err);
-        })
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        try {
+            let response = await UserApi.registerUser(values)
+            console.log(response);
+            history.push("/")
+        } catch (error) {
+            let err = error.response.data.error.message;
+            console.log(err)
+            if (err.includes('Enter a valid email')) {
+                setError('Please enter a valid email')
+            } else if (err.includes('Passwords do not match')) {
+                setError('Passwords do not match')
+            } else if (err.includes('Password should be at least 6 characters')) {
+                setError('Password should be at least 6 characters')
+            } else {
+                setError('Validation error')
+            }
+            
+        }
     }
 
-    //register user
-    const handleRegister = e => {
-        e.preventDefault();
-        UserApi.registerUser(values)
-        .then(async (result) => {
-            console.log(await result);
-            setUserContext();
-        })
-        .catch(err => {
-            // return setError(err.response.data.message)
-            console.log(err)
-            // 
-        })
-    }
 
     return(
         <div>
-            {error}
-            <h1>Signup PAGE</h1>
-            <Link to='/'>Login</Link>
-            <div className="container is-max-desktop">
-                <div className="notification is-primary">
+            <LoginSignupHeader linkTo='/' linkText='Login'/>
+            
+            <div className="container is-max-desktop login-container">
+                <div className="notification">
+                    <h2 className="is-size-3">Sign Up</h2>
                     <form onSubmit={handleRegister} >
                         <Input 
                             type={"text"}
                             placeholder={"First Name"}
                             name={"firstName"}
                             value={values.firstName}
+                            color="#219ebc"
                             handleChange={handleChange}
                         />
                         <Input 
@@ -80,6 +74,7 @@ function Signup() {
                             placeholder={"Last Name"}
                             name={"lastName"}
                             value={values.lastName}
+                            color="#219ebc"
                             handleChange={handleChange}
                         />
                         <Input 
@@ -87,6 +82,7 @@ function Signup() {
                             placeholder={"Email"}
                             name={"email"}
                             value={values.email}
+                            color="#219ebc"
                             handleChange={handleChange}
                         />
                         <Input 
@@ -94,13 +90,15 @@ function Signup() {
                             placeholder={"Company"}
                             name={"company"}
                             value={values.company}
+                            color="#219ebc"
                             handleChange={handleChange}
                         />
                         <Input 
-                            type={"password"}
+                            type="password"
                             placeholder={"Password"}
                             name={"password"}
                             value={values.password}
+                            color="#219ebc"
                             handleChange={handleChange}
                         />
                         <Input 
@@ -108,9 +106,14 @@ function Signup() {
                             placeholder={"Confirm Password"}
                             name={"confirmPassword"}
                             value={values.confirmPassword}
+                            color="#219ebc"
                             handleChange={handleChange}
                         /> 
-                        <Button name={"register"} type={"submit"}/>
+                        <div>{error}</div>
+                        <br />
+                        <div className='buttonDiv'>
+                            <Button name={"Sign up"} type={"submit"} color='#fb8500'/>
+                        </div>
                     </form>
                 </div>
             </div>

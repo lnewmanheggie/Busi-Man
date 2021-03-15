@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, Component } from 'react';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
@@ -7,6 +8,7 @@ import Footer from '../components/Footer';
 import InventoryAPI from '../utils/InventoryApi';
 import { Link, useLocation } from 'react-router-dom';
 import TableCSS from '../css/Table.css';
+import useAuth from '../utils/useAuth';
 
 
 function SearchBar(props) {
@@ -42,6 +44,8 @@ function Inventory() {
             textDecoration: 'none'
         }
     };
+  
+  useAuth();
   
     const [search, setSearch] = useState();
     const [filteredInventory, setFiltered] =useState();
@@ -106,6 +110,7 @@ function Inventory() {
 
     const location = useLocation();
     console.log(search);
+
     return(
         <div>
             <Navbar location={location.pathname}/>

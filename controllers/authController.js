@@ -4,7 +4,6 @@ const User = require('./../models/users');
 const AppError = require('./../utils/AppError');
 const catchAsync = require('./../utils/catchAsync');
 const jwt = require('jsonwebtoken');
-const { promisify } = require('util');
 
 // create token for authenticated user
 const signToken = id => {
@@ -20,7 +19,7 @@ const createUserToken = async(user, code, req, res) => {
         //cookie settings
         res.cookie('jwt', token, 
         {
-            expires: new Date(Date.now() + 8 * 3600000),  // expires in 8 hours
+            expires: new Date(Date.now() + 30 * 60000),  // expires in 30 min
             httpOnly: true,
             // secure: req.secure || req.headers['x-forwarded-proto'] === 'https',
             sameSite: 'none'
@@ -55,7 +54,7 @@ exports.registerUser = async(req, res, next) => {
 
         createUserToken(newUser, 201, req, res);
     } catch(err) {
-        res.status(500).json(err);
+        res.status(500).json({error: err});
     }
 }
 
@@ -77,27 +76,15 @@ exports.loginUser = catchAsync(async(req, res, next) => {
     createUserToken(user, 200, req, res);
 })
 
-// check if user is logged in
-exports.checkUser = catchAsync(async(req, res, next) => {
-    let currentUser;
-    if (req.headers.cookie.split(' ')[1].startsWith('jwt')) {
-        const token = req.headers.cookie.split(' ')[1].substring(4);
-        console.log(token, "token")
-        const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-        currentUser = await User.findById(decoded.id);
+exports.getUserData = async (req, res, currentUser) => {
+    // console.log(currentUser, 'currentUser');
+    // console.log('hello test');
+    const id = currentUser._id;
+    const user = await User.findById({ id });
+
+    if (user) {
+        res.status(200).json({user})
     } else {
-        currentUser = null;
+        res.status(404).json({message: 'user not found'})
     }
-
-    res.status(200).send({ currentUser });
-})
-
-
-// log out
-exports.logoutUser = catchAsync(async (req, res) => {
-    res.cookie('jwt', 'loggedout', {
-        expires: new Date(Date.now() + 1 * 1000),
-        httpOnly: true
-    });
-    res.status(200).send('user logged out');
-})
+}
