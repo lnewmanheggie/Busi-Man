@@ -7,7 +7,7 @@ export default {
     getUsers: function() {
        return axios.get('auth/user/', {
             headers: {
-                'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`
+                'CustomHeader': `Bearer ${sessionStorage.getItem('jwt')}`
             },
         });
     },
