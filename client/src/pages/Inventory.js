@@ -45,10 +45,8 @@ function Inventory() {
   
     const [search, setSearch] = useState();
     const [filteredInventory, setFiltered] =useState();
-
     const [inventory, setInventory] = useState([])
-    // const [formObject, setFormObject] = useState({})
-  
+ 
     // Load all inventory and store them with setInventory
     useEffect(() => {
       loadInventory();
@@ -65,16 +63,14 @@ function Inventory() {
         .catch(err => console.log(err));
     };
 
-    const handleInputChange = event => {
-        // const name = event.target.name;
-        // const value = event.target.value
+    // Handles filtering inventory on search
+    const handleInputChange = event => { 
         setSearch(event.target.value);
-        // const filteredInv = this.state.results.filter(x => x.name.toLowerCase().startsWith(value))
-        const inventoryTempArray = inventory.filter(item =>{
+       
+        const inventoryTempArray = filteredInventory.filter(item =>{
             return item.name.toLowerCase().includes(search?.toLowerCase());
          
         })
-        
         
         setFiltered(inventoryTempArray)
         if (search === "" ){
@@ -89,6 +85,25 @@ function Inventory() {
     //     ))
     // )
 
+   const orderAlphabetically = () => {
+        const ordered = filteredInventory.sort((a, b) => {
+            let fa = a.name.toLowerCase(),
+                fb = b.name.toLowerCase();
+        
+            if (fa < fb) {
+                return -1;
+            }
+            if (fa > fb) {
+                return 1;
+            }
+            return 0;
+        });
+
+         setInventory({
+            inventory: ordered
+        })
+    }
+
     const location = useLocation();
     console.log(search);
     return(
@@ -102,7 +117,7 @@ function Inventory() {
                     <div className='cell'>
                             <h2 style={styles.cell}>Barcode</h2>
                     </div>
-                    <div className='cell'>
+                    <div className='cell' onClick={orderAlphabetically}>
                             <h2 style={styles.cell}>Product</h2>
                     </div>
                     <div className='cell'>
@@ -111,7 +126,7 @@ function Inventory() {
                     <div className='cell'>
                             <h2 style={styles.cell}>Price</h2>
                     </div>
-                    <InvTable inventory={filteredInventory} />
+                    <InvTable inventory={filteredInventory} orderAlphabetically={orderAlphabetically} />
 
                 </div>
             </div>
