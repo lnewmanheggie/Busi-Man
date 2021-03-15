@@ -19,6 +19,7 @@ function Input(props) {
                     value={props.value}
                     onChange={props.handleChange}
                     style={styles.input}
+                    id={props.id}
                 />
             </div>
         </div>

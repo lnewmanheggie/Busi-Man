@@ -29,7 +29,9 @@ function Login({ history }) {
         try {
             let response = await UserApi.loginUser(values)
             if (response) {
-
+/**
+ * @todo store user id in session storage for access by db later
+ */
                 sessionStorage.setItem('jwt', response.data.token)
 
                 // if user is a manager, push to manager dashboard, otherwise push to employee dash
@@ -52,7 +54,7 @@ function Login({ history }) {
         <div>
             <LoginSignupHeader linkTo='/signup' linkText='Sign Up'/>
             
-            <div className="container is-max-desktop">
+            <div className="container is-max-desktop login-container">
                 <div className="notification">
                     <h2 className="is-size-3">Login</h2>
                     <form onSubmit={handleLogin} >
