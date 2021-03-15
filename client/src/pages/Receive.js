@@ -60,6 +60,9 @@ function Receive({ history }) {
     const handleFirstSubmit = async () => {
         try {
             console.log('first');
+            const input1 = document.querySelector("#txtField1");
+            alert(input1.value);
+            
             const itemData = {
                 barcode: parseInt(values.barcode),
                 count: parseInt(values.count)
