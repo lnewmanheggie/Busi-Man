@@ -2,6 +2,9 @@ const router = require('express').Router();
 const inventoryController = require('../../controllers/inventoryController');
 
 // Matches with '/api/inventory'
+router.route('/get')
+  .get(inventoryController.findAll)
+
 router.route('/')
   .post(inventoryController.create)
 

@@ -75,11 +75,11 @@ function Receive() {
             alert(input1.value);
             
             const itemData = {
-                barcode: parseInt(values.barcode),
+                barcode: input1.value,
                 count: parseInt(values.count)
             }
             const result = await InventoryUpdateApi.addItemCount(itemData);
-            console.log(result);
+            alert(result.data)
             if (result.data === null) {
                 setResult({
                     ...result, 
