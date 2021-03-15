@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import useAuth from '../utils/useAuth';
 
-function ViewEmployees({ history }) {
+function ViewEmployees() {
 
-    useEffect(()=> {
-        if (!sessionStorage.getItem('jwt')) {
-            history.push("/")
-        }
-    })
+    useAuth();
 
     return(
         <div>

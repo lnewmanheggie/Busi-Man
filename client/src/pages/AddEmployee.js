@@ -1,12 +1,24 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import useAuth from '../utils/useAuth';
 
 function AddEmployee({ history }) {
+
+    useAuth();
     
-    useEffect(()=> {
-        if (!sessionStorage.getItem('jwt')) {
-            history.push("/")
-        }
-    })
+    // useEffect(async ()=> {
+    //     try {
+    //         console.log('hi');
+    //         if (!sessionStorage.getItem('jwt')) {
+    //             history.push("/")
+    //         }
+    //         const result = await UserApi.getUsers();
+    //         if (!result.status === 200) {
+    //             history.push("/")
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // })
 
     // apicall
     // headers
