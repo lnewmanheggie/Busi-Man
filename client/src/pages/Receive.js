@@ -125,6 +125,10 @@ function Receive() {
         resetValues();
     }
 
+    const startBarcodeScanner = () => {
+        window.location.href = 'bwstw://startscanner?field=txtField1';
+    }
+
 
     return(
         <>
@@ -158,7 +162,8 @@ function Receive() {
                     color='#219ebc'
                     handleChange={handleChange}
                 />
-                <a className="scanner-link" href="bwstw://startscanner">Click here to start scanner</a>
+                <button onClick={startBarcodeScanner}>Click to start scanner</button>
+                {/* <a className="scanner-link" href="bwstw://startscanner">Click here to start scanner</a> */}
                 <h4 className="p-2">{result.resultStatus}</h4>
                 
                 {/* if the item is not found in the database display two more input boxes
