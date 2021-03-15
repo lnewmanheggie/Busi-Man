@@ -25,7 +25,7 @@ function Receive() {
     // })
 
     const [values, setValues] = useState({
-        barcode: '',
+        barcode: null,
         count: '',
         itemName: '',
         price: ''
@@ -52,21 +52,24 @@ function Receive() {
     const resetValues = () => {
         setValues({
             ...values, 
-            barcode: '',
+            barcode: null,
             count: '',
             itemName: '',
             price: ''
         })
     }
 
-    // const barcodeChange = () => {
-    //     const input1 = document.querySelector("#txtField1");
-    //     setValues({...values, barcode: input1.value})
-    //     alert(values.barcode, 'value');
-    // }
+    const barcodeChange = () => {
+        const input1 = document.querySelector("#txtField1");
+        setValues({...values, barcode: input1.value})
+        alert(values.barcode, 'value');
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        // if (values.count === '') {
+        //     handleBarcodeSubmit();
+        // }
         if (values.itemName === '') {
             handleFirstSubmit();
         } else {
@@ -74,15 +77,18 @@ function Receive() {
         }
     }
 
+    // const handleBarcodeSubmit = (e) => {
+    //     e.preventDefault();
+    // }
     
     
     const handleFirstSubmit = async () => {
         try {
-            const input1 = document.querySelector("#txtField1");
-            // alert(input1.value);
-            alert(input1.value)
+            // const input1 = document.querySelector("#txtField1");
+            // // alert(input1.value);
+            // alert(input1.value)
             const itemData = {
-                barcode: parseInt(input1.value),
+                barcode: parseInt(values.barcode),
                 count: parseInt(values.count)
             }
             const result = await InventoryUpdateApi.addItemCount(itemData);
@@ -109,10 +115,10 @@ function Receive() {
     // setIsFound({...isFound, found: true})
 
     const handleSecondSubmit = async () => {
-        const input1 = document.querySelector("#txtField1");
+        // const input1 = document.querySelector("#txtField1");
         
         const itemData = {
-            barcode: parseInt(input1.value),
+            barcode: parseInt(values.barcode),
             count: parseInt(values.count),
             name: values.itemName,
             price: parseFloat(values.price)
@@ -125,9 +131,9 @@ function Receive() {
         resetValues();
     }
 
-    const startBarcodeScanner = () => {
-        window.location.href = 'bwstw://startscanner?field=txtField1';
-    }
+    // const startBarcodeScanner = () => {
+    //     window.location.href = 'bwstw://startscanner?field=txtField1';
+    // }
 
 
     return(
@@ -136,7 +142,6 @@ function Receive() {
         <div className='scanner'>
             <h1 className="p-3 scanner-h1">Receive Items</h1>
             <h3 className="pb-4"><em>Open this page in the Scan to Web app on your phone</em></h3>
-            <h4>{values.barcode}</h4>
             <form 
                 name="form1" 
                 // action="stwiosbtn.aspx" 
@@ -151,7 +156,7 @@ function Receive() {
                     value={values.barcode}
                     placeholder="barcode"
                     color='#219ebc'
-                    handleChange={handleChange}
+                    handleChange={barcodeChange}
                     />
                 <Input 
                     name="count" 
@@ -162,8 +167,8 @@ function Receive() {
                     color='#219ebc'
                     handleChange={handleChange}
                 />
-                <button onClick={startBarcodeScanner}>Click to start scanner</button>
-                {/* <a className="scanner-link" href="bwstw://startscanner">Click here to start scanner</a> */}
+                {/* <button onClick={startBarcodeScanner}>Click to start scanner</button> */}
+                <a className="scanner-link" href="bwstw://startscanner">Click here to start scanner</a>
                 <h4 className="p-2">{result.resultStatus}</h4>
                 
                 {/* if the item is not found in the database display two more input boxes
