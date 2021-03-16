@@ -33,7 +33,23 @@ function AddEmployee() {
       try {
         let response = await UserApi.getUsers()
         const userCompany = response.data.currentUser.company;
-        console.log(randomPassword())
+        const generatedPassword = randomPassword();
+        const userData = {
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          company: userCompany,
+          manager: values.manager,
+          password: generatedPassword,
+          confirmPassword: generatedPassword
+          
+        }
+        console.log(userData);
+
+        const confirmRegistration = await UserApi.registerUser(userData);
+        console.log(confirmRegistration);
+
+
         } catch (error) {
         console.log(error);
       }
@@ -47,6 +63,7 @@ function AddEmployee() {
     } 
     passGenerated += "CHANGEME"
     setValues({...values, password: passGenerated})
+    return passGenerated;
   } 
   
 
