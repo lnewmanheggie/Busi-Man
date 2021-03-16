@@ -71,11 +71,14 @@ exports.changePassword = async(req, res) => {
             { $set: { password } }
         );
 
-        createUserToken(newUser, 201, req, res);
+        if (newUser) {
+            createUserToken(newUser, 201, req, res);
+        } else {
+            res.status(404).json('Not found');
+        }
 
     } catch(err) {
-        console.log(err)
-        res.status(500).json({error: err});
+        res.status(500).json('User not found');
     }
 }
 

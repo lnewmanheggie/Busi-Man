@@ -46,10 +46,10 @@ function Receive() {
             price: ''
         })
 
-        setBarcodeVal(null);
+        setBarcodeVal(undefined);
     }
 
-    const [barcodeVal, setBarcodeVal] = useState(null);
+    const [barcodeVal, setBarcodeVal] = useState(undefined);
 
     const barcodeChange = (e) => {
         const input1 = document.querySelector("#txtField1");
