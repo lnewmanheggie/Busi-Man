@@ -4,6 +4,7 @@ const User = require('./../models/users');
 const AppError = require('./../utils/AppError');
 const catchAsync = require('./../utils/catchAsync');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 // create token for authenticated user
 const signToken = id => {
@@ -40,7 +41,7 @@ const createUserToken = async(user, code, req, res) => {
 }
 
 // create new user
-exports.registerUser = async(req, res, next) => {
+exports.registerUser = async(req, res) => {
     try {
         const newUser = await User.create({
             firstName: req.body.firstName,
@@ -55,6 +56,29 @@ exports.registerUser = async(req, res, next) => {
         createUserToken(newUser, 201, req, res);
     } catch(err) {
         res.status(500).json({error: err});
+    }
+}
+
+// change user password
+exports.changePassword = async(req, res) => {
+    try {
+        let { email, password } = req.body;
+
+        password = await bcrypt.hash(password, 12);
+
+        const newUser = await User.findOneAndUpdate(
+            { email }, 
+            { $set: { password } }
+        );
+
+        if (newUser) {
+            createUserToken(newUser, 201, req, res);
+        } else {
+            res.status(404).json('Not found');
+        }
+
+    } catch(err) {
+        res.status(500).json('User not found');
     }
 }
 

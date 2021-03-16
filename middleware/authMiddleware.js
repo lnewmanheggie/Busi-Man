@@ -5,6 +5,7 @@ const User = require('./../models/users');
 exports.checkUser = catchAsync(async(req, res, next) => {
     let currentUser;
     let token = req.headers.customheader.split(' ')[1]
+    
 
     if (token) {
         // const token = req.headers.cookie.split(' ')[1].substring(4);

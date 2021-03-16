@@ -7,6 +7,11 @@ const PORT = process.env.PORT || 3001;
 
 require("dotenv").config();
 
+app.use((req, res, next) => {
+  req.company = req.headers["x-business"]
+  next()
+})
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -28,6 +33,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/busiman",
 );
 
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
