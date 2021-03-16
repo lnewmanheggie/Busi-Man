@@ -20,6 +20,7 @@ function Input(props) {
                     onChange={props.handleChange}
                     style={styles.input}
                     id={props.id}
+                    // ref={props.useRef}
                 />
             </div>
         </div>
