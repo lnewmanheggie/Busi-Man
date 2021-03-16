@@ -26,20 +26,25 @@ function Login({ history }) {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            let response = await UserApi.loginUser(values)
-            if (response) {
-/**
- * @todo store user id in session storage for access by db later
- */
-                sessionStorage.setItem('jwt', response.data.token)
-
-                // if user is a manager, push to manager dashboard, otherwise push to employee dash
-                if (response.data.data.user.manager) {
-                    history.push("/dashboard")
-                } else {
-                    history.push("/employee-dashboard")
+            if (values.password.includes('CHANGEME')) {
+                history.push("/change-password")
+                
+            } else {
+                let response = await UserApi.loginUser(values)
+                if (response) {
+    
+                    sessionStorage.setItem('jwt', response.data.token)
+    
+                    // if user is a manager, push to manager dashboard, otherwise push to employee dash
+                    if (response.data.data.user.manager) {
+                        history.push("/dashboard")
+                    } else {
+                        history.push("/employee-dashboard")
+                    }
                 }
+
             }
+
         } catch (error) {
             // parse error to display on screen
             let err = error.response.data;

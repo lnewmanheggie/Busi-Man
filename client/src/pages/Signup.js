@@ -112,7 +112,7 @@ function Signup({ history }) {
                         <div>{error}</div>
                         <br />
                         <div className='buttonDiv'>
-                            <Button name={"Sign up"} type={"submit"} color='#fb8500'/>
+                            <Button name="Sign up" type="submit" color='#fb8500'/>
                         </div>
                     </form>
                 </div>
