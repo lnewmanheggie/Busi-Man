@@ -1,17 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../css/Scanner.css'
 import Button from '../components/Button';
 import Input from '../components/Input';
 import InventoryUpdateApi from '../utils/InventoryUpdateApi';
 import Navbar from '../components/Navbar';
 import useAuth from '../utils/useAuth';
+import UserApi from '../utils/UserApi';
+import TransactionApi from '../utils/TransactionApi';
 
 function Sale() {
 
     useAuth();
 
+    // store user name in state to add to transactions db to see who made the sale
+    const [userState, setUserState] = useState({
+        fullName: ''
+    })
+
+    useEffect(() => {
+        async function getUser() {
+            try {
+                const result = await UserApi.getUsers();
+                let firstName = result.data.currentUser.firstName;
+                let lastName = result.data.currentUser.lastName;
+                let full_Name = `${firstName} ${lastName}`;
+                setUserState({...userState, fullName: full_Name})
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getUser();
+    }, [])
+
     const [values, setValues] = useState({
-        // barcode: '',
         count: '',
     })
 
@@ -34,7 +55,6 @@ function Sale() {
     const resetValues = () => {
         setValues({
             ...values, 
-            // barcode: '',
             count: ''
         })
 
@@ -62,11 +82,24 @@ function Sale() {
                 count: parseInt(values.count)
             }
             const result = await InventoryUpdateApi.removeItemCount(itemData);
-    
+            
+            // add result to transactions db
+            const transactionData = {
+                barcode: result.data.barcode,
+                name: result.data.name,
+                count: itemData.count,
+                price: result.data.price,
+                employee: userState.fullName
+            }
+
+            await TransactionApi.createTransaction(transactionData);
+        
             let totalCost = total.total + parseFloat(result.data.price);
-            totalCost = parseFloat(totalCost.toFixed(2))
+            totalCost = parseFloat(totalCost).toFixed(2)
     
             setTotal({...total, total: totalCost * values.count})
+
+            // create an object to loop through and display current sale data
             const itemSale = {
                 id: result.data._id,
                 string: `${values.count} ${result.data.name} | ${result.data.price} each`
@@ -79,6 +112,7 @@ function Sale() {
         
     }
 
+    // display sale array
     const items = itemArr.map((item, i) =>
         <li key={item.id + i}>
             {item.string}

@@ -17,6 +17,10 @@
    padding: 0;
 }
 
+.table-heading{
+    color: #024047;
+}
+
 .cell {
    box-sizing: border-box;
    display: flex;
@@ -39,5 +43,4 @@
    .table > .cell  { 
        width: 100%; 
    }
-
 }

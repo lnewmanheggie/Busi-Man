@@ -120,16 +120,16 @@ function Inventory() {
             <div classname= 'mt-3'>
                 <div className='table'>
                     <div className='cell'>
-                            <h2 style={styles.cell}>Barcode</h2>
+                            <h2 className="table-heading" style={styles.cell}>Barcode</h2>
                     </div>
                     <div className='cell' onClick={orderAlphabetically}>
-                            <h2 style={styles.cell}>Product</h2>
+                            <h2 className="table-heading" style={styles.cell}>Product</h2>
                     </div>
                     <div className='cell'>
-                            <h2 style={styles.cell}>Amount</h2>
+                            <h2 className="table-heading" style={styles.cell}>Amount</h2>
                     </div>
                     <div className='cell'>
-                            <h2 style={styles.cell}>Price</h2>
+                            <h2 className="table-heading" style={styles.cell}>Price</h2>
                     </div>
                     <InvTable inventory={filteredInventory} orderAlphabetically={orderAlphabetically} />
 
