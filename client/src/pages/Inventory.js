@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, Component } from 'react';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
@@ -83,12 +82,6 @@ function Inventory() {
         console.log(inventoryTempArray);
     };
 
-    // const sortByBarcode (
-    //     setFiltered(inventory.sort((a,b)=>
-    //         a[barcode] - b[barcode]
-    //     ))
-    // )
-
    const orderAlphabetically = () => {
         const ordered = filteredInventory.sort((a, b) => {
             let fa = a.name.toLowerCase(),
@@ -109,7 +102,6 @@ function Inventory() {
     }
 
     const location = useLocation();
-    console.log(search);
 
     return(
         <div>

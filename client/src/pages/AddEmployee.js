@@ -1,36 +1,94 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import useAuth from '../utils/useAuth';
+import Navbar from '../components/Navbar';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import employeeApi from '../utils/EmployeeApi';
+import { Link, useLocation } from 'react-router-dom';
+import { Input, TextArea, FormBtn } from "../components/Form";
 
-function AddEmployee({ history }) {
+function AddEmployee() {
+    const [employee, setEmployee] = useState([])
+    const [formObject, setFormObject] = useState({})
+
+    useEffect(() => {
+        loadEmployee()
+      }, [])
+
+      function loadEmployee() {
+        employeeApi.getEmployees()
+          .then(res => 
+            setEmployee(res.data)
+          )
+          .catch(err => console.log(err));
+      };
+
+      function deleteEmployee(id) {
+        employeeApi.deleteEmployee(id)
+          .then(res => loadEmployee())
+          .catch(err => console.log(err));
+      }
+
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        if (formObject.first_name && formObject.last_name && formObject.email && formObject.company && formObject.isManager) {
+            employeeApi.saveEmployee({
+            first_name: formObject.first_name,
+            last_name: formObject.last_name,
+            email: formObject.email,
+            company: formObject.company,
+            isManager: false
+
+          })
+            .then(res => loadEmployee())
+            .catch(err => console.log(err));
+        }
+      };
+
+    // Handles updating component state when the user types into the input field
+    function handleInputChange(event) {
+        const { name, value } = event.target;
+        setFormObject({...formObject, [name]: value})
+  };
 
     useAuth();
-    
-    // useEffect(async ()=> {
-    //     try {
-    //         console.log('hi');
-    //         if (!sessionStorage.getItem('jwt')) {
-    //             history.push("/")
-    //         }
-    //         const result = await UserApi.getUsers();
-    //         if (!result.status === 200) {
-    //             history.push("/")
-    //         }
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // })
 
-    // apicall
-    // headers
-    // headers: {
-        //             'Authorization': `Bearer ${sessionStorage.getItem('jwt')}`
-        //         },
-    // yes /no -> response.status(401) ->  // history.push("/")
+    const location = useLocation();
 
     return(
         <div>
-            <h1>Add employee PAGE</h1>
-            <h2>Hiiiiiiiiii</h2>
+            <Navbar location={location.pathname}/>
+            <Header heading={'Add Employee'}/>
+            <form>
+            <Input
+                onChange={handleInputChange}
+                name="First Name"
+                placeholder="Employee first name (required)"
+              />
+            <Input
+                onChange={handleInputChange}
+                name="Last Name"
+                placeholder="Employee last name (required)"
+            />
+            <Input
+                onChange={handleInputChange}
+                name="Email"
+                placeholder="Employee email (required)"
+            />
+            <Input
+                onChange={handleInputChange}
+                name="Company"
+                placeholder="Employee company (required)"
+            />
+            {/* radio button for is manager */}
+             <FormBtn
+                disabled={!(formObject.first_name && formObject.last_name && formObject.email && formObject.company && formObject.isManager)}
+                onClick={handleFormSubmit}
+              >Submit Employee</FormBtn>
+            </form>
+
+
+            <Footer />
             
         </div>
     )
