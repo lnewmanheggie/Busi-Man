@@ -40,7 +40,7 @@ module.exports = {
   },
   remove: function (req, res) {
     db.Inventory
-      .findById({ barcode: req.params.barcode })
+      .find({ barcode: req.params.barcode })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

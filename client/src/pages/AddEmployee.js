@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 // import { Link, useLocation } from 'react-router-dom';
-import { Input, TextArea,} from "../components/Form";
+import Input from '../components/Input';
 import Button from "../components/Button";
 import UserApi from "../utils/UserApi";
 
@@ -69,7 +69,6 @@ function AddEmployee() {
 
     return(
         <div>
-          {console.log(values)};
             <Navbar />
             <Header heading={'Add Employee'}/>
             <form onSubmit={handleAddEmployee}>

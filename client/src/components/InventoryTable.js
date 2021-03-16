@@ -5,6 +5,7 @@ import TableCSS from '../css/Table.css';
 function InventoryTable(props) {
     const styles = {TableCSS};
     
+    console.log(props)
 
     return (
  
@@ -19,6 +20,8 @@ function InventoryTable(props) {
                                 name={inv.name}
                                 count={inv.count}
                                 price={inv.price}
+                                remove={inv.remove}
+                                onClick={props.onClick}
                             />
                         )
                     })
