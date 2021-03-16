@@ -21,6 +21,7 @@ const userSchema = new Schema({
     },
     company: {
         type: String,
+        unique: [true, 'Company name taken'],
         required: true,
     },
     manager: {

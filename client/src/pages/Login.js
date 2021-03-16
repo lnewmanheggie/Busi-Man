@@ -28,15 +28,15 @@ function Login({ history }) {
         try {
             if (values.password.includes('CHANGEME')) {
                 history.push("/change-password")
-                
+
             } else {
                 let response = await UserApi.loginUser(values)
                 if (response) {
-    
-                    sessionStorage.setItem('jwt', response.data.token)
-    
+                    console.log(response)
+                    sessionStorage.setItem('jwt', response.token)
+
                     // if user is a manager, push to manager dashboard, otherwise push to employee dash
-                    if (response.data.data.user.manager) {
+                    if (response.data.user.manager) {
                         history.push("/dashboard")
                     } else {
                         history.push("/employee-dashboard")
@@ -50,19 +50,19 @@ function Login({ history }) {
             let err = error.response.data;
             let start = err.indexOf('Error:');
             let end = err.indexOf('<br>')
-            setValues({...values, error: err.substring(start, end)});
+            setValues({ ...values, error: err.substring(start, end) });
         }
     }
-    
-    return(
+
+    return (
         <div>
-            <LoginSignupHeader linkTo='/signup' linkText='Sign Up'/>
-            
+            <LoginSignupHeader linkTo='/signup' linkText='Sign Up' />
+
             <div className="container is-max-desktop login-container">
                 <div className="notification">
                     <h2 className="is-size-3">Login</h2>
                     <form onSubmit={handleLogin} >
-                        <Input 
+                        <Input
                             type={"text"}
                             placeholder={"Email"}
                             name={"email"}
@@ -70,7 +70,7 @@ function Login({ history }) {
                             color="#219ebc"
                             handleChange={handleChange}
                         />
-                        <Input 
+                        <Input
                             type="password"
                             placeholder={"Password"}
                             name={"password"}
@@ -81,7 +81,7 @@ function Login({ history }) {
                         <div>{values.error}</div>
                         <br />
                         <div className='buttonDiv'>
-                            <Button name={"login"} type={"submit"} color='#fb8500'/>
+                            <Button name={"login"} type={"submit"} color='#fb8500' />
                         </div>
                     </form>
                 </div>

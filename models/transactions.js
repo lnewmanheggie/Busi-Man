@@ -6,7 +6,8 @@ const transactionSchema = new Schema({
   name: { type: String, required: true },
   count: { type: Number, required: true },
   price: { type: Number, required: true},
-  employee: {type: String, required: true}
+  employee: {type: String, required: true},
+  company: {type: String, required: true}
 });
 
 const Transactions = mongoose.model("Transactions", transactionSchema);
