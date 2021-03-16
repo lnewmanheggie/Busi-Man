@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import InvTable from '../components/InventoryTable';
 // import InvSearchBar from '../components/InvSearchBar';
 import Footer from '../components/Footer';
+import InventoryUpdateAPI from '../utils/InventoryUpdateApi';
 import InventoryAPI from '../utils/InventoryApi';
 import { Link, useLocation } from 'react-router-dom';
 import TableCSS from '../css/Table.css';
@@ -98,7 +99,17 @@ function Inventory() {
 
          setInventory({
             inventory: ordered
+
         })
+    }
+
+    const deleteItem= async (barcode) => {
+
+       const result = await InventoryUpdateAPI.delete(barcode);
+       console.log(result);
+
+       // set result as state filtered array
+
     }
 
     const location = useLocation();
@@ -123,7 +134,10 @@ function Inventory() {
                     <div className='cell'>
                             <h2 className="table-heading" style={styles.cell}>Price</h2>
                     </div>
-                    <InvTable inventory={filteredInventory} orderAlphabetically={orderAlphabetically} />
+                    <div className='cell'>
+                            <h2 className="table-heading" style={styles.cell}>Delete</h2>
+                    </div>
+                    <InvTable inventory={filteredInventory} orderAlphabetically={orderAlphabetically} onClick={deleteItem}/>
 
                 </div>
             </div>
