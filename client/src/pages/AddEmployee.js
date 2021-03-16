@@ -3,9 +3,9 @@ import useAuth from '../utils/useAuth';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import employeeApi from '../utils/EmployeeApi';
+import EmployeeApi from '../utils/EmployeeApi';
 import { Link, useLocation } from 'react-router-dom';
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, TextArea, FormBtn, RadioBtn } from "../components/Form";
 
 function AddEmployee() {
     const [employee, setEmployee] = useState([])
@@ -16,7 +16,7 @@ function AddEmployee() {
       }, [])
 
       function loadEmployee() {
-        employeeApi.getEmployees()
+        EmployeeApi.getEmployees()
           .then(res => 
             setEmployee(res.data)
           )
@@ -24,7 +24,7 @@ function AddEmployee() {
       };
 
       function deleteEmployee(id) {
-        employeeApi.deleteEmployee(id)
+        EmployeeApi.deleteEmployee(id)
           .then(res => loadEmployee())
           .catch(err => console.log(err));
       }
@@ -80,7 +80,7 @@ function AddEmployee() {
                 name="Company"
                 placeholder="Employee company (required)"
             />
-            {/* radio button for is manager */}
+            <RadioBtn></RadioBtn>
              <FormBtn
                 disabled={!(formObject.first_name && formObject.last_name && formObject.email && formObject.company && formObject.isManager)}
                 onClick={handleFormSubmit}
