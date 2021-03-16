@@ -13,6 +13,7 @@ import Stats from './pages/Stats';
 import ViewEmployees from './pages/ViewEmployees';
 import EmployeeDash from './pages/EmployeeDash';
 import Transactions from './pages/Transactions';
+import EmployeeChangePass from './pages/EmployeeChangePass';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <div className='App'>
           <Route exact path='/' component={Login} />
           <Route exact path='/signup' component={Signup} />
+          <Route exact path='/change-password' component={EmployeeChangePass} />
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/employee-dashboard' component={EmployeeDash} />
           <Route exact path='/add-employees' component={AddEmployee} />

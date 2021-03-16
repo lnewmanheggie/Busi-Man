@@ -18,5 +18,9 @@ export default {
 
     loginUser: function(userData) {
         return axios.post('auth/login', userData);
+    },
+
+    changePassword: function(userData) {
+        return axios.post('auth/passwordchange', userData)
     }
 }
