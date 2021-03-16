@@ -5,24 +5,32 @@ const transactionSeed = [
     name: "Apples",
     count: 50,
     price:  99.99,
+    employee: 'joe',
+    company: 'test'
     },
     {
      barcode: 123456780,
     name: "Bananas",
     count: 99,
     price:  99.99,
+    employee: 'joe',
+    company: 'test'
     },
     {
     barcode: 123456786,
     name: "Oranges",
     count: 99,
     price:  99.99,
+    employee: 'joe',
+    company: 'test'
     },
     {
     barcode: 123456788,
     name: "Pears",
     count: 99,
     price:  99.99,
+    employee: 'joe',
+    company: 'testing'
     }
 ];
 

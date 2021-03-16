@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 3001;
 require("dotenv").config();
 
 app.use((req, res, next) => {
+  console.log(req.headers["x-business"], 'headers')
   req.company = req.headers["x-business"]
   next()
 })

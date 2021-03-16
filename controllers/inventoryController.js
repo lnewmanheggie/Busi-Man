@@ -3,7 +3,6 @@ const db = require("../models");
 // Defining methods for the inventoryController
 module.exports = {
   findAll: function (req, res) {
-    console.log(req.company)
     db.Inventory
       .find({ company: req.company })
       .sort({ name: -1 })
@@ -27,20 +26,30 @@ module.exports = {
       });
   },
   updateAdd: function (req, res) {
+    req.body.company = req.company;
     db.Inventory
-      .findOneAndUpdate({ barcode: req.body.barcode }, { $inc: { count: req.body.count } })
+      .findOneAndUpdate({ barcode: req.body.barcode, company: req.body.company }, 
+        { $inc: { count: req.body.count } })
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .catch(err => {
+        console.log("ERR:", err)
+        res.status(422).json(err)});
   },
   updateRemove: function (req, res) {
+    req.body.company = req.company;
+    console.log(req.body.company);
     db.Inventory
-      .findOneAndUpdate({ barcode: req.body.barcode }, { $inc: { count: -req.body.count } })
+      .findOneAndUpdate({ barcode: req.body.barcode, company: req.body.company },
+         { $inc: { count: -req.body.count } })
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .catch(err => {
+        console.log("ERR:", err)
+        res.status(422).json(err)});
   },
   remove: function (req, res) {
+    req.body.company = req.company;
     db.Inventory
-      .find({ barcode: req.params.barcode })
+      .find({ barcode: req.params.barcode, company: req.body.company })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));

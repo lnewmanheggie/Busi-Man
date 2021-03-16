@@ -61,10 +61,10 @@ function Sale() {
         setTotal({...total, total: 0.00})
 
         setItemArr([]);
-        setBarcodeVal(null);
+        setBarcodeVal(undefined);
     }
 
-    const [barcodeVal, setBarcodeVal] = useState(null);
+    const [barcodeVal, setBarcodeVal] = useState(undefined);
 
     const barcodeChange = (e) => {
         const input1 = document.querySelector("#txtField1");
@@ -82,6 +82,7 @@ function Sale() {
                 count: parseInt(values.count)
             }
             const result = await InventoryUpdateApi.removeItemCount(itemData);
+            console.log(result);
             
             // add result to transactions db
             const transactionData = {

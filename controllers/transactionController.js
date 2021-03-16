@@ -2,6 +2,7 @@ const db = require("../models");
 
 module.exports = {
     create: function(req, res) {
+      req.body.company = req.company;
         db.Transactions
           .create(req.body)
           .then(dbModel => {
