@@ -6,28 +6,9 @@ import InvTable from '../components/InventoryTable';
 import Footer from '../components/Footer';
 import InventoryUpdateAPI from '../utils/InventoryUpdateApi';
 import InventoryAPI from '../utils/InventoryApi';
-import { Link, useLocation } from 'react-router-dom';
-import TableCSS from '../css/Table.css';
+import '../css/Table.css';
 import useAuth from '../utils/useAuth';
-
-
-function SearchBar(props) {
-    return (
-            <form>
-                <div className="control">
-                    <input
-                        className="input"
-                        type="text"
-                        placeholder="Search"
-                        onChange={props.handleInputChange}
-                        value={props.search}
-                        handleSubmit ={props.handleFilter}
-                        name="search"
-                    />
-                </div>
-            </form>
-    )
-}
+import SearchBar from '../components/SearchBar';
 
 function Inventory() {
     const styles = {
@@ -44,20 +25,28 @@ function Inventory() {
             textDecoration: 'none'
         }
     };
+    
+    // check user authorization
+    useAuth();
   
-  useAuth();
-  
-    const [search, setSearch] = useState();
-    const [filteredInventory, setFiltered] =useState();
-    const [inventory, setInventory] = useState([])
+    // search bar values
+    const [values, setValues] = useState({
+        search: ''
+    });
+    
+    // clean inventory that gets set on page load
+    const [filteredInventory, setFiltered] =useState([]);
+
+    // inventory that gets manipulated and rendered
+    const [inventory, setInventory] = useState([]);
  
-    // Load all inventory and store them with setInventory
+    // Load all inventory on page load
     useEffect(() => {
       loadInventory();
 
     }, [])
   
-    // Loads all inventory and sets them to inventory
+    // Loads all inventory and sets them to inventory and filtered inventory
     function loadInventory() {
         InventoryAPI.getInventory()
         .then(res => {
@@ -68,57 +57,70 @@ function Inventory() {
     };
 
     // Handles filtering inventory on search
-    const handleInputChange = event => { 
-        setSearch(event.target.value);
-       
-        const inventoryTempArray = filteredInventory.filter(item =>{
-            return item.name.toLowerCase().includes(search?.toLowerCase());
-         
-        })
-        
-        setFiltered(inventoryTempArray)
-        if (search === "" ){
-            setFiltered (inventory)
-        }
-        console.log(inventoryTempArray);
-    };
+    const handleInputChange = e => {
+        const value = e.target.value;
+        const name = e.target.name;
 
-   const orderAlphabetically = () => {
-        const ordered = filteredInventory.sort((a, b) => {
-            let fa = a.name.toLowerCase(),
-                fb = b.name.toLowerCase();
-        
-            if (fa < fb) {
-                return -1;
-            }
-            if (fa > fb) {
-                return 1;
-            }
-            return 0;
+        setValues({
+            ...values,
+            [name]: value
         });
 
-         setInventory({
-            inventory: ordered
+        // set inventory to filtered array
+        const filteredArr = filteredInventory.filter(x => x.name.toLowerCase().startsWith(value))
+        setInventory(filteredArr)
+    };
 
-        })
+    // helper state for orderAlphabetically fxn
+    const [sorted, setSorted] = useState(false)
+    
+
+    const orderAlphabetically = () => {
+       if (!sorted) {
+           const ordered = inventory.sort((a, b) => {
+               let fa = a.name.toLowerCase(),
+                   fb = b.name.toLowerCase();
+           
+               if (fa < fb) {
+                   return -1;
+               }
+               if (fa > fb) {
+                   return 1;
+               }
+               return 0;
+           });
+           setSorted(true)
+           setInventory(ordered)
+       } else {
+           setSorted(false)
+           setInventory(filteredInventory)
+           
+       }
+       
     }
 
-    const deleteItem= async (barcode) => {
-
-       const result = await InventoryUpdateAPI.delete(barcode);
-       console.log(result);
-
-       // set result as state filtered array
-
+    // function gets triggered on delete button click, deletes item from db and renders new array
+    const deleteItem = async (barcode) => {
+        try {
+            await InventoryUpdateAPI.delete(barcode);
+            const newData = await InventoryAPI.getInventory();
+            const newDataArr = newData.data;
+            setInventory(newDataArr)
+            
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    const location = useLocation();
 
     return(
         <div>
-            <Navbar location={location.pathname}/>
+            <Navbar />
             <Header heading={'Inventory'}/>
-            <SearchBar value= {search} handleInputChange = {handleInputChange} />
+            <SearchBar
+                value={values.search}
+                handleInputChange={handleInputChange}
+            />
 
             <div classname= 'mt-3'>
                 <div className='table'>
@@ -137,7 +139,9 @@ function Inventory() {
                     <div className='cell'>
                             <h2 className="table-heading" style={styles.cell}>Delete</h2>
                     </div>
-                    <InvTable inventory={filteredInventory} orderAlphabetically={orderAlphabetically} onClick={deleteItem}/>
+                    
+                        <InvTable inventory={inventory} deleteItem={deleteItem}/>
+                    
 
                 </div>
             </div>

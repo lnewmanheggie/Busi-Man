@@ -1,8 +1,7 @@
-import { PromiseProvider } from 'mongoose';
 import React from 'react';
 import Button from '../components/Button';
 
-function InventoryRow({ barcode, name, count, price, onClick }) {
+function InventoryRow({ barcode, name, count, price, deleteItem }) {
     const styles = {
         cell: {
             backgroundColor: "lightgrey"
@@ -29,7 +28,7 @@ function InventoryRow({ barcode, name, count, price, onClick }) {
                 <div>{price}</div>
             </div>
             <div className="cell" style={styles.cell}>
-                <Button type="submit" name="Delete" color="#219EBC" onClick={onClick}/>
+                <Button type="submit" name="Delete" color="#219EBC" handleClick={() => deleteItem(barcode)}/>
             </div>
         </>
     )

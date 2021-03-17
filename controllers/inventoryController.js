@@ -32,7 +32,6 @@ module.exports = {
   },
   updateRemove: function (req, res) {
     req.body.company = req.company;
-    console.log(req.body.company);
     db.Inventory
       .findOneAndUpdate({ barcode: req.body.barcode, company: req.body.company },
          { $inc: { count: -req.body.count } })
@@ -43,9 +42,10 @@ module.exports = {
   },
   remove: function (req, res) {
     req.body.company = req.company;
+    let intBarcode = parseInt(req.params.barcode)
+
     db.Inventory
-      .find({ barcode: req.params.barcode, company: req.body.company })
-      .then(dbModel => dbModel.remove())
+      .findOneAndDelete({ barcode: intBarcode, company: req.body.company })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }
