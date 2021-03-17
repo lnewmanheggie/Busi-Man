@@ -21,9 +21,11 @@ module.exports = {
   remove: function (req, res) {
     req.body.company = req.company;
     db.User
-      .findById({ email: req.params.email, company: req.body.company })
-      .then(dbModel => dbModel.remove())
-      .then(dbModel => res.json(dbModel))
+      .findOneAndRemove({ email: req.params.email, company: req.body.company })
+      // .then(dbModel => dbModel.remove())
+      .then(result => {
+        console.log(result);
+        res.json(result)})
       .catch(err => res.status(422).json(err));
   }
 };
