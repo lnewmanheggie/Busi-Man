@@ -11,22 +11,29 @@ import UserApi from "../utils/UserApi";
 
 
 function AddEmployee() {
-    const [values, setValues] = useState({
-      firstName: '',
-      lastName: '',
-      email: '',
-      company: '',
-      manager: false,
-      password: ''
+
+  const [values, setValues] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    company: '',
+    manager: false,
+    password: ''
   })
+  
+  useAuth();
 
     // Handles updating component state when the user types into the input field
-    function handleInputChange(event) {
-        const { name, value } = event.target;
-        setValues({...values, [name]: value})
+    const handleChange = (e) => {
+      const value = e.target.value;
+      const name = e.target.name;
+
+      setValues({
+          ...values,
+          [name]: value
+      });
   };
 
-    useAuth();
 
     const handleAddEmployee = async(e) =>{
       e.preventDefault();
@@ -34,6 +41,7 @@ function AddEmployee() {
         let response = await UserApi.getUsers()
         const userCompany = response.data.currentUser.company;
         const generatedPassword = randomPassword();
+
         const userData = {
           firstName: values.firstName,
           lastName: values.lastName,
@@ -44,10 +52,11 @@ function AddEmployee() {
           confirmPassword: generatedPassword
           
         }
-        console.log(userData);
 
         const confirmRegistration = await UserApi.registerUser(userData);
         console.log(confirmRegistration);
+
+
 
 
         } catch (error) {
@@ -73,30 +82,30 @@ function AddEmployee() {
             <Header heading={'Add Employee'}/>
             <form onSubmit={handleAddEmployee}>
             <Input
-                onChange={handleInputChange}
+                handleChange={handleChange}
                 name="firstName"
                 value={values.firstName}
                 type="text"
                 placeholder="Employee first name (required)"
               />
             <Input
-                onChange={handleInputChange}
+                handleChange={handleChange}
                 name="lastName"
                 value={values.lastName}
                 type="text"
                 placeholder="Employee last name (required)"
             />
             <Input
-                onChange={handleInputChange}
+                handleChange={handleChange}
                 name="email"
                 value={values.email}
                 type="text"
                 placeholder="Employee email (required)"
             />
             <div>
-              <label class="radio">
+              <label className="radio">
               <input 
-                    onChange={handleInputChange}
+                    handleChange={handleChange}
                     type="radio"
                     value= "true"
                     name= "manager"
@@ -104,9 +113,9 @@ function AddEmployee() {
               </label>
             </div>
             <div>
-              <label class="radio">
+              <label className="radio">
               <input 
-                    onChange={handleInputChange}
+                    handleChange={handleChange}
                     type="radio"
                     value= "false"
                     name= "manager"
@@ -118,6 +127,8 @@ function AddEmployee() {
               type="submit" 
               color="#fb8500"/>
             <h3>{values.password}</h3>
+            <a href={`mailto:${values.email}`} target='_blank'>
+              Click here to send email (copy the password and paste in email)</a>
             </form>
 
 

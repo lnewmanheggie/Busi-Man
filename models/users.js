@@ -21,7 +21,6 @@ const userSchema = new Schema({
     },
     company: {
         type: String,
-        unique: [true, 'Company name taken'],
         required: true,
     },
     manager: {
@@ -43,34 +42,6 @@ const userSchema = new Schema({
         }
     }
 })
-
-// userSchema.pre('findOneAndUpdate', async function(next) {
-//     try {
-//         // const docToUpdate = await this.userSchema.findOne
-//         // this.password = await bcrypt.hash(this.password, 12);
-//         // next();
-//         // const schema = this;
-//         // const { newUpdate } = schema.getUpdate();
-//         // const queryConditions = schema.password;
-
-//         // if(newUpdate){
-//         // //some mutation magic
-//         //     this.password = await bcrypt.hash(this.password, 12);
-//         //     await schema.updateOne(queryConditions, {password: this.password}); 
-//         //     next()
-//         // const docToUpdate = await this.model.findOne(this.getQuery());
-//         // console.log(docToUpdate);
-//         // console.log(this.getUpdate());
-//         this.password = await bcrypt.hash(this.password, 12);
-//         console.log(this.password);
-    
-//         next();
-        
-        
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })
 
 // hash password before saving
 userSchema.pre('save', async function(next) {
