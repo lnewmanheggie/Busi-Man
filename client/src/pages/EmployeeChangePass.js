@@ -66,7 +66,7 @@ function EmployeeChangePass({ history }) {
 
     return(
         <div>
-            <LoginSignupHeader linkTo='/' linkText='' />
+            <LoginSignupHeader linkTo='/' linkText='Back to Login' />
             <div className="container is-max-desktop login-container">
                 <div className="notification">
                     <h2 className="is-size-5">Please change your password</h2>
