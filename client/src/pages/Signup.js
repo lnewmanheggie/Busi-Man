@@ -37,17 +37,21 @@ function Signup({ history }) {
             console.log(response);
             history.push("/")
         } catch (error) {
-            let err = error.response.data.error.message;
-            console.log(err)
-            if (err.includes('Enter a valid email')) {
-                setError('Please enter a valid email')
-            } else if (err.includes('Passwords do not match')) {
-                setError('Passwords do not match')
-            } else if (err.includes('Password should be at least 6 characters')) {
-                setError('Password should be at least 6 characters')
-            } else {
-                setError('Validation error')
+            console.log(error)
+            let e = error.response.data.error;
+            if (e.name === 'MongoError') {
+                setError('Email or company name has already been taken')
             }
+
+            // if (err.includes('Enter a valid email')) {
+            //     setError('Please enter a valid email')
+            // } else if (err.includes('Passwords do not match')) {
+            //     setError('Passwords do not match')
+            // } else if (err.includes('Password should be at least 6 characters')) {
+            //     setError('Password should be at least 6 characters')
+            // } else {
+            //     setError('Validation error')
+            // }
             
         }
     }

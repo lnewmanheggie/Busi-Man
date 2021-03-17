@@ -1,9 +1,17 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import useAuth from '../utils/useAuth';
+import EmployeeApi from '../utils/EmployeeApi';
+
 
 function ViewEmployees() {
 
     useAuth();
+
+    useEffect(async ()=> {
+        const result = await EmployeeApi.getEmployees();
+
+        console.log(result);
+    })
 
     return(
         <div>
