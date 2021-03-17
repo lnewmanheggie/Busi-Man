@@ -14,6 +14,7 @@ function Button(props) {
             className="button"
             type={props.type}
             style={styles.button}
+            onClick={props.handleClick}
         >
         {props.name}
         </button>
