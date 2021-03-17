@@ -21,7 +21,7 @@ function EmployeeTable(props) {
                                 company={emp.company}
                                 email={emp.email}
                                 remove={emp.remove}
-                                onClick={props.onClick}
+                                onClick={props.deleteEmployee}
                             />
                         )
                     })

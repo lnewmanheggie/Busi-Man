@@ -34,6 +34,7 @@ function ViewEmployees() {
       }, [])
 
     function loadEmployees() {
+        console.log(employees)
         EmployeeApi.getEmployees()
         .then(res => {
           setEmployees(res.data)
@@ -56,20 +57,29 @@ function ViewEmployees() {
          
         }
         
-        // setFiltered(employeeTempArray)
-        // if (search === "" ){
-        //     setFiltered (employees)
-        // }
-        // console.log(employeeTempArray);
+        const deleteEmployee = async (e) => {
+            const email = e.target.value
+         
+            try {
+                await EmployeeApi.delete(email);
+                const newData = await EmployeeApi.getEmployees();
+                const newDataArr = newData.data;
+                setEmployees(newDataArr)
+                
+            } catch (error) {
+                console.log(error);
+            }
+        }
     
 
     useAuth();
 
-    useEffect(async ()=> {
-        const result = await EmployeeApi.getEmployees();
+    // useEffect(async ()=> {
+    //     const result = await EmployeeApi.getEmployees();
 
-        console.log(result);
-    })
+    //     console.log(result);
+    // }, [employees]
+    // )
 
     return(
         <div>
@@ -96,7 +106,7 @@ function ViewEmployees() {
                     <div className='cell'>
                             <h2 className="table-heading" style={styles.cell}>Delete</h2>
                     </div>
-                    <EmpTable employee={employees}/>
+                    <EmpTable employee={employees} deleteEmployee={(e) => deleteEmployee(e)}/>
                     
 
                 </div>

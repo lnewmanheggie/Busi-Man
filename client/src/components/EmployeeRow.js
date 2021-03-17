@@ -28,7 +28,7 @@ function EmployeeRow({ firstName, lastName, company, email, onClick }) {
                 <div>{email}</div>
             </div>
             <div className="cell" style={styles.cell}>
-                <Button type="submit" name="Delete" color="#219EBC" onClick={onClick}/>
+                <Button value={email} type="submit" name="Delete" color="#219EBC" handleClick={onClick}/>
             </div>
         </>
     )
