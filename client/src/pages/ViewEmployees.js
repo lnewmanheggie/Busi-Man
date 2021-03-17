@@ -5,24 +5,7 @@ import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import EmpTable from '../components/EmployeeTable';
-
-function SearchBar(props) {
-    return (
-            <form>
-                <div className="control">
-                    <input
-                        className="input"
-                        type="text"
-                        placeholder="Search"
-                        onChange={props.handleInputChange}
-                        value={props.search}
-                        handleSubmit ={props.handleFilter}
-                        name="search"
-                    />
-                </div>
-            </form>
-    )
-}
+import SearchBar from '../components/SearchBar';
 
 
 function ViewEmployees() {
@@ -41,8 +24,8 @@ function ViewEmployees() {
         }
     };
 
-    const [search, setSearch] = useState();
-    const [filteredEmployees, setFiltered] =useState();
+    const [values, setValues] = useState({search:''});
+    const [filteredEmployees, setFiltered] =useState([]);
     const [employees, setEmployees] = useState([])
 
     useEffect(() => {
@@ -59,20 +42,26 @@ function ViewEmployees() {
         .catch(err => console.log(err));
     };
 
-    const handleInputChange = event => { 
-        setSearch(event.target.value);
+    const handleInputChange = e => { 
+        const value = e.target.value;
+        const name = e.target.name;
+
+        setValues({
+            ...values,
+            [name]: value
+        });
        
-        const employeeTempArray = filteredEmployees.filter(item =>{
-            return item.name.toLowerCase().includes(search?.toLowerCase());
+        const filteredArr = filteredEmployees.filter(x => x.firstName.toLowerCase().startsWith(value))
+        setEmployees(filteredArr)
          
-        })
-        
-        setFiltered(employeeTempArray)
-        if (search === "" ){
-            setFiltered (employees)
         }
-        console.log(employeeTempArray);
-    };
+        
+        // setFiltered(employeeTempArray)
+        // if (search === "" ){
+        //     setFiltered (employees)
+        // }
+        // console.log(employeeTempArray);
+    
 
     useAuth();
 
@@ -86,7 +75,9 @@ function ViewEmployees() {
         <div>
             <Navbar/>
             <Header heading={'View Employees'}/>
-            <SearchBar value= {search} handleInputChange = {handleInputChange} />
+            <SearchBar 
+                value= {values.search} 
+                handleInputChange = {handleInputChange} />
             
             <div classname= 'mt-3'>
                 <div className='table'>
@@ -105,6 +96,7 @@ function ViewEmployees() {
                     <div className='cell'>
                             <h2 className="table-heading" style={styles.cell}>Delete</h2>
                     </div>
+                    <EmpTable employee={employees}/>
                     
 
                 </div>
