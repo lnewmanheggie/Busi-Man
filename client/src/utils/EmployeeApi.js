@@ -6,6 +6,6 @@ export default {
     },
 
     delete: function(email) {
-        return axios.delete('api/employee/remove' + email);
+        return axios.delete('api/employee/remove/' + email);
     }
 }
