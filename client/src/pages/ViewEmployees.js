@@ -34,7 +34,6 @@ function ViewEmployees() {
       }, [])
 
     function loadEmployees() {
-        console.log(employees)
         EmployeeApi.getEmployees()
         .then(res => {
           setEmployees(res.data)
@@ -73,13 +72,6 @@ function ViewEmployees() {
     
 
     useAuth();
-
-    // useEffect(async ()=> {
-    //     const result = await EmployeeApi.getEmployees();
-
-    //     console.log(result);
-    // }, [employees]
-    // )
 
     return(
         <div>
