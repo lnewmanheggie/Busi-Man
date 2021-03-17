@@ -41,6 +41,7 @@ function AddEmployee() {
         let response = await UserApi.getUsers()
         const userCompany = response.data.currentUser.company;
         const generatedPassword = randomPassword();
+
         const userData = {
           firstName: values.firstName,
           lastName: values.lastName,
@@ -51,10 +52,11 @@ function AddEmployee() {
           confirmPassword: generatedPassword
           
         }
-        console.log(userData);
 
         const confirmRegistration = await UserApi.registerUser(userData);
         console.log(confirmRegistration);
+
+
 
 
         } catch (error) {
@@ -125,6 +127,8 @@ function AddEmployee() {
               type="submit" 
               color="#fb8500"/>
             <h3>{values.password}</h3>
+            <a href={`mailto:${values.email}`} target='_blank'>
+              Click here to send email (copy the password and paste in email)</a>
             </form>
 
 
