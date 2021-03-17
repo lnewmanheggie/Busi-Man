@@ -33,6 +33,13 @@ function Signup({ history }) {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
+            // db call to see if company name has already been taken
+            let checkCompanyResult = await UserApi.checkCompany(values.company)
+            if (checkCompanyResult.data.length !== 0) {
+                setError('That company name has already been taken')
+                return;
+            }
+
             let response = await UserApi.registerUser(values)
             console.log(response);
             history.push("/")

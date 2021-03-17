@@ -10,6 +10,14 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
+  checkCompany: function (req, res) {
+    console.log(req.params.company);
+    db.User
+      .find({ company: req.params.company })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+
   remove: function (req, res) {
     req.body.company = req.company;
     db.User

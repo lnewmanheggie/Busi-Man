@@ -30,7 +30,7 @@ const transactionSeed = [
     count: 99,
     price:  99.99,
     employee: 'joe',
-    company: 'testing'
+    company: 'test'
     }
 ];
 
