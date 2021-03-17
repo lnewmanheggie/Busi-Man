@@ -7,7 +7,8 @@ const transactionSchema = new Schema({
   count: { type: Number, required: true },
   price: { type: Number, required: true},
   employee: {type: String, required: true},
-  company: {type: String, required: true}
+  company: {type: String, required: true},
+  date: { type: Date, default: Date.now }
 });
 
 const Transactions = mongoose.model("Transactions", transactionSchema);
