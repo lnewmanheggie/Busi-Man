@@ -29,5 +29,9 @@ export default {
 
     changePassword: function (userData) {
         return axios.post('auth/passwordchange', userData)
+    },
+
+    checkCompany: function (company) {
+        return axios.get('auth/' + company)
     }
 }
