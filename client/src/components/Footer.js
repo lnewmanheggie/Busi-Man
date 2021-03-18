@@ -4,12 +4,12 @@ function Footer() {
     const styles = {
         footer: {
             backgroundColor: '#8ecae6',
-            padding: '2rem',
+            padding: '3rem',
             color: '#023047'
         },
 
         push: {
-            height: '17vh'
+            height: '50vh'
         }
     }
 
