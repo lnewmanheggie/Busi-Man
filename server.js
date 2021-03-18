@@ -30,7 +30,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/busiman",
     useCreateIndex: true,
     useFindAndModify: false
   }
-);
+).catch(error => console.log(error)) ;
 
 // Start the API server
 app.listen(PORT, function () {
