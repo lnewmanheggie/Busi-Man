@@ -6,18 +6,11 @@ import Footer from '../components/Footer';
 import Input from '../components/Input';
 import Button from "../components/Button";
 import UserApi from "../utils/UserApi";
+import '../css/Box.css';
 
 
 
 function AddEmployee() {
-
-  const styles = {
-    box: {
-        backgroundColor: '#cecece',
-        height: 'auto',
-        width: '50%'
-    }
-  }
 
   const [values, setValues] = useState({
     firstName: '',
@@ -85,7 +78,7 @@ function AddEmployee() {
             <Navbar />
             <Header heading={'Add Employee'}/>
             <div className="is-flex is-justify-content-center">
-                <div className="box mt-6" style={styles.box}>
+                <div className="box mt-6 box2">
                   <form onSubmit={handleAddEmployee}>
                   <Input
                       handleChange={handleChange}

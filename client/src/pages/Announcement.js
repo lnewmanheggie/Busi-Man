@@ -6,15 +6,11 @@ import Footer from '../components/Footer';
 import Input from '../components/Input';
 import Button from "../components/Button";
 import AnnouncementApi from "../utils/AnnouncementApi";
+import '../css/Box.css';
 
 function Announcement() {
 
     const styles = {
-        box: {
-            backgroundColor: '#cecece',
-            height: 'auto',
-            width: '50%'
-        },
         message: {
             marginTop: '1rem'
         }
@@ -64,7 +60,7 @@ function Announcement() {
             <Navbar />
             <Header heading={'Post Announcement'} />
             <div className="is-flex is-justify-content-center">
-                <div className="box mt-6" style={styles.box}>
+                <div className="box mt-6 box2">
                     <form onSubmit={handleAddPost}>
                         <Input
                             handleChange={handleChange}

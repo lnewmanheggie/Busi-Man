@@ -14,6 +14,7 @@ import ViewEmployees from './pages/ViewEmployees';
 import EmployeeDash from './pages/EmployeeDash';
 import Transactions from './pages/Transactions';
 import EmployeeChangePass from './pages/EmployeeChangePass';
+import ViewAccount from './pages/ViewAccount';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
           <Route exact path='/post-announcement' component={Announcement} />
           <Route exact path='/track-inventory' component={Inventory} />
           <Route exact path='/view-transactions' component={Transactions}/>
+          <Route exact path='/view-account' component={ViewAccount} />
         </div>
     </Router>
   );
