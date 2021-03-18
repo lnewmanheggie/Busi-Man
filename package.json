@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/lnewmanheggie/Dragonite#readme",
   "dependencies": {
+    "@tensorflow/tfjs": "^3.3.0",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.5",
