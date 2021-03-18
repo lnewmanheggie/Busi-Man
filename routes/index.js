@@ -10,7 +10,7 @@ const apiRoutes = require("./api");
 // API Routes
 router.use("/api", apiRoutes);
 
-router.use('/auth/', authRouter);
+router.use('/auth', authRouter);
 
 // router.use('/api', inventoryRoutes)
 
