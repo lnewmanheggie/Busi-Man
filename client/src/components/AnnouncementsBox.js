@@ -7,6 +7,9 @@ function AnnouncementsBox(props) {
             backgroundColor: '#cecece',
             height: 'auto',
             lineHeight: '0.5rem'
+        },
+        p: {
+            lineHeight: '3rem'
         }
     }
 
@@ -14,7 +17,7 @@ function AnnouncementsBox(props) {
         <div className="box mb-4" style={styles.box}>
             <h4><em>{props.name} {props.date}</em></h4>
             
-            <p><em>{props.post}</em></p>
+            <p style={styles.p}><em>{props.post}</em></p>
         </div>
     )
 }

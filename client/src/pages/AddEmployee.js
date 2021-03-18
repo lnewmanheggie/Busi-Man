@@ -17,7 +17,7 @@ function AddEmployee() {
     lastName: '',
     email: '',
     company: '',
-    manager: false,
+    manager: '',
     password: ''
   })
   
@@ -75,6 +75,7 @@ function AddEmployee() {
 
     return(
         <div>
+          {console.log(values)}
             <Navbar />
             <Header heading={'Add Employee'}/>
             <div className="is-flex is-justify-content-center">
@@ -101,22 +102,20 @@ function AddEmployee() {
                       type="text"
                       placeholder="Employee email (required)"
                   />
-                  <div>
+                  <div className="control" >
                     <label className="radio">
                     <input 
-                          handleChange={handleChange}
+                          onClick={() => setValues({...values, manager: true})}
                           type="radio"
-                          value= "true"
+                          value= 'true'
                           name= "manager"
                       /> Manager
                     </label>
-                  </div>
-                  <div>
                     <label className="radio">
                     <input 
-                          handleChange={handleChange}
+                          onClick={() => setValues({...values, manager: false})}
                           type="radio"
-                          value= "false"
+                          value= 'false'
                           name= "manager"
                       /> Employee
                     </label>
