@@ -80,9 +80,9 @@ function Navbar() {
                                 My Account
                             </a>
                             <div className="navbar-dropdown">
-                            <a className="navbar-item">
+                            <Link to='/view-account' className="navbar-item">
                                 View
-                            </a>
+                            </Link>
                             <Link to='/' className="navbar-item" onClick={handleSignOut}>
                                 Sign Out
                             </Link>

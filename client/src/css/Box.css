@@ -1,0 +1,16 @@
+.box2 {
+        background-color: #cecece;
+        height: auto;
+        width: 50%;
+}
+
+.view-account {
+    font-size: 1.5rem;
+    line-height: 4rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .box2 {
+        width: 90%;
+    }
+}
