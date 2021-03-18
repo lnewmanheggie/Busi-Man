@@ -9,7 +9,7 @@ function Footer() {
         },
 
         push: {
-            height: '50vh'
+            height: '55vh'
         }
     }
 
