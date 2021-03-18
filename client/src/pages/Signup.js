@@ -45,10 +45,10 @@ function Signup({ history }) {
             history.push("/")
         } catch (error) {
             console.log(error)
-            let e = error.response.data.error;
-            if (e.name === 'MongoError') {
-                setError('Email or company name has already been taken')
-            }
+            // let e = error.response.data.error;
+            // if (e.name === 'MongoError') {
+            //     setError('Email or company name has already been taken')
+            // }
 
             // if (err.includes('Enter a valid email')) {
             //     setError('Please enter a valid email')
