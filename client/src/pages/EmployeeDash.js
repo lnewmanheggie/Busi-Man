@@ -38,6 +38,7 @@ function EmployeeDash({ history }) {
     const loadAnnouncements = async () => {
         try {
             const result = await AnnouncementApi.getAnnouncements();
+            console.log(result);
             let parsedDate = result.data.date;
             parsedDate = moment(parsedDate).format("MMM Do YYYY")
 
@@ -63,7 +64,11 @@ function EmployeeDash({ history }) {
                 <div className="notification" style={styles.container}>
                     <div className="columns is-centered">
                         <div className="column is-two-thirds">
-                            <AnnouncementsBox />
+                            <AnnouncementsBox 
+                                date={announcementState.date}
+                                name={announcementState.name}
+                                post={announcementState.post}
+                            />
                         </div>
                     </div>
 
