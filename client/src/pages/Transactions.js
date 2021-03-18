@@ -6,9 +6,9 @@ import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import TransactionTable from '../components/TransactionTable';
+import SearchBar from '../components/SearchBar';
 
  
-
 function Transactions() {
     const styles = {
 
@@ -26,6 +26,10 @@ function Transactions() {
     };
 
     const [transactions, setTransactions] = useState([{}]);
+    const [filteredTransactions, setFiltered] =useState([]);
+    const [values, setValues] = useState({
+        search: ''
+    });
 
     useAuth();
 
@@ -34,12 +38,12 @@ function Transactions() {
   
     }, [])
 
-
     const loadTransactions = async () => {
         try {
             const result = await TransactionApi.getTransaction()
             console.log(result)
             setTransactions(result.data)
+            setFiltered(result.data)
             
 
         } catch (error) {
@@ -48,14 +52,26 @@ function Transactions() {
         
     };
 
+    const handleInputChange = e => {
+        const value = e.target.value;
+        const name = e.target.name;
+
+        setValues({
+            ...values,
+            [name]: value
+        });
+        const filteredArr = filteredTransactions.filter(x => x.name.toLowerCase().startsWith(value))
+        setTransactions(filteredArr)
+    }
+
 
     return(
         <div>
         <Navbar/>
         <Header heading={'Transactions'}/>
-        {/* <SearchBar 
+        <SearchBar 
             value= {values.search} 
-            handleInputChange = {handleInputChange} /> */}
+            handleInputChange = {handleInputChange} />
         
         <div classname= 'mt-3'>
             <div className='table2'>
