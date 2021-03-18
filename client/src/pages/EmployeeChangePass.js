@@ -42,6 +42,7 @@ function EmployeeChangePass({ history }) {
             }
 
             const response = await UserApi.changePassword(userData);
+            console.log(response);
 
             if (response) {
                 sessionStorage.setItem('jwt', response.data.token)
