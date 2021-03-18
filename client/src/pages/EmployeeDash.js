@@ -23,6 +23,35 @@ function EmployeeDash({ history }) {
 
     useAuth();
 
+    const [announcementState, setAnnouncementState] = useState({
+        name: '',
+        post: '',
+        date: ''
+    })
+
+    useEffect(() => {
+        loadAnnouncements()
+    }, [])
+
+    const loadAnnouncements = async () => {
+        try {
+            const result = await AnnouncementApi.getAnnouncements();
+            let parsedDate = result.data.date;
+            parsedDate = moment(parsedDate).format("MMM Do YYYY")
+
+            setAnnouncementState({
+                ...announcementState,
+                name: result.data.nameofemployee + ',',
+                post: result.data.body,
+                date: parsedDate
+            })
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return(
         <div className='content'>
             <Navbar/>

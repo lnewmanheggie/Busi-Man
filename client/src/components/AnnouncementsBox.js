@@ -1,18 +1,20 @@
 import React from 'react';
 
-function AnnouncementsBox() {
+function AnnouncementsBox(props) {
 
     const styles = {
         box: {
             backgroundColor: '#cecece',
-            height: 'auto'
+            height: 'auto',
+            lineHeight: '0.5rem'
         }
     }
 
     return(
         <div className="box mb-4" style={styles.box}>
-            Announcements Box---
-            Most recent announcement taken out of db and displayed here
+            <h4><em>{props.name} {props.date}</em></h4>
+            
+            <p><em>{props.post}</em></p>
         </div>
     )
 }
