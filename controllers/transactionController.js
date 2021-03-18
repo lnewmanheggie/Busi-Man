@@ -11,7 +11,7 @@ module.exports = {
       },
 
       findAll: function (req, res) {
-        db.Inventory
+        db.Transactions
           .find({ company: req.company })
           .sort({ date: -1 })
           .then(dbModel => res.json(dbModel))

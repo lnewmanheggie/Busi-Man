@@ -3,7 +3,6 @@ import useAuth from '../utils/useAuth';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-// import { Link, useLocation } from 'react-router-dom';
 import Input from '../components/Input';
 import Button from "../components/Button";
 import UserApi from "../utils/UserApi";
@@ -11,6 +10,14 @@ import UserApi from "../utils/UserApi";
 
 
 function AddEmployee() {
+
+  const styles = {
+    box: {
+        backgroundColor: '#cecece',
+        height: 'auto',
+        width: '50%'
+    }
+  }
 
   const [values, setValues] = useState({
     firstName: '',
@@ -56,9 +63,6 @@ function AddEmployee() {
         const confirmRegistration = await UserApi.registerUser(userData);
         console.log(confirmRegistration);
 
-
-
-
         } catch (error) {
         console.log(error);
       }
@@ -80,58 +84,62 @@ function AddEmployee() {
         <div>
             <Navbar />
             <Header heading={'Add Employee'}/>
-            <form onSubmit={handleAddEmployee}>
-            <Input
-                handleChange={handleChange}
-                name="firstName"
-                value={values.firstName}
-                type="text"
-                placeholder="Employee first name (required)"
-              />
-            <Input
-                handleChange={handleChange}
-                name="lastName"
-                value={values.lastName}
-                type="text"
-                placeholder="Employee last name (required)"
-            />
-            <Input
-                handleChange={handleChange}
-                name="email"
-                value={values.email}
-                type="text"
-                placeholder="Employee email (required)"
-            />
-            <div>
-              <label className="radio">
-              <input 
-                    handleChange={handleChange}
-                    type="radio"
-                    value= "true"
-                    name= "manager"
-                /> Manager
-              </label>
-            </div>
-            <div>
-              <label className="radio">
-              <input 
-                    handleChange={handleChange}
-                    type="radio"
-                    value= "false"
-                    name= "manager"
-                /> Employee
-              </label>
-            </div>
-            <Button 
-              name="Add Employee"
-              type="submit" 
-              color="#fb8500"/>
-            <h3>{values.password}</h3>
-            <a href={`mailto:${values.email}`} target='_blank'>
-              Click here to send email (copy the password and paste in email)</a>
-            </form>
-
-
+            <div className="is-flex is-justify-content-center">
+                <div className="box mt-6" style={styles.box}>
+                  <form onSubmit={handleAddEmployee}>
+                  <Input
+                      handleChange={handleChange}
+                      name="firstName"
+                      value={values.firstName}
+                      type="text"
+                      placeholder="Employee first name (required)"
+                    />
+                  <Input
+                      handleChange={handleChange}
+                      name="lastName"
+                      value={values.lastName}
+                      type="text"
+                      placeholder="Employee last name (required)"
+                  />
+                  <Input
+                      handleChange={handleChange}
+                      name="email"
+                      value={values.email}
+                      type="text"
+                      placeholder="Employee email (required)"
+                  />
+                  <div>
+                    <label className="radio">
+                    <input 
+                          handleChange={handleChange}
+                          type="radio"
+                          value= "true"
+                          name= "manager"
+                      /> Manager
+                    </label>
+                  </div>
+                  <div>
+                    <label className="radio">
+                    <input 
+                          handleChange={handleChange}
+                          type="radio"
+                          value= "false"
+                          name= "manager"
+                      /> Employee
+                    </label>
+                  </div>
+                  <Button 
+                    name="Add Employee"
+                    type="submit" 
+                    color="#219ebc"
+                    margin='1rem'
+                    />
+                  <h3>{values.password}</h3>
+                  <a href={`mailto:${values.email}`} target='_blank'>
+                    Click here to send email (copy the password and paste in email)</a>
+                  </form>
+                </div>
+              </div>
             <Footer />
             
         </div>
