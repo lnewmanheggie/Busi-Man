@@ -2,7 +2,6 @@ import React, { useState, useEffect, Component } from 'react';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import InvTable from '../components/InventoryTable';
-// import InvSearchBar from '../components/InvSearchBar';
 import Footer from '../components/Footer';
 import InventoryUpdateAPI from '../utils/InventoryUpdateApi';
 import InventoryAPI from '../utils/InventoryApi';
