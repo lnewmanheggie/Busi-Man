@@ -46,7 +46,6 @@ Busi-Man is a comprehensive business manager app which keeps track of employees,
 ## Usage
 
 #### Signing up
-![Signup](./img/signup.png)
 * The sign up can only be done by one person, since company name must be unique on sign up. After sign up, you may add as many employees as you like under one company.
 
 #### Using the barcode scanner
