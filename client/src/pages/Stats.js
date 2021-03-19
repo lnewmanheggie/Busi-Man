@@ -106,6 +106,8 @@ const Stats = () => {
 
             });
         }
+        // call populateChart
+        console.log(resultData)
     }
 
     return (
@@ -147,16 +149,12 @@ const Stats = () => {
                 <p>your value for your monthly earnings is <p>{resultData}</p>
 
                 </p>
+                
             </form>
+            <section id = "main"></section>
             <Footer />
         </div>
     );
 }
 
 export default Stats;
-
-
-
-// psuedo code for tansactions: 
-// a for loop just adding the values from the transactions[i] name count price 
-// math for it = count * price + i 
