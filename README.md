@@ -38,7 +38,7 @@ Busi-Man is a comprehensive business manager app which keeps track of employees,
 * View inveintory gives you a list of all the items in inventory with their barcodes, count, and price. View transactions gives a list of all the transactions made, with the date and employee name attached.
 
 #### Post announcement
-* Managers can post announcements that are visible to all employees
+* Managers can post announcements that are visible to all employees.
 
 #### Predict feature
 * Use the predict feature, which utilizes a the machine learning API TensorFlow, to predict future revenue or expenses based on past data.
