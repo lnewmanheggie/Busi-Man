@@ -16,6 +16,7 @@ A business manager application for small businesses.
     * [Adding Employees](#adding-employees)
     * [Using the prediction feature](#using-the-prediction-feature)
 * [Technologies](#technologies)
+* [Future directions](#future-directions)
 * [Installation](#installation)
 * [License](#license)
 * [Created by](#created-by)
@@ -66,12 +67,7 @@ Busi-Man is a comprehensive business manager app which keeps track of employees,
 * When newly added employees log into the app for the first time they will be prompted to change their password. 
 
 #### Using the prediction feature
-* The prediction feature is using Tensorflow.js an open source platform for machine learning. Here in the picture below, it shows us couting by twos up to 10, if we were to take that series and essentially count from 0 by twos and predict the 7th outcome in the series us as humans know that it will be 12.
-The computer however trains the model to learn the sequence and find the output for the given value, in this case being 7.
-* What do these values mean? The first one is expenses and takes in your expenses. Second takes in your Total Monthly Earnings each month (or you can calculate per year even!). Lastly you will count how many months from the certain data you want to predict then add one. IE: i enter in 2,4,6,8 so thats 4 months then i add one thats 5 so i can ask to predict anything above 5 thats a whole number and the machine will calculate for us. Note: the more data given to the machine, the more accurate it is.
-![Tensor Input Values](./img/tensorpic1.png)
-next we show the value being outputted after its calculated
-![Tensor Input Values](./img/tensorpic2.png)
+* The prediction feature uses TensorFlow an open source platform for machine learning. Our TensorFlow prediction section allows the user to enter a value for their average expenses, and data for their monthly earnings and receive a prediction for their earnings a specified number of months in the future. 
 
 ## Technologies
 * [Scan to Web app](https://play.google.com/store/apps/details?id=com.berrywing.scantoweb&hl=en_US&gl=US)
@@ -80,6 +76,14 @@ next we show the value being outputted after its calculated
 * React
 * Node.js
 * MongoDB
+
+## Future directions
+* Prediction page
+    * Use TensorFlow with data from the database instead of having user enter their own data.
+    * Include graphs of expenses, revenue, and trends over time.
+
+* Add employees page
+    * Utilize google for business email feature to securely send random passwords to employees. 
 
 ## Installation
 * Install dependencies by running `npm i` on your machine.
