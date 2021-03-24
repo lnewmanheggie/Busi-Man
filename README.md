@@ -66,11 +66,12 @@ Busi-Man is a comprehensive business manager app which keeps track of employees,
 * When newly added employees log into the app for the first time they will be prompted to change their password. 
 
 #### Using the prediction feature
-
-
-
-
-
+* The prediction feature is using Tensorflow.js an open source platform for machine learning. Here in the picture below, it shows us couting by twos up to 10, if we were to take that series and essentially count from 0 by twos and predict the 7th outcome in the series us as humans know that it will be 12.
+The computer however trains the model to learn the sequence and find the output for the given value, in this case being 7.
+* What do these values mean? The first one is expenses and takes in your expenses. Second takes in your Total Monthly Earnings each month (or you can calculate per year even!). Lastly you will count how many months from the certain data you want to predict then add one. IE: i enter in 2,4,6,8 so thats 4 months then i add one thats 5 so i can ask to predict anything above 5 thats a whole number and the machine will calculate for us. Note: the more data given to the machine, the more accurate it is.
+![Tensor Input Values](./img/tensorpic1.png)
+next we show the value being outputted after its calculated
+![Tensor Input Values](./img/tensorpic2.png)
 
 ## Technologies
 * [Scan to Web app](https://play.google.com/store/apps/details?id=com.berrywing.scantoweb&hl=en_US&gl=US)

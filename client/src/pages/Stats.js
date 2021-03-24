@@ -105,6 +105,8 @@ const Stats = () => {
 
             });
         }
+        // call populateChart
+        console.log(resultData)
     }
 
     return (
@@ -155,9 +157,3 @@ const Stats = () => {
 }
 
 export default Stats;
-
-
-
-// psuedo code for tansactions: 
-// a for loop just adding the values from the transactions[i] name count price 
-// math for it = count * price + i 
