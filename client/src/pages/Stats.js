@@ -95,9 +95,8 @@ const Stats = () => {
                 model.predict(tf.tensor2d([parseFloat(predictionMonth)], [1, 1])).print();
                 //  console.log(model.predict(tf.tensor2d([parseFloat(predictionMonth-xUnitVal)], [1,1])))
                 let resultTest = [];
-                // console.log(resultTest);
-                // gave me an error here so i ended up having to parsefloat
-                for (let index = 14; index < 24; index++) {
+
+                for (let index = 14; index < 21; index++) {
                     resultTest.push(model.predict(tf.tensor2d([parseFloat(predictionMonth)], [1, 1])).toString()[index])
 
                 }
@@ -113,41 +112,43 @@ const Stats = () => {
 
         <div>
             <Navbar />
-            <Header />
-            <form
-                className="control" onSubmit={handleSubmit}>
-                <Input
-                    type="text"
+            <Header heading={'Prediction'} />
+            <div className="is-flex is-justify-content-center">
+                <div className="box mt-6 box2">
+                    <form
+                        className="control" onSubmit={handleSubmit}>
+                        <p className="is-size-7 mb-2">Input your average monthly expenses (one number). Do not include dollar signs. </p>
+                        <Input
+                            type="text"
+                            value={userState.expensesVal}
+                            name="expensesVal"
+                            handleChange={handleChange}
+                            placeholder="(e.g. '7050')"
+                        />
+                        <p className="is-size-7 mb-2">Input your total monthly earnings (not net), separated by commas. Do not include dollar signs and include at least 4 numbers. </p>
+                        <Input
+                            value={userState.monthlyEarnings}
+                            handleChange={handleChange}
+                            name="monthlyEarnings"
+                            placeholder="(e.g. 8500, 9012, 10045, 9235)"
+                        />
 
-                    value={userState.expensesVal}
-                    name="expensesVal"
-                    handleChange={handleChange}
-                    placeholder="Please input your expenses, do not include dollar signs"
-                />
-
-                <Input
-                    value={userState.monthlyEarnings}
-                    handleChange={handleChange}
-                    name="monthlyEarnings"
-                    placeholder="Please input your Total Monthly Earnings in  seperating each month with a comma.Also, please do not include dollar signs"
-                />
-
-                <Input
-                    type="number"
-                    name="predictionMonth"
-                    value={userState.predictionMonth}
-                    handleChange={handleChange}
-                    placeholder="How many months in the future would you like me to predict?"
-                />
-                <Button
-                    name="Predict for me!"
-                    type="submit"
-                    color="#fb8500" />
-
-                <p>your value for your monthly earnings is <p>{resultData}</p>
-
-                </p>
-            </form>
+                        <Input
+                            type="number"
+                            name="predictionMonth"
+                            value={userState.predictionMonth}
+                            handleChange={handleChange}
+                            placeholder="How many months in the future would you like me to predict?"
+                        />
+                        <Button
+                            name="Predict for me!"
+                            type="submit"
+                            color="#fb8500" />
+                        <p className="mt-4">Your predicted monthly earnings is {resultData}
+                        </p>
+                    </form>
+                </div>
+            </div>
             <Footer />
         </div>
     );
