@@ -2,7 +2,7 @@
  * @TODO try useMemo to clean up barcode scanner functionality
  */
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 import '../css/Scanner.css'
 import Button from '../components/Button';
 import Input from '../components/Input';
@@ -11,7 +11,7 @@ import Navbar from '../components/Navbar';
 import useAuth from '../utils/useAuth';
 
 function Receive() {
-    // const barcodeRef = React.useRef(null)
+    const barcodeRef = useRef();
     // const openScannerRef = React.useRef(null)
 
     useAuth();
@@ -82,16 +82,19 @@ function Receive() {
     const handleFirstSubmit = async () => {
         try {
             // const input1 = document.querySelector("#txtField1");
-            alert(barcodeVal)
+            let barcodeRefVal = barcodeRef.current.value
+            alert(barcodeRefVal)
+
+            // alert(barcodeVal)
             // alert(input1.value)
             // alert(values.barcode);
             const itemData = {
-                barcode: parseInt(barcodeVal),
+                barcode: parseInt(barcodeRefVal),
                 count: parseInt(values.count)
             }
             const result = await InventoryUpdateApi.addItemCount(itemData);
 
-            if (result.data === null) {
+            if (!result.data) {
                 setResult({
                     ...result,
                     resultStatus: 'Please add this item to inventory'
@@ -115,9 +118,10 @@ function Receive() {
     const handleSecondSubmit = async () => {
         // const input1 = document.querySelector("#txtField1");
         // const input1 = document.querySelector("#txtField1");
+        let barcodeRefVal = barcodeRef.current.value
 
         const itemData = {
-            barcode: parseInt(barcodeVal),
+            barcode: parseInt(barcodeRefVal),
             count: parseInt(values.count),
             name: values.itemName,
             price: parseFloat(values.price)
@@ -163,7 +167,7 @@ function Receive() {
                         placeholder="barcode"
                         color='#219ebc'
                         handleChange={onBarcodeChange}
-                        // useRef={barcodeRef}
+                        useRef={barcodeRef}
                     />
                     <Input
                         name="count"
