@@ -82,7 +82,7 @@ function Receive() {
     const handleFirstSubmit = async () => {
         try {
             // const input1 = document.querySelector("#txtField1");
-            
+            alert(barcodeVal)
             // alert(input1.value)
             // alert(values.barcode);
             const itemData = {
