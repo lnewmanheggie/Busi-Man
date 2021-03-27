@@ -11,10 +11,10 @@ import Navbar from '../components/Navbar';
 import useAuth from '../utils/useAuth';
 
 function Receive() {
-    const barcodeRef = useRef();
-    // const openScannerRef = React.useRef(null)
-
+    
     useAuth();
+    
+    const barcodeRef = useRef();
 
     const [values, setValues] = useState({
         // barcode: '',
@@ -83,7 +83,6 @@ function Receive() {
         try {
             // const input1 = document.querySelector("#txtField1");
             let barcodeRefVal = barcodeRef.current.value
-            alert(barcodeRefVal)
 
             // alert(barcodeVal)
             // alert(input1.value)
@@ -153,7 +152,6 @@ function Receive() {
                 <h3 className="pb-4"><em>Open this page in the Scan to Web app on your phone</em></h3>
                 <form
                     name="form1"
-                    // action="stwiosbtn.aspx" 
                     id="form1"
                     onSubmit={handleSubmit}>
 
@@ -163,7 +161,6 @@ function Receive() {
                         id="txtField1"
                         className="scanner-input"
                         value={barcodeVal}
-                        // value={values.barcode}
                         placeholder="barcode"
                         color='#219ebc'
                         handleChange={onBarcodeChange}

@@ -32,7 +32,6 @@ function Login({ history }) {
             } else {
                 let response = await UserApi.loginUser(values)
                 if (response) {
-                    console.log(response)
                     sessionStorage.setItem('jwt', response.token)
 
                     // if user is a manager, push to manager dashboard, otherwise push to employee dash
