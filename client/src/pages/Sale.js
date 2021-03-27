@@ -1,3 +1,7 @@
+/**
+ * @TODO try useMemo to clean up barcode scanner functionality
+ */
+
 import React, { useEffect, useState } from 'react';
 import '../css/Scanner.css'
 import Button from '../components/Button';

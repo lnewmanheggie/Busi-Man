@@ -1,3 +1,7 @@
+/**
+ * @TODO add feature that allows view of all announcements
+ */
+
 import React, { useState } from 'react';
 import useAuth from '../utils/useAuth';
 import Navbar from '../components/Navbar';
