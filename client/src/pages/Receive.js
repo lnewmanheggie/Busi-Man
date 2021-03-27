@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+/**
+ * @TODO try useMemo to clean up barcode scanner functionality
+ */
+
+import React, { useCallback, useState } from 'react';
 import '../css/Scanner.css'
 import Button from '../components/Button';
 import Input from '../components/Input';
@@ -51,10 +55,12 @@ function Receive() {
 
     const [barcodeVal, setBarcodeVal] = useState(undefined);
 
-    const barcodeChange = (e) => {
-        const input1 = document.querySelector("#txtField1");
-        setBarcodeVal(input1.value)
-    }
+    const onBarcodeChange = useCallback((e) => setBarcodeVal(e.target.value), [])
+
+    // const barcodeChange = (e) => {
+    //     const input1 = document.querySelector("#txtField1");
+    //     setBarcodeVal(input1.value)
+    // }
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -156,7 +162,7 @@ function Receive() {
                         // value={values.barcode}
                         placeholder="barcode"
                         color='#219ebc'
-                        handleChange={barcodeChange}
+                        handleChange={onBarcodeChange}
                         // useRef={barcodeRef}
                     />
                     <Input

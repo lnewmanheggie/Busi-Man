@@ -35,6 +35,10 @@ function EmployeeDash({ history }) {
         loadAnnouncements()
     }, [])
 
+    /**
+     * @TODO put loadAnnouncements function in different file
+     */
+
     const loadAnnouncements = async () => {
         try {
             const result = await AnnouncementApi.getAnnouncements();
