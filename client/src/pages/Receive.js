@@ -81,12 +81,12 @@ function Receive() {
 
     const handleFirstSubmit = async () => {
         try {
-            const input1 = document.querySelector("#txtField1");
+            // const input1 = document.querySelector("#txtField1");
             
             // alert(input1.value)
             // alert(values.barcode);
             const itemData = {
-                barcode: parseInt(input1.value),
+                barcode: parseInt(barcodeVal),
                 count: parseInt(values.count)
             }
             const result = await InventoryUpdateApi.addItemCount(itemData);
@@ -114,10 +114,10 @@ function Receive() {
 
     const handleSecondSubmit = async () => {
         // const input1 = document.querySelector("#txtField1");
-        const input1 = document.querySelector("#txtField1");
+        // const input1 = document.querySelector("#txtField1");
 
         const itemData = {
-            barcode: parseInt(input1.value),
+            barcode: parseInt(barcodeVal),
             count: parseInt(values.count),
             name: values.itemName,
             price: parseFloat(values.price)
