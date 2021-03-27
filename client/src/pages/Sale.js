@@ -2,7 +2,7 @@
  * @TODO try useMemo to clean up barcode scanner functionality
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import '../css/Scanner.css'
 import Button from '../components/Button';
 import Input from '../components/Input';
@@ -15,6 +15,8 @@ import TransactionApi from '../utils/TransactionApi';
 function Sale() {
 
     useAuth();
+
+    const barcodeRef = useRef();
 
     // store user name in state to add to transactions db to see who made the sale
     const [userState, setUserState] = useState({
@@ -70,19 +72,22 @@ function Sale() {
 
     const [barcodeVal, setBarcodeVal] = useState(undefined);
 
-    const barcodeChange = (e) => {
-        const input1 = document.querySelector("#txtField1");
-        setBarcodeVal(input1.value)
-    }
+    const onBarcodeChange = useCallback((e) => setBarcodeVal(e.target.value), [])
+
+    // const barcodeChange = (e) => {
+    //     const input1 = document.querySelector("#txtField1");
+    //     setBarcodeVal(input1.value)
+    // }
 
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
 
-            const input1 = document.querySelector("#txtField1");
+            // const input1 = document.querySelector("#txtField1");
+            let barcodeRefVal = barcodeRef.current.value
 
             const itemData = {
-                barcode: parseInt(input1.value),
+                barcode: parseInt(barcodeRefVal),
                 count: parseInt(values.count)
             }
             const result = await InventoryUpdateApi.removeItemCount(itemData);
@@ -145,7 +150,8 @@ function Sale() {
                     value={values.barcode}
                     placeholder="barcode"
                     color='#219ebc'
-                    handleChange={barcodeChange}
+                    handleChange={onBarcodeChange}
+                    useRef={barcodeRef}
                     />
                 <Input 
                     name="count" 
