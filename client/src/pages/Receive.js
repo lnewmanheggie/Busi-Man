@@ -13,7 +13,7 @@ import useAuth from '../utils/useAuth';
 function Receive() {
     
     useAuth();
-    
+
     const barcodeRef = useRef();
 
     const [values, setValues] = useState({
@@ -50,10 +50,10 @@ function Receive() {
             price: ''
         })
 
-        setBarcodeVal(undefined);
+        setBarcodeVal();
     }
 
-    const [barcodeVal, setBarcodeVal] = useState(undefined);
+    const [barcodeVal, setBarcodeVal] = useState();
 
     const onBarcodeChange = useCallback((e) => setBarcodeVal(e.target.value), [])
 
