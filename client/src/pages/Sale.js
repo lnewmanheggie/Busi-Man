@@ -1,7 +1,3 @@
-/**
- * @TODO try useMemo to clean up barcode scanner functionality
- */
-
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import '../css/Scanner.css'
 import Button from '../components/Button';
@@ -74,16 +70,10 @@ function Sale() {
 
     const onBarcodeChange = useCallback((e) => setBarcodeVal(e.target.value), [])
 
-    // const barcodeChange = (e) => {
-    //     const input1 = document.querySelector("#txtField1");
-    //     setBarcodeVal(input1.value)
-    // }
-
     const handleSubmit = async (e) => {
         try {
             e.preventDefault();
 
-            // const input1 = document.querySelector("#txtField1");
             let barcodeRefVal = barcodeRef.current.value
 
             const itemData = {
@@ -119,7 +109,6 @@ function Sale() {
         } catch (error) {
             console.log(error);
         }
-        
     }
 
     // display sale array
@@ -137,7 +126,6 @@ function Sale() {
             <h3 className="pb-4"><em>Open this page in the Scan to Web app on your phone</em></h3>
             <form 
                 name="form1" 
-                // action="stwiosbtn.aspx" 
                 id="form1" 
                 onSubmit={handleSubmit}
                 onReset={resetValues}>
