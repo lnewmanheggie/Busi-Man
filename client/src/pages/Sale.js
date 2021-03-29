@@ -67,10 +67,10 @@ function Sale() {
         setTotal({...total, total: 0.00})
 
         setItemArr([]);
-        setBarcodeVal(undefined);
+        setBarcodeVal();
     }
 
-    const [barcodeVal, setBarcodeVal] = useState(undefined);
+    const [barcodeVal, setBarcodeVal] = useState();
 
     const onBarcodeChange = useCallback((e) => setBarcodeVal(e.target.value), [])
 
