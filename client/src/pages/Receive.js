@@ -1,7 +1,3 @@
-/**
- * @TODO try useMemo to clean up barcode scanner functionality
- */
-
 import React, { useCallback, useState, useRef } from 'react';
 import '../css/Scanner.css'
 import Button from '../components/Button';
@@ -17,7 +13,6 @@ function Receive() {
     const barcodeRef = useRef();
 
     const [values, setValues] = useState({
-        // barcode: '',
         count: '',
         itemName: '',
         price: ''
@@ -44,7 +39,6 @@ function Receive() {
     const resetValues = () => {
         setValues({
             ...values,
-            // barcode: null,
             count: '',
             itemName: '',
             price: ''
@@ -57,16 +51,8 @@ function Receive() {
 
     const onBarcodeChange = useCallback((e) => setBarcodeVal(e.target.value), [])
 
-    // const barcodeChange = (e) => {
-    //     const input1 = document.querySelector("#txtField1");
-    //     setBarcodeVal(input1.value)
-    // }
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if (values.count === '') {
-        //     handleBarcodeSubmit();
-        // }
         if (values.itemName === '') {
             handleFirstSubmit();
         } else {
@@ -74,19 +60,10 @@ function Receive() {
         }
     }
 
-    // const handleBarcodeSubmit = (e) => {
-    //     e.preventDefault();
-    // }
-
-
     const handleFirstSubmit = async () => {
         try {
-            // const input1 = document.querySelector("#txtField1");
             let barcodeRefVal = barcodeRef.current.value
 
-            // alert(barcodeVal)
-            // alert(input1.value)
-            // alert(values.barcode);
             const itemData = {
                 barcode: parseInt(barcodeRefVal),
                 count: parseInt(values.count)
@@ -112,37 +89,28 @@ function Receive() {
         }
     }
 
-    // setIsFound({...isFound, found: true})
-
     const handleSecondSubmit = async () => {
-        // const input1 = document.querySelector("#txtField1");
-        // const input1 = document.querySelector("#txtField1");
-        let barcodeRefVal = barcodeRef.current.value
+        try {
+            let barcodeRefVal = barcodeRef.current.value
+    
+            const itemData = {
+                barcode: parseInt(barcodeRefVal),
+                count: parseInt(values.count),
+                name: values.itemName,
+                price: parseFloat(values.price)
+            }
+            const result = await InventoryUpdateApi.addItem(itemData);
+            setResult({
+                ...result,
+                resultStatus: `You added ${result.data.name} to inventory.`
+            })
+            resetValues();
+            setIsFound({...isFound, found: true});
 
-        const itemData = {
-            barcode: parseInt(barcodeRefVal),
-            count: parseInt(values.count),
-            name: values.itemName,
-            price: parseFloat(values.price)
+        } catch (error) {
+            console.log(error);
         }
-        const result = await InventoryUpdateApi.addItem(itemData);
-        setResult({
-            ...result,
-            resultStatus: `You added ${result.data.name} to inventory.`
-        })
-        resetValues();
-        setIsFound({...isFound, found: true});
     }
-
-    // const startBarcodeScanner = () => {
-    //     window.location.href = 'bwstw://startscanner?field=txtField1';
-    // }
-
-    // const test = (e) => {
-    //     e.preventDefault()
-    //     openScannerRef.current.click()
-    // }
-
 
     return (
         <>
@@ -175,9 +143,6 @@ function Receive() {
                         color='#219ebc'
                         handleChange={handleChange}
                     />
-                    {/* <button onClick={test}>Test</button> */}
-
-                    {/* <a className="scanner-link" href="bwstw://startscanner" style={{ display: "none" }} ref={openScannerRef} /> */}
                     <h4 className="p-2">{result.resultStatus}</h4>
                     <a className="scanner-link" href="bwstw://startscanner">Click here to start scanner</a>
                     {/* if the item is not found in the database display two more input boxes
