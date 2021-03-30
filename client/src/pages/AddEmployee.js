@@ -75,7 +75,6 @@ function AddEmployee() {
 
     return(
         <div>
-          {console.log(values)}
             <Navbar />
             <Header heading={'Add Employee'}/>
             <div className="is-flex is-justify-content-center">

@@ -50,7 +50,8 @@ function Navbar() {
       });
 
       const handleSignOut = () => {
-          sessionStorage.removeItem('jwt');
+          localStorage.removeItem('jwt');
+          localStorage.removeItem('company');
       }
 
     return(

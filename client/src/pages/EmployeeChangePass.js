@@ -45,7 +45,8 @@ function EmployeeChangePass({ history }) {
             console.log(response);
 
             if (response) {
-                sessionStorage.setItem('jwt', response.data.token)
+                localStorage.setItem('jwt', response.data.token)
+                localStorage.setItem('company', response.data.data.user.company)
 
                 // if user is a manager, push to manager dashboard, otherwise push to employee dash
                 if (response.data.data.user.manager) {

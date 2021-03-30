@@ -11,7 +11,7 @@ export default function useAuth() {
     const useAuth = useEffect(() => {
         async function auth() {
             try {
-                if (!sessionStorage.getItem('jwt')) {
+                if (!localStorage.getItem('jwt')) {
                     history.push("/")
                 }
                 await UserApi.getUsers();
