@@ -2,6 +2,11 @@ import axios from "axios";
 
 export default{
     getInventory: function(){
-        return axios.get("/api/inventory/get");
+        return axios.get("/api/inventory/get")
+        // {
+        //     headers: {
+        //         'CustomHeader': `Bearer ${localStorage.getItem('jwt')}`
+        //     }
+        // });
     }
 }

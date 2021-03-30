@@ -6,7 +6,7 @@ export default {
         return axios.post('api/inventory/', itemData, 
         // {
         //     headers: {
-        //         'CustomHeader': `Bearer ${sessionStorage.getItem('jwt')}`
+        //         'CustomHeader': `Bearer ${localStorage.getItem('jwt')}`
         //     }
         // }
         );
