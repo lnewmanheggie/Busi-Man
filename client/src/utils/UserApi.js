@@ -20,7 +20,7 @@ export default {
         return new Promise((resolve, reject) => {
             axios.post('auth/login', userData)
                 .then(res => {
-                    axios.defaults.headers.common["x-business"] = res.data.data.user.company
+                    // axios.defaults.headers.common["x-business"] = res.data.data.user.company
                     resolve(res.data)
                 })
                 .catch(err => reject(err));

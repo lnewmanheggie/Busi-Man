@@ -73,7 +73,7 @@ function Transactions() {
             value= {values.search} 
             handleInputChange = {handleInputChange} />
         
-        <div classname= 'mt-3'>
+        <div className= 'mt-3'>
             <div className='table2'>
                 <div className='cell2'>
                         <h2 className="table-heading" style={styles.cell}>Barcode</h2>

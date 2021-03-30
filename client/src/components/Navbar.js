@@ -51,6 +51,7 @@ function Navbar() {
 
       const handleSignOut = () => {
           localStorage.removeItem('jwt');
+          localStorage.removeItem('company');
       }
 
     return(

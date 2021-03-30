@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import useAuth from '../utils/useAuth';
 import EmployeeApi from '../utils/EmployeeApi';
 import Navbar from '../components/Navbar';
@@ -24,25 +24,25 @@ function ViewEmployees() {
         }
     };
 
-    const [values, setValues] = useState({search:''});
-    const [filteredEmployees, setFiltered] =useState([]);
+    const [values, setValues] = useState({ search: '' });
+    const [filteredEmployees, setFiltered] = useState([]);
     const [employees, setEmployees] = useState([])
 
     useEffect(() => {
         loadEmployees();
-  
-      }, [])
+
+    }, [])
 
     function loadEmployees() {
         EmployeeApi.getEmployees()
-        .then(res => {
-          setEmployees(res.data)
-          setFiltered(res.data)
-        })
-        .catch(err => console.log(err));
+            .then(res => {
+                setEmployees(res.data)
+                setFiltered(res.data)
+            })
+            .catch(err => console.log(err));
     };
 
-    const handleInputChange = e => { 
+    const handleInputChange = e => {
         const value = e.target.value;
         const name = e.target.name;
 
@@ -50,60 +50,58 @@ function ViewEmployees() {
             ...values,
             [name]: value
         });
-       
+
         const filteredArr = filteredEmployees.filter(x => x.firstName.toLowerCase().startsWith(value))
         setEmployees(filteredArr)
-         
+
+    }
+
+    const deleteEmployee = async (e) => {
+        const email = e.target.value
+
+        try {
+            await EmployeeApi.delete(email);
+            const newData = await EmployeeApi.getEmployees();
+            const newDataArr = newData.data;
+            setEmployees(newDataArr)
+
+        } catch (error) {
+            console.log(error);
         }
-        
-        const deleteEmployee = async (e) => {
-            const email = e.target.value
-         
-            try {
-                await EmployeeApi.delete(email);
-                const newData = await EmployeeApi.getEmployees();
-                const newDataArr = newData.data;
-                setEmployees(newDataArr)
-                
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    
+    }
+
 
     useAuth();
 
-    return(
+    return (
         <div>
-            <Navbar/>
-            <Header heading={'View Employees'}/>
-            <SearchBar 
-                value= {values.search} 
-                handleInputChange = {handleInputChange} />
-            
-            <div classname= 'mt-3'>
+            <Navbar />
+            <Header heading={'View Employees'} />
+            <SearchBar
+                value={values.search}
+                handleInputChange={handleInputChange} />
+
+            <div className='mt-3'>
                 <div className='table'>
                     <div className='cell'>
-                            <h2 className="table-heading" style={styles.cell}>First Name</h2>
+                        <h2 className="table-heading" style={styles.cell}>First Name</h2>
                     </div>
                     <div className='cell'>
-                            <h2 className="table-heading" style={styles.cell}>Last Name</h2>
+                        <h2 className="table-heading" style={styles.cell}>Last Name</h2>
                     </div>
                     <div className='cell'>
-                            <h2 className="table-heading" style={styles.cell}>Company</h2>
+                        <h2 className="table-heading" style={styles.cell}>Company</h2>
                     </div>
                     <div className='cell'>
-                            <h2 className="table-heading" style={styles.cell}>Email</h2>
+                        <h2 className="table-heading" style={styles.cell}>Email</h2>
                     </div>
                     <div className='cell'>
-                            <h2 className="table-heading" style={styles.cell}>Delete</h2>
+                        <h2 className="table-heading" style={styles.cell}>Delete</h2>
                     </div>
-                    <EmpTable employee={employees} deleteEmployee={(e) => deleteEmployee(e)}/>
-                    
-
+                    <EmpTable employee={employees} deleteEmployee={(e) => deleteEmployee(e)} />
                 </div>
             </div>
-           
+
             <Footer />
         </div>
     )
