@@ -32,7 +32,7 @@ function Sale() {
             }
         }
         getUser();
-    }, [])
+    }, [userState])
 
     const [values, setValues] = useState({
         count: '',
@@ -66,7 +66,7 @@ function Sale() {
         setBarcodeVal();
     }
 
-    const [barcodeVal, setBarcodeVal] = useState();
+    const [setBarcodeVal] = useState();
 
     const onBarcodeChange = useCallback((e) => setBarcodeVal(e.target.value), [])
 

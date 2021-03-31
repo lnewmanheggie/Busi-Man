@@ -1,7 +1,7 @@
 import axios from "axios";
 import headersObj from './HeadersObj';
 
-export default {
+const TransactionApi = {
     createTransaction: function(itemData){
         return axios.post("/api/transaction/", itemData, headersObj);
     },
@@ -9,3 +9,5 @@ export default {
         return axios.get('/api/transaction/', headersObj);
     }
 }
+
+export default TransactionApi;

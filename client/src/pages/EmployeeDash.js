@@ -32,31 +32,33 @@ function EmployeeDash({ history }) {
     })
 
     useEffect(() => {
+        const loadAnnouncements = async () => {
+            try {
+                const result = await AnnouncementApi.getAnnouncements();
+                console.log(result);
+                let parsedDate = result.data.date;
+                parsedDate = moment(parsedDate).format("MMM Do YYYY")
+    
+                setAnnouncementState({
+                    ...announcementState,
+                    name: result.data.nameofemployee + ',',
+                    post: result.data.body,
+                    date: parsedDate
+                })
+    
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
         loadAnnouncements()
-    }, [])
+    }, [announcementState])
 
     /**
      * @TODO put loadAnnouncements function in different file
      */
 
-    const loadAnnouncements = async () => {
-        try {
-            const result = await AnnouncementApi.getAnnouncements();
-            console.log(result);
-            let parsedDate = result.data.date;
-            parsedDate = moment(parsedDate).format("MMM Do YYYY")
 
-            setAnnouncementState({
-                ...announcementState,
-                name: result.data.nameofemployee + ',',
-                post: result.data.body,
-                date: parsedDate
-            })
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
 
     return(

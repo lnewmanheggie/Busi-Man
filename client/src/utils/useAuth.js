@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import { useEffect } from 'react';
 import UserApi from './UserApi';
 import { useHistory } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ export default function useAuth() {
             }
         }
         auth()
-    }, [])
+    }, [history])
 
     return {
         useAuth

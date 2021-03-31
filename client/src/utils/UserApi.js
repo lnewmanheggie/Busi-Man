@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-export default {
+const UserApi = {
 
     // REFER TO THIS FUNCTION TO GET HEADERS FOR API CALLS- NEED FOR AUTHENTICATION
     getUsers: function () {
@@ -35,3 +35,5 @@ export default {
         return axios.get('auth/' + company)
     }
 }
+
+export default UserApi;

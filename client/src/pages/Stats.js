@@ -45,18 +45,13 @@ const Stats = () => {
 
         setUserState({ ...userState, [name]: value })
 
-
-
         const { expensesVal, monthlyEarnings, predictionMonth } = userState
-        var testmon = monthlyEarnings.split(',').map(x => +x)
-
 
         predictor(expensesVal, monthlyEarnings, predictionMonth);
     }
 
 
     function predictor(expensesVal, monthlyEarnings, predictionMonth) {
-
 
         var xUnitsCountArr = monthlyEarnings.split(',');
         // creates a new array ignoring all the commas so i can count the array length
