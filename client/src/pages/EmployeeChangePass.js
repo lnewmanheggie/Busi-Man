@@ -27,7 +27,7 @@ function EmployeeChangePass({ history }) {
     const handlePasswordChange = async (e) => {
         e.preventDefault();
         try {
-            if (values.password != values.confirmPassword) {
+            if (values.password !== values.confirmPassword) {
                 setError('Passwords do not match');
                 return;
             } 

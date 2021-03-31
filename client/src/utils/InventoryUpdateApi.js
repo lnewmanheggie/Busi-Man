@@ -1,7 +1,7 @@
 import axios from 'axios';
 import headersObj from './HeadersObj';
 
-export default {
+const InventoryUpdateApi =  {
     // add item to db
     addItem: function(itemData) {
         return axios.post('api/inventory/', itemData, headersObj);
@@ -19,3 +19,5 @@ export default {
         return axios.delete('api/inventory/' + barcode, headersObj);
     }
 }
+
+export default InventoryUpdateApi;

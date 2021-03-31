@@ -1,11 +1,7 @@
 import React from 'react';
 import EmployeeRow from './EmployeeRow';
-import TableCSS from '../css/Table.css';
 
 function EmployeeTable(props) {
-    const styles = {TableCSS};
-    
-    console.log(props)
 
     return (
  

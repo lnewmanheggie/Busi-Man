@@ -1,7 +1,7 @@
 import axios from 'axios';
 import headersObj from './HeadersObj';
 
-export default {
+const AnnouncementApi = {
     getAnnouncements: function() {
         return axios.get('api/announcement/find', headersObj);
     },
@@ -10,3 +10,5 @@ export default {
         return axios.post('api/announcement/post', postData, headersObj);
     }
 }
+
+export default AnnouncementApi;

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import headersObj from './HeadersObj';
 
-export default {
+const EmployeeApi = {
     getEmployees: function() {
         return axios.get('api/employee/find', headersObj);
     },
@@ -10,3 +10,5 @@ export default {
         return axios.delete('api/employee/remove/' + email, headersObj);
     }
 }
+
+export default EmployeeApi;

@@ -60,7 +60,7 @@ function Navbar() {
             <div className="navbar-brand">
                 <h1 className="navbar-item" style={styles.h1}>Busi-Man</h1>
 
-                <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <a href="#" role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                     <span aria-hidden="true" style={styles.navbarItem}></span>
                     <span aria-hidden="true" style={styles.navbarItem}></span>
                     <span aria-hidden="true" style={styles.navbarItem}></span>
@@ -77,7 +77,7 @@ function Navbar() {
 
                     <div className="navbar-end">
                         <div className="navbar-item has-dropdown is-hoverable">
-                            <a className="navbar-link" style={styles.navbarItem}>
+                            <a href="#" className="navbar-link" style={styles.navbarItem}>
                                 My Account
                             </a>
                             <div className="navbar-dropdown">

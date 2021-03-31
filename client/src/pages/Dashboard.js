@@ -27,31 +27,33 @@ function Dashboard() {
         date: ''
     })
 
-    useEffect(() => {
-        loadAnnouncements()
-    }, [])
-
     /**
      * @TODO put loadAnnouncements function in different file
      */
 
-    const loadAnnouncements = async () => {
-        try {
-            const result = await AnnouncementApi.getAnnouncements();
-            let parsedDate = result.data.date;
-            parsedDate = moment(parsedDate).format("MMM Do YYYY")
 
-            setAnnouncementState({
-                ...announcementState,
-                name: result.data.nameofemployee + ',',
-                post: result.data.body,
-                date: parsedDate
-            })
 
-        } catch (error) {
-            console.log(error);
+    useEffect(() => {
+        const loadAnnouncements = async () => {
+            try {
+                const result = await AnnouncementApi.getAnnouncements();
+                let parsedDate = result.data.date;
+                parsedDate = moment(parsedDate).format("MMM Do YYYY")
+    
+                setAnnouncementState({
+                    ...announcementState,
+                    name: result.data.nameofemployee + ',',
+                    post: result.data.body,
+                    date: parsedDate
+                })
+    
+            } catch (error) {
+                console.log(error);
+            }
         }
-    }
+
+        loadAnnouncements()
+    }, [announcementState])
 
 
     return (

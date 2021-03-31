@@ -14,24 +14,24 @@ function ViewAccount() {
     })
 
     useEffect(() => {
-        getUser();
-    }, [])
-
-    const getUser = async () => {
-        try {
-            const result = await UserApi.getUsers();
-            let user = result.data.currentUser;
-            setAccountState({
-                ...accountState,
-                name: user.firstName + " " + user.lastName,
-                email: user.email,
-                company: user.company
-            })
-
-        } catch (error) {
-            console.log(error);
+        const getUser = async () => {
+            try {
+                const result = await UserApi.getUsers();
+                let user = result.data.currentUser;
+                setAccountState({
+                    ...accountState,
+                    name: user.firstName + " " + user.lastName,
+                    email: user.email,
+                    company: user.company
+                })
+    
+            } catch (error) {
+                console.log(error);
+            }
         }
-    }
+        getUser();
+    }, [accountState])
+
 
     return (
         <div>
