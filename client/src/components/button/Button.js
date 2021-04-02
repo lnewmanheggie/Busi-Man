@@ -11,11 +11,11 @@ function Button(props) {
 
     return (
         <button 
+            data-testid = "button"
             className="button"
             type={props.type}
             style={styles.button}
             onClick={props.handleClick}
-            {...props}
         >
         {props.name}
         </button>

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import UserApi from '../utils/UserApi';
-import Button from '../components/Button';
+import Button from '../components/button/Button';
 import Input from '../components/Input';
 import LoginSignupHeader from '../components/LoginSignupHeader';
 

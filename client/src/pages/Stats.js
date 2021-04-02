@@ -8,7 +8,7 @@ import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Input from '../components/Input';
-import Button from "../components/Button";
+import Button from '../components/button/Button';
 var tf = require('@tensorflow/tfjs');
 // stats page will show a graph of Revenue vs time then a dot connecting to the predicted value.
 

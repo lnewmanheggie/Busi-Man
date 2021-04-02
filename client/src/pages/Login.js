@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Input from './../components/Input';
 import UserApi from './../utils/UserApi';
-import Button from './../components/Button';
+import Button from '../components/button/Button';
 import './../css/LoginSignup.css';
 import LoginSignupHeader from './../components/LoginSignupHeader';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../components/Button';
+import Button from './button/Button';
 
 function EmployeeRow({ firstName, lastName, company, email, onClick }) {
     const styles = {

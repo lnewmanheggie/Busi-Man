@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
-import AnnouncementsBox from '../components/AnnouncementsBox';
+import AnnouncementsBox from '../components/announcementsBox/AnnouncementsBox';
 import Card from '../components/Card';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';

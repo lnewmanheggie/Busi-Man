@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../components/Button';
+import Button from './button/Button';
 
 function InventoryRow({ barcode, name, count, price, deleteItem }) {
     const styles = {
