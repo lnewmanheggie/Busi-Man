@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import '../css/Scanner.css'
 import Button from '../components/button/Button';
-import Input from '../components/Input';
+import Input from '../components/input/Input';
 import InventoryUpdateApi from '../utils/InventoryUpdateApi';
 import Navbar from '../components/Navbar';
 import useAuth from '../utils/useAuth';

@@ -11,7 +11,8 @@ function Input(props) {
     return(
         <div className="field">
             <div className="control">
-                <input 
+                <input
+                    data-testid='input' 
                     className='input' 
                     type={props.type}
                     placeholder={props.placeholder} 
