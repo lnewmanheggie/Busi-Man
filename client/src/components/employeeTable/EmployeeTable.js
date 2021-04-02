@@ -1,5 +1,5 @@
 import React from 'react';
-import EmployeeRow from './EmployeeRow';
+import EmployeeRow from '../employeeRow/EmployeeRow';
 
 function EmployeeTable(props) {
 

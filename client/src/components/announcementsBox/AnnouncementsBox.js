@@ -14,7 +14,7 @@ function AnnouncementsBox(props) {
     }
 
     return(
-        <div className="box mb-4" style={styles.box}>
+        <div className="box mb-4" style={styles.box} data-testid = "announcements">
             <h4><em>{props.name} {props.date}</em></h4>
             
             <p style={styles.p}><em>{props.post}</em></p>

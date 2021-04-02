@@ -7,8 +7,8 @@ import useAuth from '../utils/useAuth';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Input from '../components/Input';
-import Button from "../components/Button";
+import Input from '../components/input/Input';
+import Button from "../components/button/Button";
 import AnnouncementApi from "../utils/AnnouncementApi";
 import '../css/Box.css';
 
