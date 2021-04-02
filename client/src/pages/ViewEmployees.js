@@ -4,7 +4,7 @@ import EmployeeApi from '../utils/EmployeeApi';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import EmpTable from '../components/EmployeeTable';
+import EmpTable from '../components/employeeTable/EmployeeTable';
 import SearchBar from '../components/SearchBar';
 
 

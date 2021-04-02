@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import AnnouncementsBox from '../components/announcementsBox/AnnouncementsBox';
-import Card from '../components/Card';
+import Card from '../components/card/Card';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import AnnouncementApi from '../utils/AnnouncementApi';
