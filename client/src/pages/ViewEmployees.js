@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import useAuth from '../utils/useAuth';
 import EmployeeApi from '../utils/EmployeeApi';
-import Navbar from '../components/Navbar';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Navbar from '../components/navbar/Navbar';
+import Header from '../components/header/Header';
+import Footer from '../components/footer/Footer';
 import EmpTable from '../components/employeeTable/EmployeeTable';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../components/searchBar/SearchBar';
 
 
 function ViewEmployees() {

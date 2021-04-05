@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../Button';
+import Button, {add} from '../Button';
 import { render, cleanup, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -37,7 +37,9 @@ describe('<Button />', () => {
         fireEvent.click(button);
         expect(click);
     })    
+
 })
+
 
 // it("renders button correctly", () => {
 //     const {getByTestId} = render(<Button name="button" type="submit"></Button>)

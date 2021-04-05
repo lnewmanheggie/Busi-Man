@@ -3,7 +3,7 @@ import '../css/Scanner.css'
 import Button from '../components/button/Button';
 import Input from '../components/input/Input';
 import InventoryUpdateApi from '../utils/InventoryUpdateApi';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/navbar/Navbar';
 import useAuth from '../utils/useAuth';
 import UserApi from '../utils/UserApi';
 import TransactionApi from '../utils/TransactionApi';

@@ -3,7 +3,7 @@ import Input from './../components/input/Input';
 import UserApi from './../utils/UserApi';
 import Button from '../components/button/Button';
 import './../css/LoginSignup.css';
-import LoginSignupHeader from './../components/LoginSignupHeader';
+import LoginSignupHeader from './../components/loginSignupHeader/LoginSignupHeader';
 
 function Login({ history }) {
 

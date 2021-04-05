@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import UserApi from '../utils/UserApi';
 import Button from '../components/button/Button';
 import Input from '../components/input/Input';
-import LoginSignupHeader from '../components/LoginSignupHeader';
+import LoginSignupHeader from '../components/loginSignupHeader/LoginSignupHeader';
 
 function EmployeeChangePass({ history }) {
 
