@@ -32,22 +32,22 @@ describe ('<EmployeeRow />', () => {
         expect(click);
     })
 
-    it('contains the correct elements', () => {
+    // it('contains the correct elements', () => {
 
-        const { getByTestId } = render(<EmployeeRow />)
+    //     const { getByTestId } = render(<EmployeeRow />)
 
-        const employeeRow = getByTestId('employee-row');
-        const firstName = getByTestId('first-name');
-        const lastName = getByTestId('last-name');
-        const company = getByTestId('company');
-        const email = getByTestId('email');
-        const button = getByTestId('button-render');
+    //     const employeeRow = getByTestId('employee-row');
+    //     const firstName = getByTestId('first-name');
+    //     const lastName = getByTestId('last-name');
+    //     const company = getByTestId('company');
+    //     const email = getByTestId('email');
+    //     const button = getByTestId('button-render');
 
-        expect(employeeRow).toContainElement(firstName);
-        expect(employeeRow).toContainElement(lastName);
-        expect(employeeRow).toContainElement(company);
-        expect(employeeRow).toContainElement(email);
-        expect(employeeRow).toContainElement(button);
-    })
+    //     expect(employeeRow).toContainElement(firstName);
+    //     expect(employeeRow).toContainElement(lastName);
+    //     expect(employeeRow).toContainElement(company);
+    //     expect(employeeRow).toContainElement(email);
+    //     expect(employeeRow).toContainElement(button);
+    // })
     
 })

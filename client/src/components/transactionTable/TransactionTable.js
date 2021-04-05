@@ -1,6 +1,6 @@
 import React from 'react';
-import TransactionRow from './TransactionRow';
-import '../css/Table.css';
+import TransactionRow from '../transactionRow/TransactionRow';
+import '../../css/Table.css';
 
 function TransactionTable(props) {
     return (
