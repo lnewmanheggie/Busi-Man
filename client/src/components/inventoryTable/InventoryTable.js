@@ -1,6 +1,6 @@
 import React from 'react';
-import InventoryRow from './InventoryRow';
-import '../css/Table.css';
+import InventoryRow from '../inventoryRow/InventoryRow';
+import '../../css/Table.css';
 
 function InventoryTable(props) {
 

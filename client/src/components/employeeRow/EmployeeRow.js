@@ -14,7 +14,7 @@ function EmployeeRow({ firstName, lastName, company, email, onClick }) {
     }
 
     return (
-        <div data-testid="employee-row">
+        <>
             <div className="cell" style={styles.cell} data-testid="first-name">
                 <div>{firstName}</div>
             </div>
@@ -30,7 +30,7 @@ function EmployeeRow({ firstName, lastName, company, email, onClick }) {
             <div className="cell" style={styles.cell} data-testid="button-render">
                 <Button value={email} type="submit" name="Delete" color="#219EBC" handleClick={onClick}/>
             </div>
-        </div> 
+        </>
     )
 }
 
