@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import useAuth from '../utils/useAuth';
-import Navbar from '../components/Navbar';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Navbar from '../components/navbar/Navbar';
+import Header from '../components/header/Header';
+import Footer from '../components/footer/Footer';
 import Input from '../components/input/Input';
 import Button from "../components/button/Button";
 import UserApi from "../utils/UserApi";

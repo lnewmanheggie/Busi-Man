@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import useAuth from '../utils/useAuth';
 import TransactionApi from '../utils/TransactionApi';
-import Navbar from '../components/Navbar';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import TransactionTable from '../components/TransactionTable';
-import SearchBar from '../components/SearchBar';
+import Navbar from '../components/navbar/Navbar';
+import Header from '../components/header/Header';
+import Footer from '../components/footer/Footer';
+import TransactionTable from '../components/transactionTable/TransactionTable';
+import SearchBar from '../components/searchBar/SearchBar';
 
 
 function Transactions() {

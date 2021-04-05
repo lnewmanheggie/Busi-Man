@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar';
-import Header from '../components/Header';
+import Navbar from '../components/navbar/Navbar';
+import Header from '../components/header/Header';
 import AnnouncementsBox from '../components/announcementsBox/AnnouncementsBox';
 import Card from '../components/card/Card';
-import Footer from '../components/Footer';
+import Footer from '../components/footer/Footer';
 import { Link } from 'react-router-dom';
 import useAuth from '../utils/useAuth';
 import moment from 'moment';

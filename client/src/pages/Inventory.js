@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
-import Header from '../components/Header';
-import InvTable from '../components/InventoryTable';
-import Footer from '../components/Footer';
+import Navbar from '../components/navbar/Navbar';
+import Header from '../components/header/Header';
+import InvTable from '../components/inventoryTable/InventoryTable';
+import Footer from '../components/footer/Footer';
 import InventoryUpdateAPI from '../utils/InventoryUpdateApi';
 import InventoryAPI from '../utils/InventoryApi';
 import '../css/Table.css';
 import useAuth from '../utils/useAuth';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../components/searchBar/SearchBar';
 
 function Inventory() {
     const styles = {
