@@ -21,7 +21,7 @@ function LoginSignupHeader(props) {
                 <h1 style={styles.h1}>Busi-Man</h1>
             </div>
             <div className='p-4'>
-                <Link style={styles.link} to={props.linkTo}>
+                <Link style={styles.link} to={props.linkTo || '/'}>
                     {props.linkText}
                 </Link>
             </div>
