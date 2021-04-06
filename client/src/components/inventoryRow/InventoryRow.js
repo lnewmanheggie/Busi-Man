@@ -15,16 +15,16 @@ function InventoryRow({ barcode, name, count, price, deleteItem }) {
 
     return (
         <>
-            <div className="cell" style={styles.cell}>
+            <div className="cell" style={styles.cell} data-testid='barcode'>
                 <div>{barcode}</div>
             </div>
-            <div className="cell" style={styles.email}>
+            <div className="cell" style={styles.email} data-testid='name'>
                 <div>{name}</div>
             </div>
-            <div className="cell" style={styles.cell}>
+            <div className="cell" style={styles.cell} data-testid='count'>
                 <div>{count}</div>
             </div>
-            <div className="cell" style={styles.cell}>
+            <div className="cell" style={styles.cell} data-testid='price'>
                 <div>{price}</div>
             </div>
             <div className="cell" style={styles.cell}>
